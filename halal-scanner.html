@@ -143,32 +143,22 @@
                 letter-spacing: 0.05rem;
             }
 
-            /* Main content area that sits beside the sidebar */
-            @media (min-width: 992px) {
-                #page-content {
-                    margin-left: 17rem;
-                    height: 100vh;
-                    display: flex;
-                    flex-direction: column;
-                }
-            }
-            @media (max-width: 991px) {
-                #page-content {
-                    /* On mobile, nav is top bar; give extra top space */
-                    padding-top: 56px;
-                    height: 100vh;
-                    display: flex;
-                    flex-direction: column;
-                }
+            /* Main content area — sits below the fixed top navbar */
+            #page-content {
+                margin-left: 0;
+                margin-top: 60px;
+                height: calc(100vh - 60px);
+                display: flex;
+                flex-direction: column;
             }
         </style>
     </head>
-    <body id="page-top">
+    <body id="page-top" class="topnav">
         <!-- Navigation (same sidebar as portfolio) -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
             <a class="navbar-brand" href="index.html">
-                <span class="d-block d-lg-none">Yavuzalp Turkoglu</span>
-                <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="assets/img/profile.jpg" alt="" /></span>
+                <span class="d-block d-lg-none">Yavuzalp <span class="brand-accent">Turkoglu</span></span>
+                <span class="d-none d-lg-block" aria-hidden="true"></span>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
