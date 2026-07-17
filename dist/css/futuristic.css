@@ -481,6 +481,133 @@ kbd {
 .fa-ul.mb-0 .fa-li { color: var(--accent); }
 
 /* ═══════════════════════════════════════
+   TOP NAVBAR
+   Applied only to body.topnav (index.html + halal-scanner.html).
+   interview-prep.html keeps its vertical sidebar for 13 topic links.
+═══════════════════════════════════════ */
+
+.topnav #sideNav {
+    flex-direction: row !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 60px !important;
+    text-align: left !important;
+    padding: 0 1.5rem !important;
+}
+
+@media (min-width: 992px) {
+    .topnav #sideNav {
+        position: fixed !important;
+        top: 0 !important; left: 0 !important; right: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        flex-direction: row !important;
+        text-align: left !important;
+    }
+    .topnav #sideNav .navbar-brand {
+        display: flex !important;
+        align-items: center !important;
+        margin: 0 1rem 0 0 !important;
+        padding: 0 !important;
+    }
+    .topnav #sideNav .navbar-collapse {
+        flex-direction: row !important;
+        flex-grow: 1 !important;
+        width: auto !important;
+        margin-bottom: 0 !important;
+        align-items: center !important;
+    }
+    .topnav #sideNav .navbar-collapse .navbar-nav {
+        flex-direction: row !important;
+        width: auto !important;
+        margin-left: auto !important;
+    }
+    .topnav #sideNav .navbar-collapse .navbar-nav .nav-item {
+        display: inline-flex !important;
+    }
+    /* Remove 17rem sidebar offset from main content */
+    .topnav .container-fluid {
+        margin-left: 0 !important;
+        padding-top: 60px !important;
+    }
+}
+
+/* Brand name */
+.topnav #sideNav .navbar-brand {
+    font-family: 'Saira Extra Condensed', sans-serif !important;
+    font-size: 1.3rem !important;
+    font-weight: 700 !important;
+    color: var(--text-1) !important;
+    letter-spacing: 0.04rem;
+    white-space: nowrap;
+}
+.topnav #sideNav .navbar-brand .brand-accent { color: var(--accent); }
+
+/* Always show name, always hide profile pic */
+.topnav #sideNav .d-none.d-lg-block { display: none !important; }
+.topnav #sideNav .d-block.d-lg-none { display: block !important; color: var(--text-1) !important; }
+
+/* Horizontal link padding */
+.topnav #sideNav .navbar-nav .nav-item .nav-link {
+    padding: 0.45rem 0.7rem !important;
+}
+
+/* Bottom-underline accent instead of left-bar */
+.topnav #sideNav .navbar-nav .nav-item .nav-link::before { display: none !important; }
+.topnav #sideNav .navbar-nav .nav-item .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 0.7rem;
+    right: 0.7rem;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .2s ease;
+    border-radius: 1px;
+}
+.topnav #sideNav .navbar-nav .nav-item .nav-link:hover::after,
+.topnav #sideNav .navbar-nav .nav-item .nav-link.active::after {
+    transform: scaleX(1);
+}
+
+/* No sideways indent on horizontal hover */
+.topnav #sideNav .navbar-nav .nav-item .nav-link:hover,
+.topnav #sideNav .navbar-nav .nav-item .nav-link.active {
+    padding-left: 0.7rem !important;
+}
+
+/* Anchor scroll offset — sections don't hide under fixed navbar */
+.topnav section[id] { scroll-margin-top: 68px; }
+
+/* Dark hamburger icon for light navbar */
+.topnav .navbar-toggler       { border-color: rgba(0,0,0,.15) !important; }
+.topnav .navbar-toggler-icon  {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2830%2C41%2C59%2C0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+/* Mobile collapsed nav */
+@media (max-width: 991px) {
+    .topnav .container-fluid { padding-top: 60px !important; }
+    .topnav #sideNav .navbar-collapse {
+        background: #ffffff;
+        border-top: 1px solid rgba(0,0,0,.08);
+        padding: 0.5rem 0;
+        margin-left: -1.5rem;
+        margin-right: -1.5rem;
+        padding-left: 1.5rem;
+    }
+    .topnav #sideNav .navbar-nav .nav-item .nav-link {
+        padding: 0.5rem 1.25rem !important;
+    }
+    .topnav #sideNav .navbar-nav .nav-item .nav-link::after { display: none !important; }
+}
+
+/* Journey card container (About section) */
+.journey-card { display: inline-block; max-width: 460px; width: 100%; }
+
+/* ═══════════════════════════════════════
    RESPONSIVE TWEAKS
 ═══════════════════════════════════════ */
 @media (max-width: 991px) {

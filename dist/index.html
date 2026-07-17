@@ -17,12 +17,12 @@
         <!-- Futuristic dark design layer -->
         <link href="css/futuristic.css" rel="stylesheet" />
     </head>
-    <body id="page-top">
+    <body id="page-top" class="topnav">
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
             <a class="navbar-brand js-scroll-trigger" href="#page-top">
-                <span class="d-block d-lg-none">Yavuzalp Turkoglu</span>
-                <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="assets/img/profile.jpg" alt="" /></span>
+                <span class="d-block d-lg-none">Yavuzalp <span class="brand-accent">Turkoglu</span></span>
+                <span class="d-none d-lg-block" aria-hidden="true"></span>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -50,7 +50,61 @@
                     <div class="subheading mb-5">
                         Software Engineer &middot; Full-Stack Developer
                     </div>
-                    <p class="lead mb-5">Full-stack software engineer with experience building web applications across React, Python, and cloud infrastructure. Passionate about clean APIs, developer tooling, and shipping products people use.</p>
+                    <p class="lead mb-4">Full-stack software engineer with experience building web applications across React, Python, and cloud infrastructure. Passionate about clean APIs, developer tooling, and shipping products people use.</p>
+
+                    <!-- Journey: Fethiye → USA -->
+                    <div class="journey-card mb-4">
+                        <svg viewBox="0 0 460 130" xmlns="http://www.w3.org/2000/svg"
+                             role="img" aria-label="Moved from Fethiye, Muğla, Türkiye to the United States in 2016">
+                            <defs>
+                                <filter id="jcs" x="-4%" y="-10%" width="108%" height="130%">
+                                    <feDropShadow dx="0" dy="2" stdDeviation="5" flood-color="rgba(0,0,0,.06)"/>
+                                </filter>
+                            </defs>
+                            <!-- Card -->
+                            <rect x="2" y="2" width="456" height="126" rx="10"
+                                  fill="#fdf8f5" stroke="rgba(189,93,56,.18)" stroke-width="1.5"
+                                  filter="url(#jcs)"/>
+                            <!-- Flags -->
+                            <text x="90"  y="46" font-size="26" text-anchor="middle">🇹🇷</text>
+                            <text x="370" y="46" font-size="26" text-anchor="middle">🇺🇸</text>
+                            <!-- Origin pin -->
+                            <circle cx="90"  cy="67" r="7"   fill="rgba(189,93,56,.14)"/>
+                            <circle cx="90"  cy="67" r="3.5" fill="#bd5d38"/>
+                            <!-- Destination pin -->
+                            <circle cx="370" cy="67" r="7"   fill="rgba(189,93,56,.14)"/>
+                            <circle cx="370" cy="67" r="3.5" fill="#bd5d38"/>
+                            <!-- Dashed flight arc -->
+                            <path d="M 106 67 Q 230 14 354 67"
+                                  fill="none" stroke="#bd5d38" stroke-width="1.5"
+                                  stroke-dasharray="5 3.5" stroke-linecap="round" opacity=".6"/>
+                            <!-- Airplane at arc midpoint (~230, 40) pointing right with slight upward tilt -->
+                            <g transform="translate(230,40) rotate(-6)" fill="#bd5d38" opacity=".88">
+                                <path d="M-12,-2 L9,-2 L13,0 L9,2 L-12,2 Z"/>
+                                <polygon points="-1,-2 6,-2 3,-9 -4,-2"/>
+                                <polygon points="-1,2  6,2  3,9  -4,2"/>
+                                <polygon points="-9,-2 -13,-6 -7,-2" opacity=".7"/>
+                                <polygon points="-9,2  -13,6  -7,2"  opacity=".7"/>
+                            </g>
+                            <!-- Year -->
+                            <text x="230" y="57" font-size="9" text-anchor="middle"
+                                  font-family="'Saira Extra Condensed',sans-serif"
+                                  font-weight="700" fill="#bd5d38" letter-spacing="2" opacity=".9">2016</text>
+                            <!-- Origin labels -->
+                            <text x="90"  y="85" font-size="10.5" text-anchor="middle"
+                                  font-family="'Saira Extra Condensed',sans-serif"
+                                  font-weight="700" fill="#1e293b" letter-spacing=".5">FETHIYE</text>
+                            <text x="90"  y="102" font-size="8.5" text-anchor="middle"
+                                  font-family="Muli,sans-serif" fill="#64748b">Muğla, Türkiye</text>
+                            <!-- Destination labels -->
+                            <text x="370" y="85" font-size="10.5" text-anchor="middle"
+                                  font-family="'Saira Extra Condensed',sans-serif"
+                                  font-weight="700" fill="#1e293b" letter-spacing=".5">UNITED STATES</text>
+                            <text x="370" y="102" font-size="8.5" text-anchor="middle"
+                                  font-family="Muli,sans-serif" fill="#64748b">of America</text>
+                        </svg>
+                    </div>
+
                     <div class="social-icons">
                         <a class="social-icon" href="https://www.linkedin.com/in/yavuzalp-turkoglu-588b46143/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
                         <a class="social-icon" href="https://github.com/yavuzalp" target="_blank"><i class="fab fa-github"></i></a>
