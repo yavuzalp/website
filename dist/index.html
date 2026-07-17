@@ -14,6 +14,8 @@
         <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+        <!-- Futuristic dark design layer -->
+        <link href="css/futuristic.css" rel="stylesheet" />
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -31,6 +33,7 @@
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skills">Skills</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#projects">Projects</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#interests">Interests</a></li>
+                    <li class="nav-item"><a class="nav-link" href="halal-scanner.html">Halal Scanner</a></li>
                     <li class="nav-item"><a class="nav-link" href="interview-prep.html">Interview Prep</a></li>
                 </ul>
             </div>
@@ -45,15 +48,12 @@
                         <span class="text-primary">Turkoglu</span>
                     </h1>
                     <div class="subheading mb-5">
-                        Yelm, WA 98597 · (206) 773-5811 ·
-                        <a href="mailto:yavuzalp@uw.com">yavuzalp@uw.com</a>
+                        Software Engineer &middot; Full-Stack Developer
                     </div>
-                    <p class="lead mb-5">I am currently a junior at the University of Washington Tacoma</p>
+                    <p class="lead mb-5">Full-stack software engineer with experience building web applications across React, Python, and cloud infrastructure. Passionate about clean APIs, developer tooling, and shipping products people use.</p>
                     <div class="social-icons">
-                        <a class="social-icon" href="https://www.linkedin.com/in/yavuzalp-turkoglu-588b46143/"target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                        <a class="social-icon" href="https://github.com/yavuzalp"target="_blank"><i class="fab fa-github"></i></a>
-                        <a class="social-icon" href="#"><i class="fab fa-twitter"></i></a>
-                        <a class="social-icon" href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a class="social-icon" href="https://www.linkedin.com/in/yavuzalp-turkoglu-588b46143/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a class="social-icon" href="https://github.com/yavuzalp" target="_blank"><i class="fab fa-github"></i></a>
                     </div>
                 </div>
             </section>
@@ -67,7 +67,6 @@
                             <h3 class="mb-0">University of Washington Tacoma</h3>
                             <div class="subheading mb-3">Bachelor of Science</div>
                             <div>Computer Science</div>
-                            <p>GPA: 4.00</p>
                         </div>
                         <div class="flex-shrink-0"><span class="text-primary">September 2020 - Present</span></div>
                     </div>
@@ -75,7 +74,6 @@
                         <div class="flex-grow-1">
                             <h3 class="mb-0">Bellevue College</h3>
                             <div class="subheading mb-3">Transfer Degree</div>
-                            <p>GPA: 3.75</p>
                         </div>
                         <div class="flex-shrink-0"><span class="text-primary">January 2017 - January 2020</span></div>
                     </div>
@@ -153,8 +151,11 @@
                             <h3 class="mb-0">Halal Scanner</h3>
                             <div class="subheading mb-3">Web App &middot; React &middot; Railway</div>
                             <p>A web application that lets users scan or search food products to determine whether ingredients are halal-compliant. Deployed on Railway.</p>
-                            <a href="https://halal-web-production.up.railway.app" target="_blank" class="btn btn-primary btn-sm">
-                                <i class="fas fa-external-link-alt mr-1"></i> View Live
+                            <a href="halal-scanner.html" class="btn btn-primary btn-sm mr-2">
+                                <i class="fas fa-play mr-1"></i> Open App
+                            </a>
+                            <a href="https://halal-web-production.up.railway.app" target="_blank" class="btn btn-sm" style="background:var(--glass);border:1px solid var(--glass-border);color:var(--text-2);">
+                                <i class="fas fa-external-link-alt mr-1"></i> Standalone
                             </a>
                         </div>
                         <div class="flex-shrink-0 ml-md-4 mt-3 mt-md-0">
@@ -228,5 +229,15 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
+        <!-- Scroll-reveal -->
+        <script>
+            document.documentElement.classList.add('js-loaded');
+            const _io = new IntersectionObserver(function(entries) {
+                entries.forEach(function(e) {
+                    if (e.isIntersecting) { e.target.classList.add('revealed'); _io.unobserve(e.target); }
+                });
+            }, { threshold: 0.08 });
+            document.querySelectorAll('.resume-section-content').forEach(function(el) { _io.observe(el); });
+        </script>
     </body>
 </html>
