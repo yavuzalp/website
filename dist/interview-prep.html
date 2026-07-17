@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="DSA and coding interview prep by Yavuzalp Turkoglu" />
+        <title>Interview Prep - Yavuzalp Turkoglu</title>
+        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+        <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
+        <link href="css/styles.css" rel="stylesheet" />
+        <style>
+            .topic-badge {
+                display: inline-block;
+                font-size: 0.7rem;
+                font-weight: 800;
+                padding: 0.2em 0.6em;
+                border-radius: 4px;
+                margin-left: 0.5rem;
+                vertical-align: middle;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+            }
+            .badge-easy   { background: #28a745; color: #fff; }
+            .badge-medium { background: #ffc107; color: #212529; }
+            .badge-hard   { background: #dc3545; color: #fff; }
+            .problem-list { list-style: none; padding-left: 0; }
+            .problem-list li { padding: 0.35rem 0; border-bottom: 1px solid rgba(0,0,0,.05); }
+            .problem-list li:last-child { border-bottom: none; }
+            .problem-list a { color: #343a40; }
+            .problem-list a:hover { color: #bd5d38; text-decoration: none; }
+            .back-link { font-size: 0.85rem; opacity: 0.7; }
+            .back-link:hover { opacity: 1; }
+            .category-icon { width: 1.4rem; text-align: center; margin-right: 0.4rem; }
+        </style>
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+            <a class="navbar-brand js-scroll-trigger" href="#page-top">
+                <span class="d-block d-lg-none">Interview Prep</span>
+                <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="assets/img/profile.jpg" alt="" /></span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link back-link" href="index.html"><i class="fas fa-arrow-left mr-1"></i>Back to Resume</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#arrays">Arrays &amp; Strings</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#two-pointers">Two Pointers</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#sliding-window">Sliding Window</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#hashing">Hashing</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#stacks-queues">Stacks &amp; Queues</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#trees">Trees</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#graphs">Graphs</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#dp">Dynamic Programming</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#greedy">Greedy</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#backtracking">Backtracking</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#sorting-searching">Sorting &amp; Searching</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#bits">Bit Manipulation</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#system-design">System Design</a></li>
+                </ul>
+            </div>
+        </nav>
+        <!-- Page Content-->
+        <div class="container-fluid p-0">
+
+            <!-- Header -->
+            <section class="resume-section" id="header">
+                <div class="resume-section-content">
+                    <h1 class="mb-0">Interview <span class="text-primary">Prep</span></h1>
+                    <div class="subheading mb-4">DSA &amp; Coding Interview Reference</div>
+                    <p class="lead mb-0">Curated LeetCode problems organized by topic. Use the sidebar to jump to a category.</p>
+                </div>
+            </section>
+            <hr class="m-0" />
+
+            <!-- Arrays & Strings -->
+            <section class="resume-section" id="arrays">
+                <div class="resume-section-content">
+                    <h2 class="mb-3"><span class="category-icon"><i class="fas fa-th"></i></span>Arrays &amp; Strings</h2>
+                    <p class="text-muted mb-4">Fundamental building blocks. Focus on index manipulation, prefix sums, and in-place operations.</p>
+                    <ul class="problem-list">
+                        <li><a href="https://leetcode.com/problems/two-sum/" target="_blank">1. Two Sum</a><span class="topic-badge badge-easy">Easy</span></li>
+                        <li><a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock/" target="_blank">121. Best Time to Buy and Sell Stock</a><span class="topic-badge badge-easy">Easy</span></li>
+                        <li><a href="https://leetcode.com/problems/contains-duplicate/" target="_blank">217. Contains Duplicate</a><span class="topic-badge badge-easy">Easy</span></li>
+                        <li><a href="https://leetcode.com/problems/product-of-array-except-self/" target="_blank">238. Product of Array Except Self</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/maximum-subarray/" target="_blank">53. Maximum Subarray</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/maximum-product-subarray/" target="_blank">152. Maximum Product Subarray</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/" target="_blank">153. Find Minimum in Rotated Sorted Array</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/valid-anagram/" target="_blank">242. Valid Anagram</a><span class="topic-badge badge-easy">Easy</span></li>
+                        <li><a href="https://leetcode.com/problems/rotate-array/" target="_blank">189. Rotate Array</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/trapping-rain-water/" target="_blank">42. Trapping Rain Water</a><span class="topic-badge badge-hard">Hard</span></li>
+                    </ul>
+                </div>
+            </section>
+            <hr class="m-0" />
+
+            <!-- Two Pointers -->
+            <section class="resume-section" id="two-pointers">
+                <div class="resume-section-content">
+                    <h2 class="mb-3"><span class="category-icon"><i class="fas fa-arrows-alt-h"></i></span>Two Pointers</h2>
+                    <p class="text-muted mb-4">Use two indices moving inward or in the same direction to reduce O(n²) to O(n).</p>
+                    <ul class="problem-list">
+                        <li><a href="https://leetcode.com/problems/valid-palindrome/" target="_blank">125. Valid Palindrome</a><span class="topic-badge badge-easy">Easy</span></li>
+                        <li><a href="https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/" target="_blank">167. Two Sum II - Input Array Is Sorted</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/3sum/" target="_blank">15. 3Sum</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/container-with-most-water/" target="_blank">11. Container With Most Water</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/remove-duplicates-from-sorted-array/" target="_blank">26. Remove Duplicates from Sorted Array</a><span class="topic-badge badge-easy">Easy</span></li>
+                        <li><a href="https://leetcode.com/problems/move-zeroes/" target="_blank">283. Move Zeroes</a><span class="topic-badge badge-easy">Easy</span></li>
+                        <li><a href="https://leetcode.com/problems/sort-colors/" target="_blank">75. Sort Colors</a><span class="topic-badge badge-medium">Medium</span></li>
+                    </ul>
+                </div>
+            </section>
+            <hr class="m-0" />
+
+            <!-- Sliding Window -->
+            <section class="resume-section" id="sliding-window">
+                <div class="resume-section-content">
+                    <h2 class="mb-3"><span class="category-icon"><i class="fas fa-align-justify"></i></span>Sliding Window</h2>
+                    <p class="text-muted mb-4">Maintain a window of elements and expand/shrink it to satisfy constraints.</p>
+                    <ul class="problem-list">
+                        <li><a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock/" target="_blank">121. Best Time to Buy and Sell Stock</a><span class="topic-badge badge-easy">Easy</span></li>
+                        <li><a href="https://leetcode.com/problems/longest-substring-without-repeating-characters/" target="_blank">3. Longest Substring Without Repeating Characters</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/longest-repeating-character-replacement/" target="_blank">424. Longest Repeating Character Replacement</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/permutation-in-string/" target="_blank">567. Permutation in String</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/minimum-window-substring/" target="_blank">76. Minimum Window Substring</a><span class="topic-badge badge-hard">Hard</span></li>
+                        <li><a href="https://leetcode.com/problems/sliding-window-maximum/" target="_blank">239. Sliding Window Maximum</a><span class="topic-badge badge-hard">Hard</span></li>
+                        <li><a href="https://leetcode.com/problems/maximum-average-subarray-i/" target="_blank">643. Maximum Average Subarray I</a><span class="topic-badge badge-easy">Easy</span></li>
+                    </ul>
+                </div>
+            </section>
+            <hr class="m-0" />
+
+            <!-- Hashing -->
+            <section class="resume-section" id="hashing">
+                <div class="resume-section-content">
+                    <h2 class="mb-3"><span class="category-icon"><i class="fas fa-hashtag"></i></span>Hashing</h2>
+                    <p class="text-muted mb-4">Hash maps and sets enable O(1) lookups, turning many O(n²) brute-force solutions into O(n).</p>
+                    <ul class="problem-list">
+                        <li><a href="https://leetcode.com/problems/two-sum/" target="_blank">1. Two Sum</a><span class="topic-badge badge-easy">Easy</span></li>
+                        <li><a href="https://leetcode.com/problems/group-anagrams/" target="_blank">49. Group Anagrams</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/top-k-frequent-elements/" target="_blank">347. Top K Frequent Elements</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/encode-and-decode-strings/" target="_blank">271. Encode and Decode Strings</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/longest-consecutive-sequence/" target="_blank">128. Longest Consecutive Sequence</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/word-pattern/" target="_blank">290. Word Pattern</a><span class="topic-badge badge-easy">Easy</span></li>
+                        <li><a href="https://leetcode.com/problems/isomorphic-strings/" target="_blank">205. Isomorphic Strings</a><span class="topic-badge badge-easy">Easy</span></li>
+                    </ul>
+                </div>
+            </section>
+            <hr class="m-0" />
+
+            <!-- Stacks & Queues -->
+            <section class="resume-section" id="stacks-queues">
+                <div class="resume-section-content">
+                    <h2 class="mb-3"><span class="category-icon"><i class="fas fa-layer-group"></i></span>Stacks &amp; Queues</h2>
+                    <p class="text-muted mb-4">LIFO and FIFO structures. Monotonic stacks solve next-greater-element patterns efficiently.</p>
+                    <ul class="problem-list">
+                        <li><a href="https://leetcode.com/problems/valid-parentheses/" target="_blank">20. Valid Parentheses</a><span class="topic-badge badge-easy">Easy</span></li>
+                        <li><a href="https://leetcode.com/problems/min-stack/" target="_blank">155. Min Stack</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/evaluate-reverse-polish-notation/" target="_blank">150. Evaluate Reverse Polish Notation</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/generate-parentheses/" target="_blank">22. Generate Parentheses</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/daily-temperatures/" target="_blank">739. Daily Temperatures</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/car-fleet/" target="_blank">853. Car Fleet</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/largest-rectangle-in-histogram/" target="_blank">84. Largest Rectangle in Histogram</a><span class="topic-badge badge-hard">Hard</span></li>
+                        <li><a href="https://leetcode.com/problems/implement-queue-using-stacks/" target="_blank">232. Implement Queue Using Stacks</a><span class="topic-badge badge-easy">Easy</span></li>
+                    </ul>
+                </div>
+            </section>
+            <hr class="m-0" />
+
+            <!-- Trees -->
+            <section class="resume-section" id="trees">
+                <div class="resume-section-content">
+                    <h2 class="mb-3"><span class="category-icon"><i class="fas fa-sitemap"></i></span>Trees</h2>
+                    <p class="text-muted mb-4">Binary trees, BSTs, and tries. Master DFS (recursive &amp; iterative) and BFS (level order).</p>
+                    <ul class="problem-list">
+                        <li><a href="https://leetcode.com/problems/invert-binary-tree/" target="_blank">226. Invert Binary Tree</a><span class="topic-badge badge-easy">Easy</span></li>
+                        <li><a href="https://leetcode.com/problems/maximum-depth-of-binary-tree/" target="_blank">104. Maximum Depth of Binary Tree</a><span class="topic-badge badge-easy">Easy</span></li>
+                        <li><a href="https://leetcode.com/problems/diameter-of-binary-tree/" target="_blank">543. Diameter of Binary Tree</a><span class="topic-badge badge-easy">Easy</span></li>
+                        <li><a href="https://leetcode.com/problems/balanced-binary-tree/" target="_blank">110. Balanced Binary Tree</a><span class="topic-badge badge-easy">Easy</span></li>
+                        <li><a href="https://leetcode.com/problems/same-tree/" target="_blank">100. Same Tree</a><span class="topic-badge badge-easy">Easy</span></li>
+                        <li><a href="https://leetcode.com/problems/binary-tree-level-order-traversal/" target="_blank">102. Binary Tree Level Order Traversal</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/" target="_blank">235. Lowest Common Ancestor of a BST</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/binary-tree-right-side-view/" target="_blank">199. Binary Tree Right Side View</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/count-good-nodes-in-binary-tree/" target="_blank">1448. Count Good Nodes in Binary Tree</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/validate-binary-search-tree/" target="_blank">98. Validate Binary Search Tree</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/kth-smallest-element-in-a-bst/" target="_blank">230. Kth Smallest Element in a BST</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/" target="_blank">105. Construct Binary Tree from Preorder and Inorder Traversal</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/binary-tree-maximum-path-sum/" target="_blank">124. Binary Tree Maximum Path Sum</a><span class="topic-badge badge-hard">Hard</span></li>
+                        <li><a href="https://leetcode.com/problems/serialize-and-deserialize-binary-tree/" target="_blank">297. Serialize and Deserialize Binary Tree</a><span class="topic-badge badge-hard">Hard</span></li>
+                        <li><a href="https://leetcode.com/problems/implement-trie-prefix-tree/" target="_blank">208. Implement Trie (Prefix Tree)</a><span class="topic-badge badge-medium">Medium</span></li>
+                    </ul>
+                </div>
+            </section>
+            <hr class="m-0" />
+
+            <!-- Graphs -->
+            <section class="resume-section" id="graphs">
+                <div class="resume-section-content">
+                    <h2 class="mb-3"><span class="category-icon"><i class="fas fa-project-diagram"></i></span>Graphs</h2>
+                    <p class="text-muted mb-4">DFS/BFS on adjacency lists or grids. Know Union-Find, Topological Sort, and Dijkstra.</p>
+                    <ul class="problem-list">
+                        <li><a href="https://leetcode.com/problems/number-of-islands/" target="_blank">200. Number of Islands</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/clone-graph/" target="_blank">133. Clone Graph</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/max-area-of-island/" target="_blank">695. Max Area of Island</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/pacific-atlantic-water-flow/" target="_blank">417. Pacific Atlantic Water Flow</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/surrounded-regions/" target="_blank">130. Surrounded Regions</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/rotting-oranges/" target="_blank">994. Rotting Oranges</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/walls-and-gates/" target="_blank">286. Walls and Gates</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/course-schedule/" target="_blank">207. Course Schedule</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/course-schedule-ii/" target="_blank">210. Course Schedule II</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/redundant-connection/" target="_blank">684. Redundant Connection</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/" target="_blank">323. Number of Connected Components in an Undirected Graph</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/word-ladder/" target="_blank">127. Word Ladder</a><span class="topic-badge badge-hard">Hard</span></li>
+                        <li><a href="https://leetcode.com/problems/network-delay-time/" target="_blank">743. Network Delay Time</a><span class="topic-badge badge-medium">Medium</span></li>
+                    </ul>
+                </div>
+            </section>
+            <hr class="m-0" />
+
+            <!-- Dynamic Programming -->
+            <section class="resume-section" id="dp">
+                <div class="resume-section-content">
+                    <h2 class="mb-3"><span class="category-icon"><i class="fas fa-table"></i></span>Dynamic Programming</h2>
+                    <p class="text-muted mb-4">Optimal substructure + overlapping subproblems. Start with recursion + memoization, then convert to tabulation.</p>
+                    <ul class="problem-list">
+                        <li><a href="https://leetcode.com/problems/climbing-stairs/" target="_blank">70. Climbing Stairs</a><span class="topic-badge badge-easy">Easy</span></li>
+                        <li><a href="https://leetcode.com/problems/min-cost-climbing-stairs/" target="_blank">746. Min Cost Climbing Stairs</a><span class="topic-badge badge-easy">Easy</span></li>
+                        <li><a href="https://leetcode.com/problems/house-robber/" target="_blank">198. House Robber</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/house-robber-ii/" target="_blank">213. House Robber II</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/longest-palindromic-substring/" target="_blank">5. Longest Palindromic Substring</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/palindromic-substrings/" target="_blank">647. Palindromic Substrings</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/decode-ways/" target="_blank">91. Decode Ways</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/coin-change/" target="_blank">322. Coin Change</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/maximum-product-subarray/" target="_blank">152. Maximum Product Subarray</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/word-break/" target="_blank">139. Word Break</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/longest-increasing-subsequence/" target="_blank">300. Longest Increasing Subsequence</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/partition-equal-subset-sum/" target="_blank">416. Partition Equal Subset Sum</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/unique-paths/" target="_blank">62. Unique Paths</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/jump-game/" target="_blank">55. Jump Game</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/edit-distance/" target="_blank">72. Edit Distance</a><span class="topic-badge badge-hard">Hard</span></li>
+                        <li><a href="https://leetcode.com/problems/burst-balloons/" target="_blank">312. Burst Balloons</a><span class="topic-badge badge-hard">Hard</span></li>
+                    </ul>
+                </div>
+            </section>
+            <hr class="m-0" />
+
+            <!-- Greedy -->
+            <section class="resume-section" id="greedy">
+                <div class="resume-section-content">
+                    <h2 class="mb-3"><span class="category-icon"><i class="fas fa-bolt"></i></span>Greedy</h2>
+                    <p class="text-muted mb-4">Make the locally optimal choice at each step. Prove correctness by exchange argument or induction.</p>
+                    <ul class="problem-list">
+                        <li><a href="https://leetcode.com/problems/jump-game/" target="_blank">55. Jump Game</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/jump-game-ii/" target="_blank">45. Jump Game II</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/gas-station/" target="_blank">134. Gas Station</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/hand-of-straights/" target="_blank">846. Hand of Straights</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/merge-triplets-to-form-target-triplet/" target="_blank">1899. Merge Triplets to Form Target Triplet</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/partition-labels/" target="_blank">763. Partition Labels</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/valid-parenthesis-string/" target="_blank">678. Valid Parenthesis String</a><span class="topic-badge badge-medium">Medium</span></li>
+                    </ul>
+                </div>
+            </section>
+            <hr class="m-0" />
+
+            <!-- Backtracking -->
+            <section class="resume-section" id="backtracking">
+                <div class="resume-section-content">
+                    <h2 class="mb-3"><span class="category-icon"><i class="fas fa-undo"></i></span>Backtracking</h2>
+                    <p class="text-muted mb-4">Explore all possibilities via recursion, pruning branches that can't lead to a valid solution.</p>
+                    <ul class="problem-list">
+                        <li><a href="https://leetcode.com/problems/subsets/" target="_blank">78. Subsets</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/combination-sum/" target="_blank">39. Combination Sum</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/combination-sum-ii/" target="_blank">40. Combination Sum II</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/permutations/" target="_blank">46. Permutations</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/subsets-ii/" target="_blank">90. Subsets II</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/word-search/" target="_blank">79. Word Search</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/palindrome-partitioning/" target="_blank">131. Palindrome Partitioning</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/letter-combinations-of-a-phone-number/" target="_blank">17. Letter Combinations of a Phone Number</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/n-queens/" target="_blank">51. N-Queens</a><span class="topic-badge badge-hard">Hard</span></li>
+                    </ul>
+                </div>
+            </section>
+            <hr class="m-0" />
+
+            <!-- Sorting & Searching -->
+            <section class="resume-section" id="sorting-searching">
+                <div class="resume-section-content">
+                    <h2 class="mb-3"><span class="category-icon"><i class="fas fa-sort-amount-down"></i></span>Sorting &amp; Searching</h2>
+                    <p class="text-muted mb-4">Binary search reduces search space by half each iteration — O(log n). Know it cold for arrays and answer-space problems.</p>
+                    <ul class="problem-list">
+                        <li><a href="https://leetcode.com/problems/binary-search/" target="_blank">704. Binary Search</a><span class="topic-badge badge-easy">Easy</span></li>
+                        <li><a href="https://leetcode.com/problems/search-a-2d-matrix/" target="_blank">74. Search a 2D Matrix</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/koko-eating-bananas/" target="_blank">875. Koko Eating Bananas</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/" target="_blank">153. Find Minimum in Rotated Sorted Array</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/search-in-rotated-sorted-array/" target="_blank">33. Search in Rotated Sorted Array</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/time-based-key-value-store/" target="_blank">981. Time Based Key-Value Store</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/median-of-two-sorted-arrays/" target="_blank">4. Median of Two Sorted Arrays</a><span class="topic-badge badge-hard">Hard</span></li>
+                        <li><a href="https://leetcode.com/problems/sort-an-array/" target="_blank">912. Sort an Array (Merge Sort / Quick Sort)</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/kth-largest-element-in-an-array/" target="_blank">215. Kth Largest Element in an Array</a><span class="topic-badge badge-medium">Medium</span></li>
+                    </ul>
+                </div>
+            </section>
+            <hr class="m-0" />
+
+            <!-- Bit Manipulation -->
+            <section class="resume-section" id="bits">
+                <div class="resume-section-content">
+                    <h2 class="mb-3"><span class="category-icon"><i class="fas fa-microchip"></i></span>Bit Manipulation</h2>
+                    <p class="text-muted mb-4">XOR, AND, OR, shifts. XOR is your friend — it cancels duplicates and finds differences.</p>
+                    <ul class="problem-list">
+                        <li><a href="https://leetcode.com/problems/number-of-1-bits/" target="_blank">191. Number of 1 Bits</a><span class="topic-badge badge-easy">Easy</span></li>
+                        <li><a href="https://leetcode.com/problems/counting-bits/" target="_blank">338. Counting Bits</a><span class="topic-badge badge-easy">Easy</span></li>
+                        <li><a href="https://leetcode.com/problems/reverse-bits/" target="_blank">190. Reverse Bits</a><span class="topic-badge badge-easy">Easy</span></li>
+                        <li><a href="https://leetcode.com/problems/missing-number/" target="_blank">268. Missing Number</a><span class="topic-badge badge-easy">Easy</span></li>
+                        <li><a href="https://leetcode.com/problems/single-number/" target="_blank">136. Single Number</a><span class="topic-badge badge-easy">Easy</span></li>
+                        <li><a href="https://leetcode.com/problems/sum-of-two-integers/" target="_blank">371. Sum of Two Integers</a><span class="topic-badge badge-medium">Medium</span></li>
+                        <li><a href="https://leetcode.com/problems/reverse-integer/" target="_blank">7. Reverse Integer</a><span class="topic-badge badge-medium">Medium</span></li>
+                    </ul>
+                </div>
+            </section>
+            <hr class="m-0" />
+
+            <!-- System Design -->
+            <section class="resume-section" id="system-design">
+                <div class="resume-section-content">
+                    <h2 class="mb-3"><span class="category-icon"><i class="fas fa-server"></i></span>System Design Basics</h2>
+                    <p class="text-muted mb-4">High-level design problems. Know how to scale, how to pick storage, and how to reason about trade-offs (CAP theorem, consistency vs availability).</p>
+                    <div class="d-flex flex-column flex-md-row mb-5">
+                        <div class="flex-grow-1 mr-md-5">
+                            <h4 class="mb-3 text-primary">Key Concepts</h4>
+                            <ul class="fa-ul mb-0">
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Horizontal vs Vertical Scaling</li>
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Load Balancers (Round Robin, Least Connections)</li>
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span>SQL vs NoSQL trade-offs</li>
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Caching strategies (LRU, Write-through, Write-back)</li>
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span>CDN and edge caching</li>
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Message Queues (Kafka, RabbitMQ)</li>
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Database Sharding and Replication</li>
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span>CAP Theorem</li>
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Rate Limiting (Token Bucket, Leaky Bucket)</li>
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Consistent Hashing</li>
+                            </ul>
+                        </div>
+                        <div class="flex-grow-1 mt-4 mt-md-0">
+                            <h4 class="mb-3 text-primary">Common Design Questions</h4>
+                            <ul class="fa-ul mb-0">
+                                <li><span class="fa-li"><i class="fas fa-angle-right"></i></span>Design a URL Shortener (TinyURL)</li>
+                                <li><span class="fa-li"><i class="fas fa-angle-right"></i></span>Design Twitter / News Feed</li>
+                                <li><span class="fa-li"><i class="fas fa-angle-right"></i></span>Design a Key-Value Store</li>
+                                <li><span class="fa-li"><i class="fas fa-angle-right"></i></span>Design a Web Crawler</li>
+                                <li><span class="fa-li"><i class="fas fa-angle-right"></i></span>Design YouTube / Video Streaming</li>
+                                <li><span class="fa-li"><i class="fas fa-angle-right"></i></span>Design a Chat System (WhatsApp)</li>
+                                <li><span class="fa-li"><i class="fas fa-angle-right"></i></span>Design a Notification System</li>
+                                <li><span class="fa-li"><i class="fas fa-angle-right"></i></span>Design an API Rate Limiter</li>
+                                <li><span class="fa-li"><i class="fas fa-angle-right"></i></span>Design a Distributed Cache (Redis)</li>
+                                <li><span class="fa-li"><i class="fas fa-angle-right"></i></span>Design a Search Autocomplete System</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+        <script src="js/scripts.js"></script>
+    </body>
+</html>
