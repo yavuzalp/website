@@ -26,14 +26,12 @@
             .hs-header {
                 flex-shrink: 0;
                 padding: 1.25rem 2rem 1rem;
-                background: rgba(8,12,20,0.95);
-                border-bottom: 1px solid var(--glass-border);
+                background: #ffffff;
+                border-bottom: 1px solid rgba(0,0,0,.08);
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
                 gap: 1rem;
-                backdrop-filter: blur(16px);
-                -webkit-backdrop-filter: blur(16px);
             }
 
             .hs-title {
@@ -64,15 +62,15 @@
                 font-weight: 700;
                 letter-spacing: 0.06rem;
                 text-transform: uppercase;
-                background: rgba(74,222,128,.12);
-                color: #4ade80;
-                border: 1px solid rgba(74,222,128,.25);
+                background: rgba(21,128,61,.1);
+                color: #15803d;
+                border: 1px solid rgba(21,128,61,.2);
             }
 
             .hs-badge .dot {
                 width: 6px; height: 6px;
                 border-radius: 50%;
-                background: #4ade80;
+                background: #15803d;
                 animation: livePulse 1.8s ease-in-out infinite;
             }
 
@@ -131,7 +129,7 @@
 
             .hs-spinner {
                 width: 44px; height: 44px;
-                border: 3px solid var(--glass-border);
+                border: 3px solid rgba(0,0,0,.10);
                 border-top-color: var(--accent);
                 border-radius: 50%;
                 animation: spin .8s linear infinite;
