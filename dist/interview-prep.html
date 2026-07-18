@@ -202,22 +202,31 @@
             /* hide items below difficulty filter */
             .problem-item.diff-hidden { display: none; }
 
-            /* ── Code wrap: copy button + language label ── */
+            /* ── Code wrap: copy button + language tabs ── */
             .code-wrap { position: relative; margin: 0.75rem 0 1.1rem; }
             .code-wrap .code-block { margin: 0; }
-            .code-lang {
+            .code-lang-tabs {
                 position: absolute;
                 top: 0; right: 40px;
-                background: #bd5d38;
-                color: #fff;
+                display: flex;
+                gap: 2px;
+                z-index: 1;
+            }
+            .code-lang-tab {
+                background: rgba(255,255,255,0.08);
+                color: #999;
+                border: none;
                 font-size: 0.62rem;
                 font-weight: 800;
-                letter-spacing: 0.08rem;
+                letter-spacing: 0.06rem;
                 text-transform: uppercase;
                 padding: 0.1rem 0.55rem;
                 border-radius: 0 0 4px 4px;
-                pointer-events: none;
+                cursor: pointer;
+                transition: background 0.15s, color 0.15s;
             }
+            .code-lang-tab:hover { background: rgba(255,255,255,0.16); color: #ddd; }
+            .code-lang-tab.active { background: #bd5d38; color: #fff; }
             .code-copy {
                 position: absolute;
                 top: 8px; right: 8px;
@@ -462,21 +471,69 @@
                         </div>
 
                         <h5 style="margin-top:1rem;">Template — Prefix Sum</h5>
-                        <div class="code-block"># Build prefix sums → range sum query in O(1)
+                        <div class="code-wrap">
+                            <div class="code-lang-tabs">
+                                <button class="code-lang-tab active" data-lang="python">Python</button>
+                                <button class="code-lang-tab" data-lang="java">Java</button>
+                                <button class="code-lang-tab" data-lang="csharp">C#</button>
+                            </div>
+                            <button class="code-copy" title="Copy code"><i class="far fa-copy"></i></button>
+                            <pre class="code-block" data-lang="python"># Build prefix sums → range sum query in O(1)
 prefix = [0] * (len(arr) + 1)
 for i, v in enumerate(arr):
     prefix[i + 1] = prefix[i] + v
 
 # sum of arr[l..r]  (0-indexed, inclusive)
 def range_sum(l, r):
-    return prefix[r + 1] - prefix[l]</div>
+    return prefix[r + 1] - prefix[l]</pre>
+                            <pre class="code-block" data-lang="java" hidden>// Build prefix sums -&gt; range sum query in O(1)
+int[] prefix = new int[arr.length + 1];
+for (int i = 0; i &lt; arr.length; i++) {
+    prefix[i + 1] = prefix[i] + arr[i];
+}
+
+// sum of arr[l..r]  (0-indexed, inclusive)
+int rangeSum(int l, int r) {
+    return prefix[r + 1] - prefix[l];
+}</pre>
+                            <pre class="code-block" data-lang="csharp" hidden>// Build prefix sums -&gt; range sum query in O(1)
+int[] prefix = new int[arr.Length + 1];
+for (int i = 0; i &lt; arr.Length; i++) {
+    prefix[i + 1] = prefix[i] + arr[i];
+}
+
+// sum of arr[l..r]  (0-indexed, inclusive)
+int RangeSum(int l, int r) {
+    return prefix[r + 1] - prefix[l];
+}</pre>
+                        </div>
 
                         <h5>Template — Kadane's (Max Subarray)</h5>
-                        <div class="code-block">max_sum = cur_sum = arr[0]
+                        <div class="code-wrap">
+                            <div class="code-lang-tabs">
+                                <button class="code-lang-tab active" data-lang="python">Python</button>
+                                <button class="code-lang-tab" data-lang="java">Java</button>
+                                <button class="code-lang-tab" data-lang="csharp">C#</button>
+                            </div>
+                            <button class="code-copy" title="Copy code"><i class="far fa-copy"></i></button>
+                            <pre class="code-block" data-lang="python">max_sum = cur_sum = arr[0]
 for num in arr[1:]:
     cur_sum = max(num, cur_sum + num)   # restart or extend
     max_sum = max(max_sum, cur_sum)
-# max_sum holds the answer</div>
+# max_sum holds the answer</pre>
+                            <pre class="code-block" data-lang="java" hidden>int maxSum = arr[0], curSum = arr[0];
+for (int i = 1; i &lt; arr.length; i++) {
+    curSum = Math.max(arr[i], curSum + arr[i]);   // restart or extend
+    maxSum = Math.max(maxSum, curSum);
+}
+// maxSum holds the answer</pre>
+                            <pre class="code-block" data-lang="csharp" hidden>int maxSum = arr[0], curSum = arr[0];
+for (int i = 1; i &lt; arr.Length; i++) {
+    curSum = Math.Max(arr[i], curSum + arr[i]);   // restart or extend
+    maxSum = Math.Max(maxSum, curSum);
+}
+// maxSum holds the answer</pre>
+                        </div>
 
                         <div class="complexity-row">
                             <span class="cpill cpill-time">Time: O(n)</span>
@@ -514,7 +571,14 @@ for num in arr[1:]:
                         </div>
 
                         <h5 style="margin-top:1rem;">Template — Meet in the Middle</h5>
-                        <div class="code-block">left, right = 0, len(arr) - 1
+                        <div class="code-wrap">
+                            <div class="code-lang-tabs">
+                                <button class="code-lang-tab active" data-lang="python">Python</button>
+                                <button class="code-lang-tab" data-lang="java">Java</button>
+                                <button class="code-lang-tab" data-lang="csharp">C#</button>
+                            </div>
+                            <button class="code-copy" title="Copy code"><i class="far fa-copy"></i></button>
+                            <pre class="code-block" data-lang="python">left, right = 0, len(arr) - 1
 while left < right:
     s = arr[left] + arr[right]
     if s == target:
@@ -523,18 +587,74 @@ while left < right:
     elif s < target:
         left += 1   # need larger sum
     else:
-        right -= 1  # need smaller sum</div>
+        right -= 1  # need smaller sum</pre>
+                            <pre class="code-block" data-lang="java" hidden>int left = 0, right = arr.length - 1;
+while (left &lt; right) {
+    int s = arr[left] + arr[right];
+    if (s == target) {
+        // found a pair
+        left++; right--;
+    } else if (s &lt; target) {
+        left++;   // need larger sum
+    } else {
+        right--;  // need smaller sum
+    }
+}</pre>
+                            <pre class="code-block" data-lang="csharp" hidden>int left = 0, right = arr.Length - 1;
+while (left &lt; right) {
+    int s = arr[left] + arr[right];
+    if (s == target) {
+        // found a pair
+        left++; right--;
+    } else if (s &lt; target) {
+        left++;   // need larger sum
+    } else {
+        right--;  // need smaller sum
+    }
+}</pre>
+                        </div>
 
                         <h5>Template — Fast / Slow (in-place partition)</h5>
-                        <div class="code-block">slow = 0                         # next write position
+                        <div class="code-wrap">
+                            <div class="code-lang-tabs">
+                                <button class="code-lang-tab active" data-lang="python">Python</button>
+                                <button class="code-lang-tab" data-lang="java">Java</button>
+                                <button class="code-lang-tab" data-lang="csharp">C#</button>
+                            </div>
+                            <button class="code-copy" title="Copy code"><i class="far fa-copy"></i></button>
+                            <pre class="code-block" data-lang="python">slow = 0                         # next write position
 for fast in range(len(arr)):
     if keep(arr[fast]):          # your condition here
         arr[slow] = arr[fast]
         slow += 1
-# arr[:slow] is the filtered result</div>
+# arr[:slow] is the filtered result</pre>
+                            <pre class="code-block" data-lang="java" hidden>int slow = 0;                    // next write position
+for (int fast = 0; fast &lt; arr.length; fast++) {
+    if (keep(arr[fast])) {       // your condition here
+        arr[slow] = arr[fast];
+        slow++;
+    }
+}
+// arr[0..slow) is the filtered result</pre>
+                            <pre class="code-block" data-lang="csharp" hidden>int slow = 0;                    // next write position
+for (int fast = 0; fast &lt; arr.Length; fast++) {
+    if (Keep(arr[fast])) {        // your condition here
+        arr[slow] = arr[fast];
+        slow++;
+    }
+}
+// arr[0..slow) is the filtered result</pre>
+                        </div>
 
                         <h5>Template — 3Sum (sort + two-pointer for each pivot)</h5>
-                        <div class="code-block">nums.sort()
+                        <div class="code-wrap">
+                            <div class="code-lang-tabs">
+                                <button class="code-lang-tab active" data-lang="python">Python</button>
+                                <button class="code-lang-tab" data-lang="java">Java</button>
+                                <button class="code-lang-tab" data-lang="csharp">C#</button>
+                            </div>
+                            <button class="code-copy" title="Copy code"><i class="far fa-copy"></i></button>
+                            <pre class="code-block" data-lang="python">nums.sort()
 result = []
 for i, pivot in enumerate(nums):
     if i > 0 and nums[i] == nums[i-1]: continue  # skip dup pivots
@@ -547,7 +667,42 @@ for i, pivot in enumerate(nums):
             result.append([pivot, nums[l], nums[r]])
             while l < r and nums[l] == nums[l+1]: l += 1
             while l < r and nums[r] == nums[r-1]: r -= 1
-            l += 1; r -= 1</div>
+            l += 1; r -= 1</pre>
+                            <pre class="code-block" data-lang="java" hidden>Arrays.sort(nums);
+List&lt;List&lt;Integer&gt;&gt; result = new ArrayList&lt;&gt;();
+for (int i = 0; i &lt; nums.length; i++) {
+    if (i &gt; 0 &amp;&amp; nums[i] == nums[i - 1]) continue;  // skip dup pivots
+    int l = i + 1, r = nums.length - 1;
+    while (l &lt; r) {
+        int s = nums[i] + nums[l] + nums[r];
+        if (s &lt; 0) l++;
+        else if (s &gt; 0) r--;
+        else {
+            result.add(Arrays.asList(nums[i], nums[l], nums[r]));
+            while (l &lt; r &amp;&amp; nums[l] == nums[l + 1]) l++;
+            while (l &lt; r &amp;&amp; nums[r] == nums[r - 1]) r--;
+            l++; r--;
+        }
+    }
+}</pre>
+                            <pre class="code-block" data-lang="csharp" hidden>Array.Sort(nums);
+var result = new List&lt;List&lt;int&gt;&gt;();
+for (int i = 0; i &lt; nums.Length; i++) {
+    if (i &gt; 0 &amp;&amp; nums[i] == nums[i - 1]) continue;  // skip dup pivots
+    int l = i + 1, r = nums.Length - 1;
+    while (l &lt; r) {
+        int s = nums[i] + nums[l] + nums[r];
+        if (s &lt; 0) l++;
+        else if (s &gt; 0) r--;
+        else {
+            result.Add(new List&lt;int&gt; { nums[i], nums[l], nums[r] });
+            while (l &lt; r &amp;&amp; nums[l] == nums[l + 1]) l++;
+            while (l &lt; r &amp;&amp; nums[r] == nums[r - 1]) r--;
+            l++; r--;
+        }
+    }
+}</pre>
+                        </div>
 
                         <div class="complexity-row">
                             <span class="cpill cpill-time">Time: O(n) pair · O(n²) triplet</span>
@@ -583,7 +738,14 @@ for i, pivot in enumerate(nums):
                         </div>
 
                         <h5 style="margin-top:1rem;">Template — Variable Window</h5>
-                        <div class="code-block">from collections import defaultdict
+                        <div class="code-wrap">
+                            <div class="code-lang-tabs">
+                                <button class="code-lang-tab active" data-lang="python">Python</button>
+                                <button class="code-lang-tab" data-lang="java">Java</button>
+                                <button class="code-lang-tab" data-lang="csharp">C#</button>
+                            </div>
+                            <button class="code-copy" title="Copy code"><i class="far fa-copy"></i></button>
+                            <pre class="code-block" data-lang="python">from collections import defaultdict
 
 left = 0
 window = defaultdict(int)   # or a Counter / set
@@ -598,19 +760,79 @@ for right in range(len(s)):
             del window[s[left]]
         left += 1
 
-    result = max(result, right - left + 1)  # window size</div>
+    result = max(result, right - left + 1)  # window size</pre>
+                            <pre class="code-block" data-lang="java" hidden>Map&lt;Character, Integer&gt; window = new HashMap&lt;&gt;();
+int left = 0, result = 0;
+
+for (int right = 0; right &lt; s.length(); right++) {
+    char c = s.charAt(right);
+    window.merge(c, 1, Integer::sum);       // expand: include s[right]
+
+    while (!valid(window)) {                // shrink until valid
+        char lc = s.charAt(left);
+        window.merge(lc, -1, Integer::sum);
+        if (window.get(lc) == 0) window.remove(lc);
+        left++;
+    }
+
+    result = Math.max(result, right - left + 1);  // window size
+}</pre>
+                            <pre class="code-block" data-lang="csharp" hidden>var window = new Dictionary&lt;char, int&gt;();
+int left = 0, result = 0;
+
+for (int right = 0; right &lt; s.Length; right++) {
+    char c = s[right];
+    window[c] = window.GetValueOrDefault(c) + 1;   // expand: include s[right]
+
+    while (!Valid(window)) {                       // shrink until valid
+        char lc = s[left];
+        window[lc]--;
+        if (window[lc] == 0) window.Remove(lc);
+        left++;
+    }
+
+    result = Math.Max(result, right - left + 1);   // window size
+}</pre>
+                        </div>
 
                         <h5>Template — Fixed Window (size k)</h5>
-                        <div class="code-block">k = ...
+                        <div class="code-wrap">
+                            <div class="code-lang-tabs">
+                                <button class="code-lang-tab active" data-lang="python">Python</button>
+                                <button class="code-lang-tab" data-lang="java">Java</button>
+                                <button class="code-lang-tab" data-lang="csharp">C#</button>
+                            </div>
+                            <button class="code-copy" title="Copy code"><i class="far fa-copy"></i></button>
+                            <pre class="code-block" data-lang="python">k = ...
 window_sum = sum(arr[:k])
 best = window_sum
 for i in range(k, len(arr)):
     window_sum += arr[i] - arr[i - k]  # slide
-    best = max(best, window_sum)</div>
+    best = max(best, window_sum)</pre>
+                            <pre class="code-block" data-lang="java" hidden>int k = ...;
+int windowSum = 0;
+for (int i = 0; i &lt; k; i++) windowSum += arr[i];
+int best = windowSum;
+for (int i = k; i &lt; arr.length; i++) {
+    windowSum += arr[i] - arr[i - k];  // slide
+    best = Math.max(best, windowSum);
+}</pre>
+                            <pre class="code-block" data-lang="csharp" hidden>int k = ...;
+int windowSum = 0;
+for (int i = 0; i &lt; k; i++) windowSum += arr[i];
+int best = windowSum;
+for (int i = k; i &lt; arr.Length; i++) {
+    windowSum += arr[i] - arr[i - k];  // slide
+    best = Math.Max(best, windowSum);
+}</pre>
+                        </div>
 
                         <h5>Key trick — "at most K distinct" → longest window with ≤ K distinct</h5>
-                        <div class="code-block"># Many hard window problems decompose:
-# "exactly K" = f(at most K) - f(at most K-1)</div>
+                        <div class="code-wrap">
+                            <button class="code-copy" title="Copy code"><i class="far fa-copy"></i></button>
+                            <pre class="code-block"># Many hard window problems decompose:
+# "exactly K" = f(at most K) - f(at most K-1)</pre>
+                        </div>
 
                         <div class="complexity-row">
                             <span class="cpill cpill-time">Time: O(n) — each element enters/leaves once</span>
@@ -646,9 +868,13 @@ for i in range(k, len(arr)):
 
                         <h5 style="margin-top:1rem;">Template — Iterative Reversal</h5>
                         <div class="code-wrap">
-                            <span class="code-lang">Python</span>
-                            <button class="code-copy" onclick="(function(b){var t=b.previousElementSibling;navigator.clipboard.writeText(t.textContent).then(function(){b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})})(this)">Copy</button>
-                            <pre class="code-block">def reverse_list(head):
+                            <div class="code-lang-tabs">
+                                <button class="code-lang-tab active" data-lang="python">Python</button>
+                                <button class="code-lang-tab" data-lang="java">Java</button>
+                                <button class="code-lang-tab" data-lang="csharp">C#</button>
+                            </div>
+                            <button class="code-copy" title="Copy code"><i class="far fa-copy"></i></button>
+                            <pre class="code-block" data-lang="python">def reverse_list(head):
     prev, curr = None, head
     while curr:
         nxt       = curr.next   # save next
@@ -656,13 +882,37 @@ for i in range(k, len(arr)):
         prev      = curr        # advance prev
         curr      = nxt         # advance curr
     return prev                 # new head</pre>
+                            <pre class="code-block" data-lang="java" hidden>ListNode reverseList(ListNode head) {
+    ListNode prev = null, curr = head;
+    while (curr != null) {
+        ListNode nxt = curr.next;   // save next
+        curr.next = prev;           // reverse the link
+        prev = curr;                // advance prev
+        curr = nxt;                 // advance curr
+    }
+    return prev;                    // new head
+}</pre>
+                            <pre class="code-block" data-lang="csharp" hidden>ListNode ReverseList(ListNode head) {
+    ListNode prev = null, curr = head;
+    while (curr != null) {
+        ListNode nxt = curr.next;   // save next
+        curr.next = prev;           // reverse the link
+        prev = curr;                // advance prev
+        curr = nxt;                 // advance curr
+    }
+    return prev;                    // new head
+}</pre>
                         </div>
 
                         <h5>Template — Dummy Head (merge / remove)</h5>
                         <div class="code-wrap">
-                            <span class="code-lang">Python</span>
-                            <button class="code-copy" onclick="(function(b){var t=b.previousElementSibling;navigator.clipboard.writeText(t.textContent).then(function(){b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})})(this)">Copy</button>
-                            <pre class="code-block">def merge_two_lists(l1, l2):
+                            <div class="code-lang-tabs">
+                                <button class="code-lang-tab active" data-lang="python">Python</button>
+                                <button class="code-lang-tab" data-lang="java">Java</button>
+                                <button class="code-lang-tab" data-lang="csharp">C#</button>
+                            </div>
+                            <button class="code-copy" title="Copy code"><i class="far fa-copy"></i></button>
+                            <pre class="code-block" data-lang="python">def merge_two_lists(l1, l2):
     dummy = ListNode(0)
     cur   = dummy
     while l1 and l2:
@@ -673,13 +923,45 @@ for i in range(k, len(arr)):
         cur = cur.next
     cur.next = l1 or l2
     return dummy.next</pre>
+                            <pre class="code-block" data-lang="java" hidden>ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+    ListNode dummy = new ListNode(0);
+    ListNode cur = dummy;
+    while (l1 != null &amp;&amp; l2 != null) {
+        if (l1.val &lt;= l2.val) {
+            cur.next = l1; l1 = l1.next;
+        } else {
+            cur.next = l2; l2 = l2.next;
+        }
+        cur = cur.next;
+    }
+    cur.next = (l1 != null) ? l1 : l2;
+    return dummy.next;
+}</pre>
+                            <pre class="code-block" data-lang="csharp" hidden>ListNode MergeTwoLists(ListNode l1, ListNode l2) {
+    ListNode dummy = new ListNode(0);
+    ListNode cur = dummy;
+    while (l1 != null &amp;&amp; l2 != null) {
+        if (l1.val &lt;= l2.val) {
+            cur.next = l1; l1 = l1.next;
+        } else {
+            cur.next = l2; l2 = l2.next;
+        }
+        cur = cur.next;
+    }
+    cur.next = (l1 != null) ? l1 : l2;
+    return dummy.next;
+}</pre>
                         </div>
 
                         <h5>Template — Remove Nth From End (two-pointer gap)</h5>
                         <div class="code-wrap">
-                            <span class="code-lang">Python</span>
-                            <button class="code-copy" onclick="(function(b){var t=b.previousElementSibling;navigator.clipboard.writeText(t.textContent).then(function(){b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})})(this)">Copy</button>
-                            <pre class="code-block">def remove_nth_from_end(head, n):
+                            <div class="code-lang-tabs">
+                                <button class="code-lang-tab active" data-lang="python">Python</button>
+                                <button class="code-lang-tab" data-lang="java">Java</button>
+                                <button class="code-lang-tab" data-lang="csharp">C#</button>
+                            </div>
+                            <button class="code-copy" title="Copy code"><i class="far fa-copy"></i></button>
+                            <pre class="code-block" data-lang="python">def remove_nth_from_end(head, n):
     dummy      = ListNode(0, head)
     fast = slow = dummy
     for _ in range(n + 1):      # advance fast n+1 steps
@@ -689,6 +971,32 @@ for i in range(k, len(arr)):
         slow = slow.next
     slow.next = slow.next.next  # skip the target node
     return dummy.next</pre>
+                            <pre class="code-block" data-lang="java" hidden>ListNode removeNthFromEnd(ListNode head, int n) {
+    ListNode dummy = new ListNode(0, head);
+    ListNode fast = dummy, slow = dummy;
+    for (int i = 0; i &lt; n + 1; i++) {   // advance fast n+1 steps
+        fast = fast.next;
+    }
+    while (fast != null) {              // move both until fast hits end
+        fast = fast.next;
+        slow = slow.next;
+    }
+    slow.next = slow.next.next;         // skip the target node
+    return dummy.next;
+}</pre>
+                            <pre class="code-block" data-lang="csharp" hidden>ListNode RemoveNthFromEnd(ListNode head, int n) {
+    ListNode dummy = new ListNode(0, head);
+    ListNode fast = dummy, slow = dummy;
+    for (int i = 0; i &lt; n + 1; i++) {   // advance fast n+1 steps
+        fast = fast.next;
+    }
+    while (fast != null) {              // move both until fast hits end
+        fast = fast.next;
+        slow = slow.next;
+    }
+    slow.next = slow.next.next;         // skip the target node
+    return dummy.next;
+}</pre>
                         </div>
 
                         <div class="complexity-row">
@@ -730,9 +1038,13 @@ for i in range(k, len(arr)):
 
                         <h5 style="margin-top:1rem;">Template — Cycle Detection</h5>
                         <div class="code-wrap">
-                            <span class="code-lang">Python</span>
-                            <button class="code-copy" onclick="(function(b){var t=b.previousElementSibling;navigator.clipboard.writeText(t.textContent).then(function(){b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})})(this)">Copy</button>
-                            <pre class="code-block">def has_cycle(head):
+                            <div class="code-lang-tabs">
+                                <button class="code-lang-tab active" data-lang="python">Python</button>
+                                <button class="code-lang-tab" data-lang="java">Java</button>
+                                <button class="code-lang-tab" data-lang="csharp">C#</button>
+                            </div>
+                            <button class="code-copy" title="Copy code"><i class="far fa-copy"></i></button>
+                            <pre class="code-block" data-lang="python">def has_cycle(head):
     slow = fast = head
     while fast and fast.next:
         slow = slow.next
@@ -740,13 +1052,39 @@ for i in range(k, len(arr)):
         if slow is fast:
             return True         # cycle detected
     return False</pre>
+                            <pre class="code-block" data-lang="java" hidden>boolean hasCycle(ListNode head) {
+    ListNode slow = head, fast = head;
+    while (fast != null &amp;&amp; fast.next != null) {
+        slow = slow.next;
+        fast = fast.next.next;
+        if (slow == fast) {
+            return true;         // cycle detected
+        }
+    }
+    return false;
+}</pre>
+                            <pre class="code-block" data-lang="csharp" hidden>bool HasCycle(ListNode head) {
+    ListNode slow = head, fast = head;
+    while (fast != null &amp;&amp; fast.next != null) {
+        slow = slow.next;
+        fast = fast.next.next;
+        if (slow == fast) {
+            return true;         // cycle detected
+        }
+    }
+    return false;
+}</pre>
                         </div>
 
                         <h5>Template — Find Cycle Entry (Linked List Cycle II)</h5>
                         <div class="code-wrap">
-                            <span class="code-lang">Python</span>
-                            <button class="code-copy" onclick="(function(b){var t=b.previousElementSibling;navigator.clipboard.writeText(t.textContent).then(function(){b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})})(this)">Copy</button>
-                            <pre class="code-block">def detect_cycle(head):
+                            <div class="code-lang-tabs">
+                                <button class="code-lang-tab active" data-lang="python">Python</button>
+                                <button class="code-lang-tab" data-lang="java">Java</button>
+                                <button class="code-lang-tab" data-lang="csharp">C#</button>
+                            </div>
+                            <button class="code-copy" title="Copy code"><i class="far fa-copy"></i></button>
+                            <pre class="code-block" data-lang="python">def detect_cycle(head):
     slow = fast = head
     while fast and fast.next:
         slow, fast = slow.next, fast.next.next
@@ -758,18 +1096,74 @@ for i in range(k, len(arr)):
                 slow, fast = slow.next, fast.next
             return slow
     return None</pre>
+                            <pre class="code-block" data-lang="java" hidden>ListNode detectCycle(ListNode head) {
+    ListNode slow = head, fast = head;
+    while (fast != null &amp;&amp; fast.next != null) {
+        slow = slow.next;
+        fast = fast.next.next;
+        if (slow == fast) {
+            // Reset one pointer to head; advance both at speed 1.
+            // They meet at the cycle entry.
+            slow = head;
+            while (slow != fast) {
+                slow = slow.next;
+                fast = fast.next;
+            }
+            return slow;
+        }
+    }
+    return null;
+}</pre>
+                            <pre class="code-block" data-lang="csharp" hidden>ListNode DetectCycle(ListNode head) {
+    ListNode slow = head, fast = head;
+    while (fast != null &amp;&amp; fast.next != null) {
+        slow = slow.next;
+        fast = fast.next.next;
+        if (slow == fast) {
+            // Reset one pointer to head; advance both at speed 1.
+            // They meet at the cycle entry.
+            slow = head;
+            while (slow != fast) {
+                slow = slow.next;
+                fast = fast.next;
+            }
+            return slow;
+        }
+    }
+    return null;
+}</pre>
                         </div>
 
                         <h5>Template — Find Middle</h5>
                         <div class="code-wrap">
-                            <span class="code-lang">Python</span>
-                            <button class="code-copy" onclick="(function(b){var t=b.previousElementSibling;navigator.clipboard.writeText(t.textContent).then(function(){b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})})(this)">Copy</button>
-                            <pre class="code-block">def middle_node(head):
+                            <div class="code-lang-tabs">
+                                <button class="code-lang-tab active" data-lang="python">Python</button>
+                                <button class="code-lang-tab" data-lang="java">Java</button>
+                                <button class="code-lang-tab" data-lang="csharp">C#</button>
+                            </div>
+                            <button class="code-copy" title="Copy code"><i class="far fa-copy"></i></button>
+                            <pre class="code-block" data-lang="python">def middle_node(head):
     slow = fast = head
     while fast and fast.next:
         slow = slow.next
         fast = fast.next.next
     return slow                 # for even length, returns second middle</pre>
+                            <pre class="code-block" data-lang="java" hidden>ListNode middleNode(ListNode head) {
+    ListNode slow = head, fast = head;
+    while (fast != null &amp;&amp; fast.next != null) {
+        slow = slow.next;
+        fast = fast.next.next;
+    }
+    return slow;                 // for even length, returns second middle
+}</pre>
+                            <pre class="code-block" data-lang="csharp" hidden>ListNode MiddleNode(ListNode head) {
+    ListNode slow = head, fast = head;
+    while (fast != null &amp;&amp; fast.next != null) {
+        slow = slow.next;
+        fast = fast.next.next;
+    }
+    return slow;                 // for even length, returns second middle
+}</pre>
                         </div>
 
                         <div class="complexity-row">
@@ -804,15 +1198,46 @@ for i in range(k, len(arr)):
                         </div>
 
                         <h5 style="margin-top:1rem;">Template — Complement Lookup</h5>
-                        <div class="code-block">seen = {}                           # val → index
+                        <div class="code-wrap">
+                            <div class="code-lang-tabs">
+                                <button class="code-lang-tab active" data-lang="python">Python</button>
+                                <button class="code-lang-tab" data-lang="java">Java</button>
+                                <button class="code-lang-tab" data-lang="csharp">C#</button>
+                            </div>
+                            <button class="code-copy" title="Copy code"><i class="far fa-copy"></i></button>
+                            <pre class="code-block" data-lang="python">seen = {}                           # val → index
 for i, num in enumerate(nums):
     complement = target - num
     if complement in seen:
         return [seen[complement], i]
-    seen[num] = i</div>
+    seen[num] = i</pre>
+                            <pre class="code-block" data-lang="java" hidden>Map&lt;Integer, Integer&gt; seen = new HashMap&lt;&gt;();  // val -&gt; index
+for (int i = 0; i &lt; nums.length; i++) {
+    int complement = target - nums[i];
+    if (seen.containsKey(complement)) {
+        return new int[]{seen.get(complement), i};
+    }
+    seen.put(nums[i], i);
+}</pre>
+                            <pre class="code-block" data-lang="csharp" hidden>var seen = new Dictionary&lt;int, int&gt;();  // val -&gt; index
+for (int i = 0; i &lt; nums.Length; i++) {
+    int complement = target - nums[i];
+    if (seen.ContainsKey(complement)) {
+        return new int[] { seen[complement], i };
+    }
+    seen[nums[i]] = i;
+}</pre>
+                        </div>
 
                         <h5>Template — Frequency / Top-K</h5>
-                        <div class="code-block">from collections import Counter
+                        <div class="code-wrap">
+                            <div class="code-lang-tabs">
+                                <button class="code-lang-tab active" data-lang="python">Python</button>
+                                <button class="code-lang-tab" data-lang="java">Java</button>
+                                <button class="code-lang-tab" data-lang="csharp">C#</button>
+                            </div>
+                            <button class="code-copy" title="Copy code"><i class="far fa-copy"></i></button>
+                            <pre class="code-block" data-lang="python">from collections import Counter
 
 freq = Counter(nums)
 # bucket sort for O(n) top-K (beats heap when k ~ n)
@@ -824,16 +1249,70 @@ result = []
 for cnt in range(len(buckets) - 1, 0, -1):
     result.extend(buckets[cnt])
     if len(result) >= k:
-        return result[:k]</div>
+        return result[:k]</pre>
+                            <pre class="code-block" data-lang="java" hidden>Map&lt;Integer, Integer&gt; freq = new HashMap&lt;&gt;();
+for (int n : nums) freq.merge(n, 1, Integer::sum);
+
+// bucket sort for O(n) top-K (beats heap when k ~ n)
+List&lt;Integer&gt;[] buckets = new List[nums.length + 1];
+for (int i = 0; i &lt;= nums.length; i++) buckets[i] = new ArrayList&lt;&gt;();
+for (var entry : freq.entrySet()) {
+    buckets[entry.getValue()].add(entry.getKey());
+}
+
+List&lt;Integer&gt; result = new ArrayList&lt;&gt;();
+for (int cnt = buckets.length - 1; cnt &gt; 0 &amp;&amp; result.size() &lt; k; cnt--) {
+    result.addAll(buckets[cnt]);
+}
+return result.subList(0, k);</pre>
+                            <pre class="code-block" data-lang="csharp" hidden>var freq = new Dictionary&lt;int, int&gt;();
+foreach (var n in nums) freq[n] = freq.GetValueOrDefault(n) + 1;
+
+// bucket sort for O(n) top-K (beats heap when k ~ n)
+var buckets = new List&lt;int&gt;[nums.Length + 1];
+for (int i = 0; i &lt;= nums.Length; i++) buckets[i] = new List&lt;int&gt;();
+foreach (var kv in freq) buckets[kv.Value].Add(kv.Key);
+
+var result = new List&lt;int&gt;();
+for (int cnt = buckets.Length - 1; cnt &gt; 0 &amp;&amp; result.Count &lt; k; cnt--) {
+    result.AddRange(buckets[cnt]);
+}
+return result.Take(k).ToList();</pre>
+                        </div>
 
                         <h5>Template — Canonical Grouping</h5>
-                        <div class="code-block">from collections import defaultdict
+                        <div class="code-wrap">
+                            <div class="code-lang-tabs">
+                                <button class="code-lang-tab active" data-lang="python">Python</button>
+                                <button class="code-lang-tab" data-lang="java">Java</button>
+                                <button class="code-lang-tab" data-lang="csharp">C#</button>
+                            </div>
+                            <button class="code-copy" title="Copy code"><i class="far fa-copy"></i></button>
+                            <pre class="code-block" data-lang="python">from collections import defaultdict
 
 groups = defaultdict(list)
 for word in words:
     key = tuple(sorted(word))       # canonical form
     groups[key].append(word)
-return list(groups.values())</div>
+return list(groups.values())</pre>
+                            <pre class="code-block" data-lang="java" hidden>Map&lt;String, List&lt;String&gt;&gt; groups = new HashMap&lt;&gt;();
+for (String word : words) {
+    char[] chars = word.toCharArray();
+    Arrays.sort(chars);
+    String key = new String(chars);        // canonical form
+    groups.computeIfAbsent(key, k -&gt; new ArrayList&lt;&gt;()).add(word);
+}
+return new ArrayList&lt;&gt;(groups.values());</pre>
+                            <pre class="code-block" data-lang="csharp" hidden>var groups = new Dictionary&lt;string, List&lt;string&gt;&gt;();
+foreach (var word in words) {
+    var chars = word.ToCharArray();
+    Array.Sort(chars);
+    string key = new string(chars);        // canonical form
+    if (!groups.ContainsKey(key)) groups[key] = new List&lt;string&gt;();
+    groups[key].Add(word);
+}
+return groups.Values.ToList();</pre>
+                        </div>
 
                         <div class="complexity-row">
                             <span class="cpill cpill-time">Time: O(n)</span>
@@ -869,7 +1348,14 @@ return list(groups.values())</div>
                         </div>
 
                         <h5 style="margin-top:1rem;">Template — Balanced Brackets</h5>
-                        <div class="code-block">pairs = {')': '(', ']': '[', '}': '{'}
+                        <div class="code-wrap">
+                            <div class="code-lang-tabs">
+                                <button class="code-lang-tab active" data-lang="python">Python</button>
+                                <button class="code-lang-tab" data-lang="java">Java</button>
+                                <button class="code-lang-tab" data-lang="csharp">C#</button>
+                            </div>
+                            <button class="code-copy" title="Copy code"><i class="far fa-copy"></i></button>
+                            <pre class="code-block" data-lang="python">pairs = {')': '(', ']': '[', '}': '{'}
 stack = []
 for ch in s:
     if ch in '([{':
@@ -878,10 +1364,42 @@ for ch in s:
         return False
     else:
         stack.pop()
-return not stack</div>
+return not stack</pre>
+                            <pre class="code-block" data-lang="java" hidden>Map&lt;Character, Character&gt; pairs = Map.of(')', '(', ']', '[', '}', '{');
+Deque&lt;Character&gt; stack = new ArrayDeque&lt;&gt;();
+for (char ch : s.toCharArray()) {
+    if (ch == '(' || ch == '[' || ch == '{') {
+        stack.push(ch);
+    } else if (stack.isEmpty() || stack.peek() != pairs.get(ch)) {
+        return false;
+    } else {
+        stack.pop();
+    }
+}
+return stack.isEmpty();</pre>
+                            <pre class="code-block" data-lang="csharp" hidden>var pairs = new Dictionary&lt;char, char&gt; { [')'] = '(', [']'] = '[', ['}'] = '{' };
+var stack = new Stack&lt;char&gt;();
+foreach (char ch in s) {
+    if (ch == '(' || ch == '[' || ch == '{') {
+        stack.Push(ch);
+    } else if (stack.Count == 0 || stack.Peek() != pairs[ch]) {
+        return false;
+    } else {
+        stack.Pop();
+    }
+}
+return stack.Count == 0;</pre>
+                        </div>
 
                         <h5>Template — Monotonic Stack (Next Greater Element)</h5>
-                        <div class="code-block">result = [-1] * len(arr)
+                        <div class="code-wrap">
+                            <div class="code-lang-tabs">
+                                <button class="code-lang-tab active" data-lang="python">Python</button>
+                                <button class="code-lang-tab" data-lang="java">Java</button>
+                                <button class="code-lang-tab" data-lang="csharp">C#</button>
+                            </div>
+                            <button class="code-copy" title="Copy code"><i class="far fa-copy"></i></button>
+                            <pre class="code-block" data-lang="python">result = [-1] * len(arr)
 stack = []                  # stores indices, arr is decreasing from bottom→top
 
 for i in range(len(arr)):
@@ -889,10 +1407,42 @@ for i in range(len(arr)):
     while stack and arr[stack[-1]] < arr[i]:
         result[stack.pop()] = arr[i]
     stack.append(i)
-# remaining indices in stack have no greater element → result stays -1</div>
+# remaining indices in stack have no greater element → result stays -1</pre>
+                            <pre class="code-block" data-lang="java" hidden>int[] result = new int[arr.length];
+Arrays.fill(result, -1);
+Deque&lt;Integer&gt; stack = new ArrayDeque&lt;&gt;();  // stores indices, arr is decreasing from bottom-&gt;top
+
+for (int i = 0; i &lt; arr.length; i++) {
+    // arr[i] is greater than everything under it -&gt; pop and resolve
+    while (!stack.isEmpty() &amp;&amp; arr[stack.peek()] &lt; arr[i]) {
+        result[stack.pop()] = arr[i];
+    }
+    stack.push(i);
+}
+// remaining indices in stack have no greater element -&gt; result stays -1</pre>
+                            <pre class="code-block" data-lang="csharp" hidden>var result = new int[arr.Length];
+Array.Fill(result, -1);
+var stack = new Stack&lt;int&gt;();  // stores indices, arr is decreasing from bottom-&gt;top
+
+for (int i = 0; i &lt; arr.Length; i++) {
+    // arr[i] is greater than everything under it -&gt; pop and resolve
+    while (stack.Count &gt; 0 &amp;&amp; arr[stack.Peek()] &lt; arr[i]) {
+        result[stack.Pop()] = arr[i];
+    }
+    stack.Push(i);
+}
+// remaining indices in stack have no greater element -&gt; result stays -1</pre>
+                        </div>
 
                         <h5>Template — Two Stacks = Queue</h5>
-                        <div class="code-block">inbox, outbox = [], []
+                        <div class="code-wrap">
+                            <div class="code-lang-tabs">
+                                <button class="code-lang-tab active" data-lang="python">Python</button>
+                                <button class="code-lang-tab" data-lang="java">Java</button>
+                                <button class="code-lang-tab" data-lang="csharp">C#</button>
+                            </div>
+                            <button class="code-copy" title="Copy code"><i class="far fa-copy"></i></button>
+                            <pre class="code-block" data-lang="python">inbox, outbox = [], []
 
 def push(x): inbox.append(x)
 
@@ -900,7 +1450,29 @@ def pop():
     if not outbox:                  # amortised O(1)
         while inbox:
             outbox.append(inbox.pop())
-    return outbox.pop()</div>
+    return outbox.pop()</pre>
+                            <pre class="code-block" data-lang="java" hidden>Deque&lt;Integer&gt; inbox = new ArrayDeque&lt;&gt;(), outbox = new ArrayDeque&lt;&gt;();
+
+void push(int x) { inbox.push(x); }
+
+int pop() {
+    if (outbox.isEmpty()) {           // amortised O(1)
+        while (!inbox.isEmpty()) outbox.push(inbox.pop());
+    }
+    return outbox.pop();
+}</pre>
+                            <pre class="code-block" data-lang="csharp" hidden>var inbox = new Stack&lt;int&gt;();
+var outbox = new Stack&lt;int&gt;();
+
+void Push(int x) { inbox.Push(x); }
+
+int Pop() {
+    if (outbox.Count == 0) {          // amortised O(1)
+        while (inbox.Count &gt; 0) outbox.Push(inbox.Pop());
+    }
+    return outbox.Pop();
+}</pre>
+                        </div>
 
                         <div class="complexity-row">
                             <span class="cpill cpill-time">Time: O(n) amortised (each element pushed/popped once)</span>
@@ -939,9 +1511,13 @@ def pop():
 
                         <h5 style="margin-top:1rem;">Template — Merge Overlapping Intervals</h5>
                         <div class="code-wrap">
-                            <span class="code-lang">Python</span>
-                            <button class="code-copy" onclick="(function(b){var t=b.previousElementSibling;navigator.clipboard.writeText(t.textContent).then(function(){b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})})(this)">Copy</button>
-                            <pre class="code-block">def merge(intervals):
+                            <div class="code-lang-tabs">
+                                <button class="code-lang-tab active" data-lang="python">Python</button>
+                                <button class="code-lang-tab" data-lang="java">Java</button>
+                                <button class="code-lang-tab" data-lang="csharp">C#</button>
+                            </div>
+                            <button class="code-copy" title="Copy code"><i class="far fa-copy"></i></button>
+                            <pre class="code-block" data-lang="python">def merge(intervals):
     intervals.sort(key=lambda x: x[0])
     merged = [intervals[0]]
     for start, end in intervals[1:]:
@@ -950,13 +1526,46 @@ def pop():
         else:
             merged.append([start, end])
     return merged</pre>
+                            <pre class="code-block" data-lang="java" hidden>int[][] merge(int[][] intervals) {
+    Arrays.sort(intervals, (a, b) -&gt; a[0] - b[0]);
+    List&lt;int[]&gt; merged = new ArrayList&lt;&gt;();
+    merged.add(intervals[0]);
+    for (int i = 1; i &lt; intervals.length; i++) {
+        int start = intervals[i][0], end = intervals[i][1];
+        int[] last = merged.get(merged.size() - 1);
+        if (start &lt;= last[1]) {           // overlap
+            last[1] = Math.max(last[1], end);
+        } else {
+            merged.add(new int[]{start, end});
+        }
+    }
+    return merged.toArray(new int[0][]);
+}</pre>
+                            <pre class="code-block" data-lang="csharp" hidden>int[][] Merge(int[][] intervals) {
+    Array.Sort(intervals, (a, b) =&gt; a[0] - b[0]);
+    var merged = new List&lt;int[]&gt; { intervals[0] };
+    for (int i = 1; i &lt; intervals.Length; i++) {
+        int start = intervals[i][0], end = intervals[i][1];
+        var last = merged[merged.Count - 1];
+        if (start &lt;= last[1]) {           // overlap
+            last[1] = Math.Max(last[1], end);
+        } else {
+            merged.Add(new int[] { start, end });
+        }
+    }
+    return merged.ToArray();
+}</pre>
                         </div>
 
                         <h5>Template — Minimum Meeting Rooms (sweep)</h5>
                         <div class="code-wrap">
-                            <span class="code-lang">Python</span>
-                            <button class="code-copy" onclick="(function(b){var t=b.previousElementSibling;navigator.clipboard.writeText(t.textContent).then(function(){b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})})(this)">Copy</button>
-                            <pre class="code-block">import heapq
+                            <div class="code-lang-tabs">
+                                <button class="code-lang-tab active" data-lang="python">Python</button>
+                                <button class="code-lang-tab" data-lang="java">Java</button>
+                                <button class="code-lang-tab" data-lang="csharp">C#</button>
+                            </div>
+                            <button class="code-copy" title="Copy code"><i class="far fa-copy"></i></button>
+                            <pre class="code-block" data-lang="python">import heapq
 
 def min_meeting_rooms(intervals):
     intervals.sort()            # sort by start
@@ -967,6 +1576,30 @@ def min_meeting_rooms(intervals):
         else:
             heapq.heappush(heap, end)     # need new room
     return len(heap)</pre>
+                            <pre class="code-block" data-lang="java" hidden>int minMeetingRooms(int[][] intervals) {
+    Arrays.sort(intervals, (a, b) -&gt; a[0] - b[0]);   // sort by start
+    PriorityQueue&lt;Integer&gt; heap = new PriorityQueue&lt;&gt;();  // min-heap of end times
+    for (int[] iv : intervals) {
+        int start = iv[0], end = iv[1];
+        if (!heap.isEmpty() &amp;&amp; heap.peek() &lt;= start) {
+            heap.poll();           // reuse freed room
+        }
+        heap.offer(end);           // need new room (or the one just freed)
+    }
+    return heap.size();
+}</pre>
+                            <pre class="code-block" data-lang="csharp" hidden>int MinMeetingRooms(int[][] intervals) {
+    Array.Sort(intervals, (a, b) =&gt; a[0] - b[0]);    // sort by start
+    var heap = new PriorityQueue&lt;int, int&gt;();        // min-heap of end times
+    foreach (var iv in intervals) {
+        int start = iv[0], end = iv[1];
+        if (heap.Count &gt; 0 &amp;&amp; heap.Peek() &lt;= start) {
+            heap.Dequeue();        // reuse freed room
+        }
+        heap.Enqueue(end, end);   // need new room (or the one just freed)
+    }
+    return heap.Count;
+}</pre>
                         </div>
 
                         <div class="complexity-row">
@@ -1003,16 +1636,49 @@ def min_meeting_rooms(intervals):
                         </div>
 
                         <h5 style="margin-top:1rem;">Template — DFS (post-order)</h5>
-                        <div class="code-block">def dfs(node):
+                        <div class="code-wrap">
+                            <div class="code-lang-tabs">
+                                <button class="code-lang-tab active" data-lang="python">Python</button>
+                                <button class="code-lang-tab" data-lang="java">Java</button>
+                                <button class="code-lang-tab" data-lang="csharp">C#</button>
+                            </div>
+                            <button class="code-copy" title="Copy code"><i class="far fa-copy"></i></button>
+                            <pre class="code-block" data-lang="python">def dfs(node):
     if not node:
         return 0                        # base case (adjust per problem)
     left  = dfs(node.left)
     right = dfs(node.right)
     # combine at current node
-    return 1 + max(left, right)         # e.g. height</div>
+    return 1 + max(left, right)         # e.g. height</pre>
+                            <pre class="code-block" data-lang="java" hidden>int dfs(TreeNode node) {
+    if (node == null) {
+        return 0;                        // base case (adjust per problem)
+    }
+    int left = dfs(node.left);
+    int right = dfs(node.right);
+    // combine at current node
+    return 1 + Math.max(left, right);    // e.g. height
+}</pre>
+                            <pre class="code-block" data-lang="csharp" hidden>int Dfs(TreeNode node) {
+    if (node == null) {
+        return 0;                        // base case (adjust per problem)
+    }
+    int left = Dfs(node.left);
+    int right = Dfs(node.right);
+    // combine at current node
+    return 1 + Math.Max(left, right);    // e.g. height
+}</pre>
+                        </div>
 
                         <h5>Template — BFS (level-order)</h5>
-                        <div class="code-block">from collections import deque
+                        <div class="code-wrap">
+                            <div class="code-lang-tabs">
+                                <button class="code-lang-tab active" data-lang="python">Python</button>
+                                <button class="code-lang-tab" data-lang="java">Java</button>
+                                <button class="code-lang-tab" data-lang="csharp">C#</button>
+                            </div>
+                            <button class="code-copy" title="Copy code"><i class="far fa-copy"></i></button>
+                            <pre class="code-block" data-lang="python">from collections import deque
 
 def level_order(root):
     if not root: return []
@@ -1025,14 +1691,73 @@ def level_order(root):
             if node.left:  q.append(node.left)
             if node.right: q.append(node.right)
         result.append(level)
-    return result</div>
+    return result</pre>
+                            <pre class="code-block" data-lang="java" hidden>List&lt;List&lt;Integer&gt;&gt; levelOrder(TreeNode root) {
+    List&lt;List&lt;Integer&gt;&gt; result = new ArrayList&lt;&gt;();
+    if (root == null) return result;
+    Deque&lt;TreeNode&gt; q = new ArrayDeque&lt;&gt;();
+    q.offer(root);
+    while (!q.isEmpty()) {
+        List&lt;Integer&gt; level = new ArrayList&lt;&gt;();
+        int size = q.size();                // freeze level size
+        for (int i = 0; i &lt; size; i++) {
+            TreeNode node = q.poll();
+            level.add(node.val);
+            if (node.left != null) q.offer(node.left);
+            if (node.right != null) q.offer(node.right);
+        }
+        result.add(level);
+    }
+    return result;
+}</pre>
+                            <pre class="code-block" data-lang="csharp" hidden>IList&lt;IList&lt;int&gt;&gt; LevelOrder(TreeNode root) {
+    var result = new List&lt;IList&lt;int&gt;&gt;();
+    if (root == null) return result;
+    var q = new Queue&lt;TreeNode&gt;();
+    q.Enqueue(root);
+    while (q.Count &gt; 0) {
+        var level = new List&lt;int&gt;();
+        int size = q.Count;                 // freeze level size
+        for (int i = 0; i &lt; size; i++) {
+            var node = q.Dequeue();
+            level.Add(node.val);
+            if (node.left != null) q.Enqueue(node.left);
+            if (node.right != null) q.Enqueue(node.right);
+        }
+        result.Add(level);
+    }
+    return result;
+}</pre>
+                        </div>
 
                         <h5>Template — BST Validation (pass valid range down)</h5>
-                        <div class="code-block">def is_valid(node, lo=float('-inf'), hi=float('inf')):
+                        <div class="code-wrap">
+                            <div class="code-lang-tabs">
+                                <button class="code-lang-tab active" data-lang="python">Python</button>
+                                <button class="code-lang-tab" data-lang="java">Java</button>
+                                <button class="code-lang-tab" data-lang="csharp">C#</button>
+                            </div>
+                            <button class="code-copy" title="Copy code"><i class="far fa-copy"></i></button>
+                            <pre class="code-block" data-lang="python">def is_valid(node, lo=float('-inf'), hi=float('inf')):
     if not node: return True
     if not (lo < node.val < hi): return False
     return (is_valid(node.left,  lo, node.val) and
-            is_valid(node.right, node.val, hi))</div>
+            is_valid(node.right, node.val, hi))</pre>
+                            <pre class="code-block" data-lang="java" hidden>boolean isValid(TreeNode node, long lo, long hi) {
+    if (node == null) return true;
+    if (!(lo &lt; node.val &amp;&amp; node.val &lt; hi)) return false;
+    return isValid(node.left, lo, node.val) &amp;&amp;
+           isValid(node.right, node.val, hi);
+}
+// initial call: isValid(root, Long.MIN_VALUE, Long.MAX_VALUE)</pre>
+                            <pre class="code-block" data-lang="csharp" hidden>bool IsValid(TreeNode node, long lo, long hi) {
+    if (node == null) return true;
+    if (!(lo &lt; node.val &amp;&amp; node.val &lt; hi)) return false;
+    return IsValid(node.left, lo, node.val) &amp;&amp;
+           IsValid(node.right, node.val, hi);
+}
+// initial call: IsValid(root, long.MinValue, long.MaxValue)</pre>
+                        </div>
 
                         <div class="complexity-row">
                             <span class="cpill cpill-time">Time: O(n)</span>
@@ -1076,7 +1801,14 @@ def level_order(root):
                         </div>
 
                         <h5 style="margin-top:1rem;">Template — BFS (shortest path / flood fill)</h5>
-                        <div class="code-block">from collections import deque
+                        <div class="code-wrap">
+                            <div class="code-lang-tabs">
+                                <button class="code-lang-tab active" data-lang="python">Python</button>
+                                <button class="code-lang-tab" data-lang="java">Java</button>
+                                <button class="code-lang-tab" data-lang="csharp">C#</button>
+                            </div>
+                            <button class="code-copy" title="Copy code"><i class="far fa-copy"></i></button>
+                            <pre class="code-block" data-lang="python">from collections import deque
 
 def bfs(start, graph):
     visited = {start}
@@ -1087,10 +1819,48 @@ def bfs(start, graph):
             if nb not in visited:
                 visited.add(nb)
                 q.append((nb, dist + 1))
-</div>
+</pre>
+                            <pre class="code-block" data-lang="java" hidden>void bfs(int start, Map&lt;Integer, List&lt;Integer&gt;&gt; graph) {
+    Set&lt;Integer&gt; visited = new HashSet&lt;&gt;();
+    visited.add(start);
+    Deque&lt;int[]&gt; q = new ArrayDeque&lt;&gt;();     // (node, distance)
+    q.offer(new int[]{start, 0});
+    while (!q.isEmpty()) {
+        int[] cur = q.poll();
+        int node = cur[0], dist = cur[1];
+        for (int nb : graph.get(node)) {
+            if (!visited.contains(nb)) {
+                visited.add(nb);
+                q.offer(new int[]{nb, dist + 1});
+            }
+        }
+    }
+}</pre>
+                            <pre class="code-block" data-lang="csharp" hidden>void Bfs(int start, Dictionary&lt;int, List&lt;int&gt;&gt; graph) {
+    var visited = new HashSet&lt;int&gt; { start };
+    var q = new Queue&lt;(int node, int dist)&gt;();
+    q.Enqueue((start, 0));
+    while (q.Count &gt; 0) {
+        var (node, dist) = q.Dequeue();
+        foreach (var nb in graph[node]) {
+            if (!visited.Contains(nb)) {
+                visited.Add(nb);
+                q.Enqueue((nb, dist + 1));
+            }
+        }
+    }
+}</pre>
+                        </div>
 
                         <h5>Template — Union-Find (with path compression + union by rank)</h5>
-                        <div class="code-block">parent = list(range(n))
+                        <div class="code-wrap">
+                            <div class="code-lang-tabs">
+                                <button class="code-lang-tab active" data-lang="python">Python</button>
+                                <button class="code-lang-tab" data-lang="java">Java</button>
+                                <button class="code-lang-tab" data-lang="csharp">C#</button>
+                            </div>
+                            <button class="code-copy" title="Copy code"><i class="far fa-copy"></i></button>
+                            <pre class="code-block" data-lang="python">parent = list(range(n))
 rank   = [0] * n
 
 def find(x):
@@ -1104,10 +1874,55 @@ def union(x, y):
     if rank[px] < rank[py]: px, py = py, px
     parent[py] = px
     if rank[px] == rank[py]: rank[px] += 1
-    return True</div>
+    return True</pre>
+                            <pre class="code-block" data-lang="java" hidden>int[] parent = new int[n];
+int[] rank = new int[n];
+for (int i = 0; i &lt; n; i++) parent[i] = i;
+
+int find(int x) {
+    if (parent[x] != x) {
+        parent[x] = find(parent[x]);    // path compression
+    }
+    return parent[x];
+}
+
+boolean union(int x, int y) {
+    int px = find(x), py = find(y);
+    if (px == py) return false;          // already connected
+    if (rank[px] &lt; rank[py]) { int t = px; px = py; py = t; }
+    parent[py] = px;
+    if (rank[px] == rank[py]) rank[px]++;
+    return true;
+}</pre>
+                            <pre class="code-block" data-lang="csharp" hidden>int[] parent = Enumerable.Range(0, n).ToArray();
+int[] rank = new int[n];
+
+int Find(int x) {
+    if (parent[x] != x) {
+        parent[x] = Find(parent[x]);     // path compression
+    }
+    return parent[x];
+}
+
+bool Union(int x, int y) {
+    int px = Find(x), py = Find(y);
+    if (px == py) return false;           // already connected
+    if (rank[px] &lt; rank[py]) { (px, py) = (py, px); }
+    parent[py] = px;
+    if (rank[px] == rank[py]) rank[px]++;
+    return true;
+}</pre>
+                        </div>
 
                         <h5>Template — Topological Sort (Kahn's BFS)</h5>
-                        <div class="code-block">from collections import deque, defaultdict
+                        <div class="code-wrap">
+                            <div class="code-lang-tabs">
+                                <button class="code-lang-tab active" data-lang="python">Python</button>
+                                <button class="code-lang-tab" data-lang="java">Java</button>
+                                <button class="code-lang-tab" data-lang="csharp">C#</button>
+                            </div>
+                            <button class="code-copy" title="Copy code"><i class="far fa-copy"></i></button>
+                            <pre class="code-block" data-lang="python">from collections import deque, defaultdict
 
 indegree = [0] * numCourses
 adj = defaultdict(list)
@@ -1124,7 +1939,53 @@ while q:
         indegree[nb] -= 1
         if indegree[nb] == 0:
             q.append(nb)
-# cycle exists if len(order) < numCourses</div>
+# cycle exists if len(order) < numCourses</pre>
+                            <pre class="code-block" data-lang="java" hidden>int[] indegree = new int[numCourses];
+Map&lt;Integer, List&lt;Integer&gt;&gt; adj = new HashMap&lt;&gt;();
+for (int[] pr : prerequisites) {
+    int a = pr[0], b = pr[1];
+    adj.computeIfAbsent(b, k -&gt; new ArrayList&lt;&gt;()).add(a);
+    indegree[a]++;
+}
+
+Deque&lt;Integer&gt; q = new ArrayDeque&lt;&gt;();
+for (int i = 0; i &lt; numCourses; i++) {
+    if (indegree[i] == 0) q.offer(i);
+}
+List&lt;Integer&gt; order = new ArrayList&lt;&gt;();
+while (!q.isEmpty()) {
+    int node = q.poll();
+    order.add(node);
+    for (int nb : adj.getOrDefault(node, List.of())) {
+        if (--indegree[nb] == 0) q.offer(nb);
+    }
+}
+// cycle exists if order.size() &lt; numCourses</pre>
+                            <pre class="code-block" data-lang="csharp" hidden>var indegree = new int[numCourses];
+var adj = new Dictionary&lt;int, List&lt;int&gt;&gt;();
+foreach (var pr in prerequisites) {
+    int a = pr[0], b = pr[1];
+    if (!adj.ContainsKey(b)) adj[b] = new List&lt;int&gt;();
+    adj[b].Add(a);
+    indegree[a]++;
+}
+
+var q = new Queue&lt;int&gt;();
+for (int i = 0; i &lt; numCourses; i++) {
+    if (indegree[i] == 0) q.Enqueue(i);
+}
+var order = new List&lt;int&gt;();
+while (q.Count &gt; 0) {
+    int node = q.Dequeue();
+    order.Add(node);
+    if (adj.TryGetValue(node, out var neighbors)) {
+        foreach (var nb in neighbors) {
+            if (--indegree[nb] == 0) q.Enqueue(nb);
+        }
+    }
+}
+// cycle exists if order.Count &lt; numCourses</pre>
+                        </div>
 
                         <div class="complexity-row">
                             <span class="cpill cpill-time">Time: O(V + E)</span>
@@ -1166,9 +2027,13 @@ while q:
 
                         <h5 style="margin-top:1rem;">Template — K Largest with Min-Heap</h5>
                         <div class="code-wrap">
-                            <span class="code-lang">Python</span>
-                            <button class="code-copy" onclick="(function(b){var t=b.previousElementSibling;navigator.clipboard.writeText(t.textContent).then(function(){b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})})(this)">Copy</button>
-                            <pre class="code-block">import heapq
+                            <div class="code-lang-tabs">
+                                <button class="code-lang-tab active" data-lang="python">Python</button>
+                                <button class="code-lang-tab" data-lang="java">Java</button>
+                                <button class="code-lang-tab" data-lang="csharp">C#</button>
+                            </div>
+                            <button class="code-copy" title="Copy code"><i class="far fa-copy"></i></button>
+                            <pre class="code-block" data-lang="python">import heapq
 
 def find_kth_largest(nums, k):
     heap = []
@@ -1177,13 +2042,37 @@ def find_kth_largest(nums, k):
         if len(heap) > k:
             heapq.heappop(heap)     # discard smallest seen
     return heap[0]                  # smallest of the K largest = kth largest</pre>
+                            <pre class="code-block" data-lang="java" hidden>int findKthLargest(int[] nums, int k) {
+    PriorityQueue&lt;Integer&gt; heap = new PriorityQueue&lt;&gt;();
+    for (int n : nums) {
+        heap.offer(n);
+        if (heap.size() &gt; k) {
+            heap.poll();           // discard smallest seen
+        }
+    }
+    return heap.peek();            // smallest of the K largest = kth largest
+}</pre>
+                            <pre class="code-block" data-lang="csharp" hidden>int FindKthLargest(int[] nums, int k) {
+    var heap = new PriorityQueue&lt;int, int&gt;();
+    foreach (var n in nums) {
+        heap.Enqueue(n, n);
+        if (heap.Count &gt; k) {
+            heap.Dequeue();         // discard smallest seen
+        }
+    }
+    return heap.Peek();             // smallest of the K largest = kth largest
+}</pre>
                         </div>
 
                         <h5>Template — Top K Frequent (bucket sort, O(n))</h5>
                         <div class="code-wrap">
-                            <span class="code-lang">Python</span>
-                            <button class="code-copy" onclick="(function(b){var t=b.previousElementSibling;navigator.clipboard.writeText(t.textContent).then(function(){b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})})(this)">Copy</button>
-                            <pre class="code-block">from collections import Counter
+                            <div class="code-lang-tabs">
+                                <button class="code-lang-tab active" data-lang="python">Python</button>
+                                <button class="code-lang-tab" data-lang="java">Java</button>
+                                <button class="code-lang-tab" data-lang="csharp">C#</button>
+                            </div>
+                            <button class="code-copy" title="Copy code"><i class="far fa-copy"></i></button>
+                            <pre class="code-block" data-lang="python">from collections import Counter
 
 def top_k_frequent(nums, k):
     count   = Counter(nums)
@@ -1195,6 +2084,34 @@ def top_k_frequent(nums, k):
         result.extend(buckets[i])
         if len(result) >= k:
             return result[:k]</pre>
+                            <pre class="code-block" data-lang="java" hidden>int[] topKFrequent(int[] nums, int k) {
+    Map&lt;Integer, Integer&gt; count = new HashMap&lt;&gt;();
+    for (int n : nums) count.merge(n, 1, Integer::sum);
+
+    List&lt;Integer&gt;[] buckets = new List[nums.length + 1];
+    for (int i = 0; i &lt;= nums.length; i++) buckets[i] = new ArrayList&lt;&gt;();
+    for (var e : count.entrySet()) buckets[e.getValue()].add(e.getKey());
+
+    List&lt;Integer&gt; result = new ArrayList&lt;&gt;();
+    for (int i = buckets.length - 1; i &gt; 0 &amp;&amp; result.size() &lt; k; i--) {
+        result.addAll(buckets[i]);
+    }
+    return result.stream().limit(k).mapToInt(Integer::intValue).toArray();
+}</pre>
+                            <pre class="code-block" data-lang="csharp" hidden>int[] TopKFrequent(int[] nums, int k) {
+    var count = new Dictionary&lt;int, int&gt;();
+    foreach (var n in nums) count[n] = count.GetValueOrDefault(n) + 1;
+
+    var buckets = new List&lt;int&gt;[nums.Length + 1];
+    for (int i = 0; i &lt;= nums.Length; i++) buckets[i] = new List&lt;int&gt;();
+    foreach (var e in count) buckets[e.Value].Add(e.Key);
+
+    var result = new List&lt;int&gt;();
+    for (int i = buckets.Length - 1; i &gt; 0 &amp;&amp; result.Count &lt; k; i--) {
+        result.AddRange(buckets[i]);
+    }
+    return result.Take(k).ToArray();
+}</pre>
                         </div>
 
                         <div class="complexity-row">
@@ -1232,9 +2149,13 @@ def top_k_frequent(nums, k):
 
                         <h5 style="margin-top:1rem;">Template — Running Median</h5>
                         <div class="code-wrap">
-                            <span class="code-lang">Python</span>
-                            <button class="code-copy" onclick="(function(b){var t=b.previousElementSibling;navigator.clipboard.writeText(t.textContent).then(function(){b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})})(this)">Copy</button>
-                            <pre class="code-block">import heapq
+                            <div class="code-lang-tabs">
+                                <button class="code-lang-tab active" data-lang="python">Python</button>
+                                <button class="code-lang-tab" data-lang="java">Java</button>
+                                <button class="code-lang-tab" data-lang="csharp">C#</button>
+                            </div>
+                            <button class="code-copy" title="Copy code"><i class="far fa-copy"></i></button>
+                            <pre class="code-block" data-lang="python">import heapq
 
 class MedianFinder:
     def __init__(self):
@@ -1253,6 +2174,50 @@ class MedianFinder:
         if len(self.lo) > len(self.hi):
             return -self.lo[0]
         return (-self.lo[0] + self.hi[0]) / 2</pre>
+                            <pre class="code-block" data-lang="java" hidden>class MedianFinder {
+    private PriorityQueue&lt;Integer&gt; lo = new PriorityQueue&lt;&gt;(Collections.reverseOrder()); // max-heap: lower half
+    private PriorityQueue&lt;Integer&gt; hi = new PriorityQueue&lt;&gt;();                           // min-heap: upper half
+
+    public void addNum(int num) {
+        lo.offer(num);                      // push to lower half
+        // ensure max(lo) &lt;= min(hi)
+        hi.offer(lo.poll());
+        // rebalance sizes so |lo| &gt;= |hi|
+        if (lo.size() &lt; hi.size()) {
+            lo.offer(hi.poll());
+        }
+    }
+
+    public double findMedian() {
+        if (lo.size() &gt; hi.size()) {
+            return lo.peek();
+        }
+        return (lo.peek() + hi.peek()) / 2.0;
+    }
+}</pre>
+                            <pre class="code-block" data-lang="csharp" hidden>class MedianFinder {
+    private PriorityQueue&lt;int, int&gt; lo = new();  // max-heap (negated priority): lower half
+    private PriorityQueue&lt;int, int&gt; hi = new();  // min-heap: upper half
+
+    public void AddNum(int num) {
+        lo.Enqueue(num, -num);              // push to lower half
+        // ensure max(lo) &lt;= min(hi)
+        int moved = lo.Dequeue();
+        hi.Enqueue(moved, moved);
+        // rebalance sizes so |lo| &gt;= |hi|
+        if (lo.Count &lt; hi.Count) {
+            int back = hi.Dequeue();
+            lo.Enqueue(back, -back);
+        }
+    }
+
+    public double FindMedian() {
+        if (lo.Count &gt; hi.Count) {
+            return lo.Peek();
+        }
+        return (lo.Peek() + hi.Peek()) / 2.0;
+    }
+}</pre>
                         </div>
 
                         <div class="complexity-row">
@@ -1287,34 +2252,130 @@ class MedianFinder:
                         </div>
 
                         <h5 style="margin-top:1rem;">Template — Top-down (memoization)</h5>
-                        <div class="code-block">from functools import lru_cache
+                        <div class="code-wrap">
+                            <div class="code-lang-tabs">
+                                <button class="code-lang-tab active" data-lang="python">Python</button>
+                                <button class="code-lang-tab" data-lang="java">Java</button>
+                                <button class="code-lang-tab" data-lang="csharp">C#</button>
+                            </div>
+                            <button class="code-copy" title="Copy code"><i class="far fa-copy"></i></button>
+                            <pre class="code-block" data-lang="python">from functools import lru_cache
 
 @lru_cache(maxsize=None)
 def dp(i, ...):                          # define your state
     if i == base: return base_value
-    return min(dp(i-1, ...) + cost, ...)  # recurrence</div>
+    return min(dp(i-1, ...) + cost, ...)  # recurrence</pre>
+                            <pre class="code-block" data-lang="java" hidden>Map&lt;Integer, Integer&gt; memo = new HashMap&lt;&gt;();
+
+int dp(int i /* ... */) {                    // define your state
+    if (i == base) return baseValue;
+    if (memo.containsKey(i)) return memo.get(i);
+    int result = Math.min(dp(i - 1) + cost, /* ... */ 0);  // recurrence
+    memo.put(i, result);
+    return result;
+}</pre>
+                            <pre class="code-block" data-lang="csharp" hidden>Dictionary&lt;int, int&gt; memo = new();
+
+int Dp(int i /* ... */) {                    // define your state
+    if (i == base) return baseValue;
+    if (memo.TryGetValue(i, out var cached)) return cached;
+    int result = Math.Min(Dp(i - 1) + cost, /* ... */ 0);  // recurrence
+    memo[i] = result;
+    return result;
+}</pre>
+                        </div>
 
                         <h5>Template — Bottom-up 1-D</h5>
-                        <div class="code-block">dp = [0] * (n + 1)
+                        <div class="code-wrap">
+                            <div class="code-lang-tabs">
+                                <button class="code-lang-tab active" data-lang="python">Python</button>
+                                <button class="code-lang-tab" data-lang="java">Java</button>
+                                <button class="code-lang-tab" data-lang="csharp">C#</button>
+                            </div>
+                            <button class="code-copy" title="Copy code"><i class="far fa-copy"></i></button>
+                            <pre class="code-block" data-lang="python">dp = [0] * (n + 1)
 dp[0], dp[1] = base0, base1
 for i in range(2, n + 1):
     dp[i] = dp[i-1] + dp[i-2]           # or your recurrence
-return dp[n]</div>
+return dp[n]</pre>
+                            <pre class="code-block" data-lang="java" hidden>int[] dp = new int[n + 1];
+dp[0] = base0; dp[1] = base1;
+for (int i = 2; i &lt;= n; i++) {
+    dp[i] = dp[i - 1] + dp[i - 2];      // or your recurrence
+}
+return dp[n];</pre>
+                            <pre class="code-block" data-lang="csharp" hidden>var dp = new int[n + 1];
+dp[0] = base0; dp[1] = base1;
+for (int i = 2; i &lt;= n; i++) {
+    dp[i] = dp[i - 1] + dp[i - 2];      // or your recurrence
+}
+return dp[n];</pre>
+                        </div>
 
                         <h5>Template — 0/1 Knapsack (iterate capacity backwards!)</h5>
-                        <div class="code-block">dp = [0] * (capacity + 1)
+                        <div class="code-wrap">
+                            <div class="code-lang-tabs">
+                                <button class="code-lang-tab active" data-lang="python">Python</button>
+                                <button class="code-lang-tab" data-lang="java">Java</button>
+                                <button class="code-lang-tab" data-lang="csharp">C#</button>
+                            </div>
+                            <button class="code-copy" title="Copy code"><i class="far fa-copy"></i></button>
+                            <pre class="code-block" data-lang="python">dp = [0] * (capacity + 1)
 for weight, value in items:
     for w in range(capacity, weight - 1, -1):  # ← reverse prevents reuse
-        dp[w] = max(dp[w], dp[w - weight] + value)</div>
+        dp[w] = max(dp[w], dp[w - weight] + value)</pre>
+                            <pre class="code-block" data-lang="java" hidden>int[] dp = new int[capacity + 1];
+for (int[] item : items) {
+    int weight = item[0], value = item[1];
+    for (int w = capacity; w &gt;= weight; w--) {   // &lt;- reverse prevents reuse
+        dp[w] = Math.max(dp[w], dp[w - weight] + value);
+    }
+}</pre>
+                            <pre class="code-block" data-lang="csharp" hidden>var dp = new int[capacity + 1];
+foreach (var item in items) {
+    int weight = item[0], value = item[1];
+    for (int w = capacity; w &gt;= weight; w--) {    // &lt;- reverse prevents reuse
+        dp[w] = Math.Max(dp[w], dp[w - weight] + value);
+    }
+}</pre>
+                        </div>
 
                         <h5>Template — 2-D (edit distance / LCS)</h5>
-                        <div class="code-block">dp = [[0] * (len(t)+1) for _ in range(len(s)+1)]
+                        <div class="code-wrap">
+                            <div class="code-lang-tabs">
+                                <button class="code-lang-tab active" data-lang="python">Python</button>
+                                <button class="code-lang-tab" data-lang="java">Java</button>
+                                <button class="code-lang-tab" data-lang="csharp">C#</button>
+                            </div>
+                            <button class="code-copy" title="Copy code"><i class="far fa-copy"></i></button>
+                            <pre class="code-block" data-lang="python">dp = [[0] * (len(t)+1) for _ in range(len(s)+1)]
 for i in range(1, len(s)+1):
     for j in range(1, len(t)+1):
         if s[i-1] == t[j-1]:
             dp[i][j] = dp[i-1][j-1]
         else:
-            dp[i][j] = 1 + min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1])</div>
+            dp[i][j] = 1 + min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1])</pre>
+                            <pre class="code-block" data-lang="java" hidden>int[][] dp = new int[s.length() + 1][t.length() + 1];
+for (int i = 1; i &lt;= s.length(); i++) {
+    for (int j = 1; j &lt;= t.length(); j++) {
+        if (s.charAt(i - 1) == t.charAt(j - 1)) {
+            dp[i][j] = dp[i - 1][j - 1];
+        } else {
+            dp[i][j] = 1 + Math.min(dp[i - 1][j], Math.min(dp[i][j - 1], dp[i - 1][j - 1]));
+        }
+    }
+}</pre>
+                            <pre class="code-block" data-lang="csharp" hidden>var dp = new int[s.Length + 1, t.Length + 1];
+for (int i = 1; i &lt;= s.Length; i++) {
+    for (int j = 1; j &lt;= t.Length; j++) {
+        if (s[i - 1] == t[j - 1]) {
+            dp[i, j] = dp[i - 1, j - 1];
+        } else {
+            dp[i, j] = 1 + Math.Min(dp[i - 1, j], Math.Min(dp[i, j - 1], dp[i - 1, j - 1]));
+        }
+    }
+}</pre>
+                        </div>
 
                         <div class="complexity-row">
                             <span class="cpill cpill-time">Time: O(states × transitions)</span>
@@ -1357,29 +2418,109 @@ for i in range(1, len(s)+1):
                         </div>
 
                         <h5 style="margin-top:1rem;">Template — Interval Scheduling (max non-overlapping)</h5>
-                        <div class="code-block">intervals.sort(key=lambda x: x[1])      # sort by end time
+                        <div class="code-wrap">
+                            <div class="code-lang-tabs">
+                                <button class="code-lang-tab active" data-lang="python">Python</button>
+                                <button class="code-lang-tab" data-lang="java">Java</button>
+                                <button class="code-lang-tab" data-lang="csharp">C#</button>
+                            </div>
+                            <button class="code-copy" title="Copy code"><i class="far fa-copy"></i></button>
+                            <pre class="code-block" data-lang="python">intervals.sort(key=lambda x: x[1])      # sort by end time
 count, end = 0, float('-inf')
 for start, finish in intervals:
     if start >= end:                        # no overlap
         count += 1
-        end = finish</div>
+        end = finish</pre>
+                            <pre class="code-block" data-lang="java" hidden>Arrays.sort(intervals, (a, b) -&gt; a[1] - b[1]);   // sort by end time
+int count = 0;
+int end = Integer.MIN_VALUE;
+for (int[] iv : intervals) {
+    int start = iv[0], finish = iv[1];
+    if (start &gt;= end) {                          // no overlap
+        count++;
+        end = finish;
+    }
+}</pre>
+                            <pre class="code-block" data-lang="csharp" hidden>Array.Sort(intervals, (a, b) =&gt; a[1] - b[1]);    // sort by end time
+int count = 0;
+int end = int.MinValue;
+foreach (var iv in intervals) {
+    int start = iv[0], finish = iv[1];
+    if (start &gt;= end) {                          // no overlap
+        count++;
+        end = finish;
+    }
+}</pre>
+                        </div>
 
                         <h5>Template — Jump Game (max reach)</h5>
-                        <div class="code-block">max_reach = 0
+                        <div class="code-wrap">
+                            <div class="code-lang-tabs">
+                                <button class="code-lang-tab active" data-lang="python">Python</button>
+                                <button class="code-lang-tab" data-lang="java">Java</button>
+                                <button class="code-lang-tab" data-lang="csharp">C#</button>
+                            </div>
+                            <button class="code-copy" title="Copy code"><i class="far fa-copy"></i></button>
+                            <pre class="code-block" data-lang="python">max_reach = 0
 for i, jump in enumerate(nums):
     if i > max_reach: return False          # unreachable
     max_reach = max(max_reach, i + jump)
-return True</div>
+return True</pre>
+                            <pre class="code-block" data-lang="java" hidden>int maxReach = 0;
+for (int i = 0; i &lt; nums.length; i++) {
+    if (i &gt; maxReach) return false;      // unreachable
+    maxReach = Math.max(maxReach, i + nums[i]);
+}
+return true;</pre>
+                            <pre class="code-block" data-lang="csharp" hidden>int maxReach = 0;
+for (int i = 0; i &lt; nums.Length; i++) {
+    if (i &gt; maxReach) return false;      // unreachable
+    maxReach = Math.Max(maxReach, i + nums[i]);
+}
+return true;</pre>
+                        </div>
 
                         <h5>Template — Partition Labels (last occurrence)</h5>
-                        <div class="code-block">last = {c: i for i, c in enumerate(s)}  # rightmost position of each char
+                        <div class="code-wrap">
+                            <div class="code-lang-tabs">
+                                <button class="code-lang-tab active" data-lang="python">Python</button>
+                                <button class="code-lang-tab" data-lang="java">Java</button>
+                                <button class="code-lang-tab" data-lang="csharp">C#</button>
+                            </div>
+                            <button class="code-copy" title="Copy code"><i class="far fa-copy"></i></button>
+                            <pre class="code-block" data-lang="python">last = {c: i for i, c in enumerate(s)}  # rightmost position of each char
 start = end = 0
 sizes = []
 for i, c in enumerate(s):
     end = max(end, last[c])
     if i == end:                            # can cut here
         sizes.append(end - start + 1)
-        start = i + 1</div>
+        start = i + 1</pre>
+                            <pre class="code-block" data-lang="java" hidden>Map&lt;Character, Integer&gt; last = new HashMap&lt;&gt;();
+for (int i = 0; i &lt; s.length(); i++) last.put(s.charAt(i), i);  // rightmost position of each char
+
+int start = 0, end = 0;
+List&lt;Integer&gt; sizes = new ArrayList&lt;&gt;();
+for (int i = 0; i &lt; s.length(); i++) {
+    end = Math.max(end, last.get(s.charAt(i)));
+    if (i == end) {                          // can cut here
+        sizes.add(end - start + 1);
+        start = i + 1;
+    }
+}</pre>
+                            <pre class="code-block" data-lang="csharp" hidden>var last = new Dictionary&lt;char, int&gt;();
+for (int i = 0; i &lt; s.Length; i++) last[s[i]] = i;  // rightmost position of each char
+
+int start = 0, end = 0;
+var sizes = new List&lt;int&gt;();
+for (int i = 0; i &lt; s.Length; i++) {
+    end = Math.Max(end, last[s[i]]);
+    if (i == end) {                          // can cut here
+        sizes.Add(end - start + 1);
+        start = i + 1;
+    }
+}</pre>
+                        </div>
 
                         <div class="complexity-row">
                             <span class="cpill cpill-time">Time: O(n log n) sort · O(n) scan</span>
@@ -1416,7 +2557,14 @@ for i, c in enumerate(s):
                         </div>
 
                         <h5 style="margin-top:1rem;">Template — Subsets / Combinations</h5>
-                        <div class="code-block">def backtrack(start, path):
+                        <div class="code-wrap">
+                            <div class="code-lang-tabs">
+                                <button class="code-lang-tab active" data-lang="python">Python</button>
+                                <button class="code-lang-tab" data-lang="java">Java</button>
+                                <button class="code-lang-tab" data-lang="csharp">C#</button>
+                            </div>
+                            <button class="code-copy" title="Copy code"><i class="far fa-copy"></i></button>
+                            <pre class="code-block" data-lang="python">def backtrack(start, path):
     result.append(path[:])             # record every state (subsets)
     for i in range(start, len(nums)):
         if i > start and nums[i] == nums[i-1]:
@@ -1427,10 +2575,48 @@ for i, c in enumerate(s):
 
 nums.sort()                            # sort first to group duplicates
 result = []
-backtrack(0, [])</div>
+backtrack(0, [])</pre>
+                            <pre class="code-block" data-lang="java" hidden>void backtrack(int start, List&lt;Integer&gt; path) {
+    result.add(new ArrayList&lt;&gt;(path));       // record every state (subsets)
+    for (int i = start; i &lt; nums.length; i++) {
+        if (i &gt; start &amp;&amp; nums[i] == nums[i - 1]) {
+            continue;                        // skip duplicates at same depth
+        }
+        path.add(nums[i]);                   // choose
+        backtrack(i + 1, path);              // explore (i+1 = no reuse)
+        path.remove(path.size() - 1);        // un-choose
+    }
+}
+
+Arrays.sort(nums);                            // sort first to group duplicates
+List&lt;List&lt;Integer&gt;&gt; result = new ArrayList&lt;&gt;();
+backtrack(0, new ArrayList&lt;&gt;());</pre>
+                            <pre class="code-block" data-lang="csharp" hidden>void Backtrack(int start, List&lt;int&gt; path) {
+    result.Add(new List&lt;int&gt;(path));         // record every state (subsets)
+    for (int i = start; i &lt; nums.Length; i++) {
+        if (i &gt; start &amp;&amp; nums[i] == nums[i - 1]) {
+            continue;                        // skip duplicates at same depth
+        }
+        path.Add(nums[i]);                   // choose
+        Backtrack(i + 1, path);              // explore (i+1 = no reuse)
+        path.RemoveAt(path.Count - 1);       // un-choose
+    }
+}
+
+Array.Sort(nums);                             // sort first to group duplicates
+var result = new List&lt;List&lt;int&gt;&gt;();
+Backtrack(0, new List&lt;int&gt;());</pre>
+                        </div>
 
                         <h5>Template — Permutations</h5>
-                        <div class="code-block">def backtrack(path, used):
+                        <div class="code-wrap">
+                            <div class="code-lang-tabs">
+                                <button class="code-lang-tab active" data-lang="python">Python</button>
+                                <button class="code-lang-tab" data-lang="java">Java</button>
+                                <button class="code-lang-tab" data-lang="csharp">C#</button>
+                            </div>
+                            <button class="code-copy" title="Copy code"><i class="far fa-copy"></i></button>
+                            <pre class="code-block" data-lang="python">def backtrack(path, used):
     if len(path) == len(nums):
         result.append(path[:])
         return
@@ -1441,7 +2627,38 @@ backtrack(0, [])</div>
         path.append(num)
         backtrack(path, used)
         path.pop()
-        used[i] = False</div>
+        used[i] = False</pre>
+                            <pre class="code-block" data-lang="java" hidden>void backtrack(List&lt;Integer&gt; path, boolean[] used) {
+    if (path.size() == nums.length) {
+        result.add(new ArrayList&lt;&gt;(path));
+        return;
+    }
+    for (int i = 0; i &lt; nums.length; i++) {
+        if (used[i]) continue;
+        if (i &gt; 0 &amp;&amp; nums[i] == nums[i - 1] &amp;&amp; !used[i - 1]) continue;  // dup check
+        used[i] = true;
+        path.add(nums[i]);
+        backtrack(path, used);
+        path.remove(path.size() - 1);
+        used[i] = false;
+    }
+}</pre>
+                            <pre class="code-block" data-lang="csharp" hidden>void Backtrack(List&lt;int&gt; path, bool[] used) {
+    if (path.Count == nums.Length) {
+        result.Add(new List&lt;int&gt;(path));
+        return;
+    }
+    for (int i = 0; i &lt; nums.Length; i++) {
+        if (used[i]) continue;
+        if (i &gt; 0 &amp;&amp; nums[i] == nums[i - 1] &amp;&amp; !used[i - 1]) continue;  // dup check
+        used[i] = true;
+        path.Add(nums[i]);
+        Backtrack(path, used);
+        path.RemoveAt(path.Count - 1);
+        used[i] = false;
+    }
+}</pre>
+                        </div>
 
                         <div class="complexity-row">
                             <span class="cpill cpill-time">Time: O(2ⁿ) subsets · O(n!) perms</span>
@@ -1479,7 +2696,14 @@ backtrack(0, [])</div>
                         </div>
 
                         <h5 style="margin-top:1rem;">Template — Standard Binary Search</h5>
-                        <div class="code-block">def binary_search(arr, target):
+                        <div class="code-wrap">
+                            <div class="code-lang-tabs">
+                                <button class="code-lang-tab active" data-lang="python">Python</button>
+                                <button class="code-lang-tab" data-lang="java">Java</button>
+                                <button class="code-lang-tab" data-lang="csharp">C#</button>
+                            </div>
+                            <button class="code-copy" title="Copy code"><i class="far fa-copy"></i></button>
+                            <pre class="code-block" data-lang="python">def binary_search(arr, target):
     lo, hi = 0, len(arr) - 1
     while lo <= hi:
         mid = lo + (hi - lo) // 2      # avoids overflow
@@ -1489,10 +2713,46 @@ backtrack(0, [])</div>
             lo = mid + 1
         else:
             hi = mid - 1
-    return -1                           # not found</div>
+    return -1                           # not found</pre>
+                            <pre class="code-block" data-lang="java" hidden>int binarySearch(int[] arr, int target) {
+    int lo = 0, hi = arr.length - 1;
+    while (lo &lt;= hi) {
+        int mid = lo + (hi - lo) / 2;    // avoids overflow
+        if (arr[mid] == target) {
+            return mid;
+        } else if (arr[mid] &lt; target) {
+            lo = mid + 1;
+        } else {
+            hi = mid - 1;
+        }
+    }
+    return -1;                           // not found
+}</pre>
+                            <pre class="code-block" data-lang="csharp" hidden>int BinarySearch(int[] arr, int target) {
+    int lo = 0, hi = arr.Length - 1;
+    while (lo &lt;= hi) {
+        int mid = lo + (hi - lo) / 2;    // avoids overflow
+        if (arr[mid] == target) {
+            return mid;
+        } else if (arr[mid] &lt; target) {
+            lo = mid + 1;
+        } else {
+            hi = mid - 1;
+        }
+    }
+    return -1;                           // not found
+}</pre>
+                        </div>
 
                         <h5>Template — Binary Search on Answer (find minimum feasible x)</h5>
-                        <div class="code-block">def feasible(x):
+                        <div class="code-wrap">
+                            <div class="code-lang-tabs">
+                                <button class="code-lang-tab active" data-lang="python">Python</button>
+                                <button class="code-lang-tab" data-lang="java">Java</button>
+                                <button class="code-lang-tab" data-lang="csharp">C#</button>
+                            </div>
+                            <button class="code-copy" title="Copy code"><i class="far fa-copy"></i></button>
+                            <pre class="code-block" data-lang="python">def feasible(x):
     # returns True if x satisfies the problem's constraint
     ...
 
@@ -1503,10 +2763,48 @@ while lo < hi:
         hi = mid                        # try smaller
     else:
         lo = mid + 1
-return lo                               # minimum feasible value</div>
+return lo                               # minimum feasible value</pre>
+                            <pre class="code-block" data-lang="java" hidden>boolean feasible(int x) {
+    // returns true if x satisfies the problem's constraint
+    ...
+}
+
+int lo = minPossibleAnswer, hi = maxPossibleAnswer;
+while (lo &lt; hi) {
+    int mid = lo + (hi - lo) / 2;
+    if (feasible(mid)) {
+        hi = mid;                        // try smaller
+    } else {
+        lo = mid + 1;
+    }
+}
+return lo;                                // minimum feasible value</pre>
+                            <pre class="code-block" data-lang="csharp" hidden>bool Feasible(int x) {
+    // returns true if x satisfies the problem's constraint
+    ...
+}
+
+int lo = minPossibleAnswer, hi = maxPossibleAnswer;
+while (lo &lt; hi) {
+    int mid = lo + (hi - lo) / 2;
+    if (Feasible(mid)) {
+        hi = mid;                        // try smaller
+    } else {
+        lo = mid + 1;
+    }
+}
+return lo;                                // minimum feasible value</pre>
+                        </div>
 
                         <h5>Template — Rotated Sorted Array</h5>
-                        <div class="code-block">lo, hi = 0, len(nums) - 1
+                        <div class="code-wrap">
+                            <div class="code-lang-tabs">
+                                <button class="code-lang-tab active" data-lang="python">Python</button>
+                                <button class="code-lang-tab" data-lang="java">Java</button>
+                                <button class="code-lang-tab" data-lang="csharp">C#</button>
+                            </div>
+                            <button class="code-copy" title="Copy code"><i class="far fa-copy"></i></button>
+                            <pre class="code-block" data-lang="python">lo, hi = 0, len(nums) - 1
 while lo <= hi:
     mid = (lo + hi) // 2
     if nums[mid] == target: return mid
@@ -1520,7 +2818,46 @@ while lo <= hi:
         if nums[mid] < target <= nums[hi]:
             lo = mid + 1
         else:
-            hi = mid - 1</div>
+            hi = mid - 1</pre>
+                            <pre class="code-block" data-lang="java" hidden>int lo = 0, hi = nums.length - 1;
+while (lo &lt;= hi) {
+    int mid = lo + (hi - lo) / 2;
+    if (nums[mid] == target) return mid;
+    // figure out which half is sorted
+    if (nums[lo] &lt;= nums[mid]) {              // left half is sorted
+        if (nums[lo] &lt;= target &amp;&amp; target &lt; nums[mid]) {
+            hi = mid - 1;
+        } else {
+            lo = mid + 1;
+        }
+    } else {                                  // right half is sorted
+        if (nums[mid] &lt; target &amp;&amp; target &lt;= nums[hi]) {
+            lo = mid + 1;
+        } else {
+            hi = mid - 1;
+        }
+    }
+}</pre>
+                            <pre class="code-block" data-lang="csharp" hidden>int lo = 0, hi = nums.Length - 1;
+while (lo &lt;= hi) {
+    int mid = lo + (hi - lo) / 2;
+    if (nums[mid] == target) return mid;
+    // figure out which half is sorted
+    if (nums[lo] &lt;= nums[mid]) {              // left half is sorted
+        if (nums[lo] &lt;= target &amp;&amp; target &lt; nums[mid]) {
+            hi = mid - 1;
+        } else {
+            lo = mid + 1;
+        }
+    } else {                                  // right half is sorted
+        if (nums[mid] &lt; target &amp;&amp; target &lt;= nums[hi]) {
+            lo = mid + 1;
+        } else {
+            hi = mid - 1;
+        }
+    }
+}</pre>
+                        </div>
 
                         <div class="complexity-row">
                             <span class="cpill cpill-time">Time: O(log n) search · O(n log n) sort first if needed</span>
@@ -1557,7 +2894,14 @@ while lo <= hi:
                         </div>
 
                         <h5 style="margin-top:1rem;">Cheat-Sheet</h5>
-                        <div class="code-block"># --- Core operations ---
+                        <div class="code-wrap">
+                            <div class="code-lang-tabs">
+                                <button class="code-lang-tab active" data-lang="python">Python</button>
+                                <button class="code-lang-tab" data-lang="java">Java</button>
+                                <button class="code-lang-tab" data-lang="csharp">C#</button>
+                            </div>
+                            <button class="code-copy" title="Copy code"><i class="far fa-copy"></i></button>
+                            <pre class="code-block" data-lang="python"># --- Core operations ---
 x & y          # AND: bits set in both
 x | y          # OR:  bits set in either
 x ^ y          # XOR: bits set in exactly one
@@ -1584,7 +2928,72 @@ n > 0 and (n & (n - 1)) == 0
 
 # Enumerate all subsets of n-element set
 for mask in range(1 << n):
-    subset = [i for i in range(n) if mask >> i & 1]</div>
+    subset = [i for i in range(n) if mask >> i & 1]</pre>
+                            <pre class="code-block" data-lang="java" hidden>// --- Core operations ---
+x &amp; y          // AND: bits set in both
+x | y            // OR:  bits set in either
+x ^ y            // XOR: bits set in exactly one
+~x               // NOT: flip all bits
+x &lt;&lt; k          // left shift  = x * 2^k
+x &gt;&gt; k          // right shift = x / 2^k
+
+// --- Key tricks ---
+n &amp; (n - 1)    // clear lowest set bit
+n &amp; (-n)       // isolate lowest set bit
+n &amp; 1          // check if odd
+(n &gt;&gt; k) &amp; 1   // check k-th bit
+
+// Find single number (XOR all)
+int result = 0;
+for (int num : nums) result ^= num;
+
+// Count set bits (Brian Kernighan)
+int count = 0;
+while (n != 0) { n &amp;= n - 1; count++; }
+
+// Is power of 2?
+n &gt; 0 &amp;&amp; (n &amp; (n - 1)) == 0
+
+// Enumerate all subsets of n-element set
+for (int mask = 0; mask &lt; (1 &lt;&lt; n); mask++) {
+    List&lt;Integer&gt; subset = new ArrayList&lt;&gt;();
+    for (int i = 0; i &lt; n; i++) {
+        if ((mask &gt;&gt; i &amp; 1) == 1) subset.add(i);
+    }
+}</pre>
+                            <pre class="code-block" data-lang="csharp" hidden>// --- Core operations ---
+x &amp; y          // AND: bits set in both
+x | y            // OR:  bits set in either
+x ^ y            // XOR: bits set in exactly one
+~x               // NOT: flip all bits
+x &lt;&lt; k          // left shift  = x * 2^k
+x &gt;&gt; k          // right shift = x / 2^k
+
+// --- Key tricks ---
+n &amp; (n - 1)    // clear lowest set bit
+n &amp; (-n)       // isolate lowest set bit
+n &amp; 1          // check if odd
+(n &gt;&gt; k) &amp; 1   // check k-th bit
+
+// Find single number (XOR all)
+int result = 0;
+foreach (var num in nums) result ^= num;
+
+// Count set bits (Brian Kernighan)
+int count = 0;
+while (n != 0) { n &amp;= n - 1; count++; }
+
+// Is power of 2?
+n &gt; 0 &amp;&amp; (n &amp; (n - 1)) == 0
+
+// Enumerate all subsets of n-element set
+for (int mask = 0; mask &lt; (1 &lt;&lt; n); mask++) {
+    var subset = new List&lt;int&gt;();
+    for (int i = 0; i &lt; n; i++) {
+        if ((mask &gt;&gt; i &amp; 1) == 1) subset.Add(i);
+    }
+}</pre>
+                        </div>
 
                         <div class="complexity-row">
                             <span class="cpill cpill-time">Time: O(1) per operation</span>
@@ -1626,7 +3035,9 @@ for mask in range(1 << n):
                         </div>
 
                         <h5 style="margin-top:1rem;">Essential Concepts Reference</h5>
-                        <div class="code-block"># Capacity estimation cheat-sheet
+                        <div class="code-wrap">
+                            <button class="code-copy" title="Copy code"><i class="far fa-copy"></i></button>
+                            <pre class="code-block"># Capacity estimation cheat-sheet
 1 million req/day  ≈ 12 req/s
 read-heavy system  →  cache aggressively (Redis, CDN)
 write-heavy system →  async queue (Kafka), eventual consistency
@@ -1641,7 +3052,8 @@ structured + ACID + complex queries → SQL (PostgreSQL)
 document / flexible schema         → MongoDB
 key-value / cache / sessions        → Redis
 time-series data                   → InfluxDB / TimescaleDB
-graph relationships                → Neo4j</div>
+graph relationships                → Neo4j</pre>
+                        </div>
                     </div>
 
                     <div class="d-flex flex-column flex-md-row" style="gap: 2rem; margin-top: 1rem;">
@@ -1709,27 +3121,26 @@ graph relationships                → Neo4j</div>
 
             var solved = getSolved();
 
-            // ── Copy buttons (injected dynamically so HTML stays clean) ──
-            document.querySelectorAll('.code-block').forEach(function (block) {
-                var wrap = document.createElement('div');
-                wrap.className = 'code-wrap';
-                block.parentNode.insertBefore(wrap, block);
+            // ── Language tabs + copy button (static markup: each .code-wrap
+            //    holds one <pre class="code-block" data-lang="..."> per
+            //    language plus a .code-lang-tabs button group) ──
+            document.querySelectorAll('.code-wrap').forEach(function (wrap) {
+                var tabs = wrap.querySelectorAll('.code-lang-tab');
+                var blocks = wrap.querySelectorAll('.code-block');
+                var btn = wrap.querySelector('.code-copy');
 
-                var lang = document.createElement('span');
-                lang.className = 'code-lang';
-                lang.textContent = 'Python';
-                wrap.appendChild(lang);
+                tabs.forEach(function (tab) {
+                    tab.addEventListener('click', function () {
+                        var lang = tab.dataset.lang;
+                        tabs.forEach(function (t) { t.classList.toggle('active', t === tab); });
+                        blocks.forEach(function (b) { b.hidden = b.dataset.lang !== lang; });
+                    });
+                });
 
-                var btn = document.createElement('button');
-                btn.className = 'code-copy';
-                btn.innerHTML = '<i class="far fa-copy"></i>';
-                btn.title = 'Copy code';
-                wrap.appendChild(btn);
-
-                wrap.appendChild(block);
-
+                if (!btn) return;
                 btn.addEventListener('click', function () {
-                    var text = block.textContent;
+                    var active = wrap.querySelector('.code-block:not([hidden])') || blocks[0];
+                    var text = active ? active.textContent : '';
                     if (navigator.clipboard) {
                         navigator.clipboard.writeText(text).then(function () { flashCopied(btn); });
                     } else {
