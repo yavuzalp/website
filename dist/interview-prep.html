@@ -5,6 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="DSA interview prep — patterns, templates, and LeetCode problems by Yavuzalp Turkoglu" />
         <title>Interview Prep · Yavuzalp Turkoglu</title>
+        <!-- Anti-flash: set theme before first paint -->
+        <script>!function(){var t=localStorage.getItem('theme-pref')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t)}();</script>
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
         <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
         <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
@@ -354,10 +356,15 @@
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#arrays">Arrays &amp; Strings<span class="nav-prog" data-tid="arrays"></span></a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#two-pointers">Two Pointers<span class="nav-prog" data-tid="two-pointers"></span></a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#sliding-window">Sliding Window<span class="nav-prog" data-tid="sliding-window"></span></a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#linked-lists">Linked Lists<span class="nav-prog" data-tid="linked-lists"></span></a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#fast-slow">Fast &amp; Slow Pointers<span class="nav-prog" data-tid="fast-slow"></span></a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#hashing">Hashing<span class="nav-prog" data-tid="hashing"></span></a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#stacks-queues">Stacks &amp; Queues<span class="nav-prog" data-tid="stacks-queues"></span></a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#merge-intervals">Merge Intervals<span class="nav-prog" data-tid="merge-intervals"></span></a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#trees">Trees<span class="nav-prog" data-tid="trees"></span></a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#graphs">Graphs<span class="nav-prog" data-tid="graphs"></span></a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#top-k">Top K Elements<span class="nav-prog" data-tid="top-k"></span></a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#two-heaps">Two Heaps<span class="nav-prog" data-tid="two-heaps"></span></a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#dp">Dynamic Programming<span class="nav-prog" data-tid="dp"></span></a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#greedy">Greedy<span class="nav-prog" data-tid="greedy"></span></a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#backtracking">Backtracking<span class="nav-prog" data-tid="backtracking"></span></a></li>
@@ -365,6 +372,12 @@
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#bits">Bit Manipulation<span class="nav-prog" data-tid="bits"></span></a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#system-design">System Design</a></li>
                 </ul>
+                <div class="sidebar-toggle-wrap">
+                    <button class="theme-toggle" id="theme-toggle" title="Switch to dark mode" aria-label="Toggle dark/light mode">
+                        <i class="fas fa-moon" id="theme-icon"></i>
+                    </button>
+                    <span class="sidebar-toggle-label">Theme</span>
+                </div>
             </div>
         </nav>
 
@@ -380,11 +393,11 @@
 
                     <div class="hero-stats">
                         <div class="hero-stat">
-                            <div class="hero-stat-num">13</div>
+                            <div class="hero-stat-num">18</div>
                             <div class="hero-stat-label">Topics</div>
                         </div>
                         <div class="hero-stat">
-                            <div class="hero-stat-num">~120</div>
+                            <div class="hero-stat-num">~165</div>
                             <div class="hero-stat-label">Problems</div>
                         </div>
                         <div class="hero-stat">
@@ -617,7 +630,166 @@ for i in range(k, len(arr)):
             <hr class="m-0" />
 
             <!-- ══════════════════════════════════════════
-                 4. HASHING
+                 4. LINKED LISTS
+            ══════════════════════════════════════════ -->
+            <section class="resume-section topic-section" id="linked-lists" data-topic-name="Linked Lists">
+                <div class="resume-section-content">
+                    <h2 class="mb-4"><i class="fas fa-link text-primary mr-2" style="font-size:1.2rem;"></i>Linked Lists</h2>
+
+                    <div class="concept-box topic-concept">
+                        <h5>The Pattern</h5>
+                        <p>Linked list problems almost always reduce to one of three techniques: <strong>reversal with prev/curr pointers</strong>, a <strong>dummy head node</strong> to simplify edge cases at the head, and a <strong>two-pointer runner</strong> (e.g., move one pointer k steps ahead to find the kth-from-end node). Always draw the pointer reassignment order before coding — getting it backwards causes off-by-one bugs that are hard to debug.</p>
+
+                        <div class="when-box">
+                            <strong>Reach for this when:</strong> you see "reverse", "merge sorted lists", "remove nth from end", "reorder", "add two numbers", or "palindrome linked list". For cycle problems, use Fast &amp; Slow Pointers instead.
+                        </div>
+
+                        <h5 style="margin-top:1rem;">Template — Iterative Reversal</h5>
+                        <div class="code-wrap">
+                            <span class="code-lang">Python</span>
+                            <button class="code-copy" onclick="(function(b){var t=b.previousElementSibling;navigator.clipboard.writeText(t.textContent).then(function(){b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})})(this)">Copy</button>
+                            <pre class="code-block">def reverse_list(head):
+    prev, curr = None, head
+    while curr:
+        nxt       = curr.next   # save next
+        curr.next = prev        # reverse the link
+        prev      = curr        # advance prev
+        curr      = nxt         # advance curr
+    return prev                 # new head</pre>
+                        </div>
+
+                        <h5>Template — Dummy Head (merge / remove)</h5>
+                        <div class="code-wrap">
+                            <span class="code-lang">Python</span>
+                            <button class="code-copy" onclick="(function(b){var t=b.previousElementSibling;navigator.clipboard.writeText(t.textContent).then(function(){b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})})(this)">Copy</button>
+                            <pre class="code-block">def merge_two_lists(l1, l2):
+    dummy = ListNode(0)
+    cur   = dummy
+    while l1 and l2:
+        if l1.val <= l2.val:
+            cur.next, l1 = l1, l1.next
+        else:
+            cur.next, l2 = l2, l2.next
+        cur = cur.next
+    cur.next = l1 or l2
+    return dummy.next</pre>
+                        </div>
+
+                        <h5>Template — Remove Nth From End (two-pointer gap)</h5>
+                        <div class="code-wrap">
+                            <span class="code-lang">Python</span>
+                            <button class="code-copy" onclick="(function(b){var t=b.previousElementSibling;navigator.clipboard.writeText(t.textContent).then(function(){b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})})(this)">Copy</button>
+                            <pre class="code-block">def remove_nth_from_end(head, n):
+    dummy      = ListNode(0, head)
+    fast = slow = dummy
+    for _ in range(n + 1):      # advance fast n+1 steps
+        fast = fast.next
+    while fast:                 # move both until fast hits end
+        fast = fast.next
+        slow = slow.next
+    slow.next = slow.next.next  # skip the target node
+    return dummy.next</pre>
+                        </div>
+
+                        <div class="complexity-row">
+                            <span class="cpill cpill-time">Time: O(n)</span>
+                            <span class="cpill cpill-space">Space: O(1)</span>
+                        </div>
+                    </div>
+
+                    <p class="problems-heading">Problems</p>
+                    <div class="problem-item" data-diff="E"><input type="checkbox" class="prob-check" data-id="p206"/><a href="https://leetcode.com/problems/reverse-linked-list/" target="_blank">206. Reverse Linked List</a><span class="technique-tag">prev/curr iteration</span><span class="diff diff-E">Easy</span></div>
+                    <div class="problem-item" data-diff="E"><input type="checkbox" class="prob-check" data-id="p21"/><a href="https://leetcode.com/problems/merge-two-sorted-lists/" target="_blank">21. Merge Two Sorted Lists</a><span class="technique-tag">dummy head + pointer advance</span><span class="diff diff-E">Easy</span></div>
+                    <div class="problem-item" data-diff="E"><input type="checkbox" class="prob-check" data-id="p141"/><a href="https://leetcode.com/problems/linked-list-cycle/" target="_blank">141. Linked List Cycle</a><span class="technique-tag">hash set visited OR fast/slow</span><span class="diff diff-E">Easy</span></div>
+                    <div class="problem-item" data-diff="E"><input type="checkbox" class="prob-check" data-id="p234"/><a href="https://leetcode.com/problems/palindrome-linked-list/" target="_blank">234. Palindrome Linked List</a><span class="technique-tag">find mid, reverse second half, compare</span><span class="diff diff-E">Easy</span></div>
+                    <div class="problem-item" data-diff="M"><input type="checkbox" class="prob-check" data-id="p19"/><a href="https://leetcode.com/problems/remove-nth-node-from-end-of-list/" target="_blank">19. Remove Nth Node From End of List</a><span class="technique-tag">two-pointer n+1 gap</span><span class="diff diff-M">Medium</span></div>
+                    <div class="problem-item" data-diff="M"><input type="checkbox" class="prob-check" data-id="p2"/><a href="https://leetcode.com/problems/add-two-numbers/" target="_blank">2. Add Two Numbers</a><span class="technique-tag">dummy head, carry propagation</span><span class="diff diff-M">Medium</span></div>
+                    <div class="problem-item" data-diff="M"><input type="checkbox" class="prob-check" data-id="p143"/><a href="https://leetcode.com/problems/reorder-list/" target="_blank">143. Reorder List</a><span class="technique-tag">find mid + reverse second half + merge</span><span class="diff diff-M">Medium</span></div>
+                    <div class="problem-item" data-diff="M"><input type="checkbox" class="prob-check" data-id="p148"/><a href="https://leetcode.com/problems/sort-list/" target="_blank">148. Sort List</a><span class="technique-tag">merge sort on linked list (find mid, split, merge)</span><span class="diff diff-M">Medium</span></div>
+                    <div class="problem-item" data-diff="H"><input type="checkbox" class="prob-check" data-id="p23"/><a href="https://leetcode.com/problems/merge-k-sorted-lists/" target="_blank">23. Merge K Sorted Lists</a><span class="technique-tag">min-heap of (val, node) across k lists</span><span class="diff diff-H">Hard</span></div>
+                    <div class="problem-item" data-diff="H"><input type="checkbox" class="prob-check" data-id="p25"/><a href="https://leetcode.com/problems/reverse-nodes-in-k-group/" target="_blank">25. Reverse Nodes in k-Group</a><span class="technique-tag">reverse in chunks, re-link groups</span><span class="diff diff-H">Hard</span></div>
+                </div>
+            </section>
+            <hr class="m-0" />
+
+            <!-- ══════════════════════════════════════════
+                 5. FAST & SLOW POINTERS
+            ══════════════════════════════════════════ -->
+            <section class="resume-section topic-section" id="fast-slow" data-topic-name="Fast and Slow Pointers">
+                <div class="resume-section-content">
+                    <h2 class="mb-4"><i class="fas fa-tachometer-alt text-primary mr-2" style="font-size:1.2rem;"></i>Fast &amp; Slow Pointers</h2>
+
+                    <div class="concept-box topic-concept">
+                        <h5>The Pattern — Floyd's Tortoise &amp; Hare</h5>
+                        <p>Two pointers advance at different speeds through the same structure. The fast pointer moves 2 steps per iteration; the slow moves 1. If a cycle exists, they <em>must</em> eventually meet — the fast pointer laps the slow one inside the loop. If no cycle, fast reaches null first.</p>
+                        <p>This works on any structure where you can follow a "next" link, including <strong>arrays used as implicit linked lists</strong> (e.g., 287. Find the Duplicate, where index → value forms a linked list).</p>
+
+                        <div class="when-box">
+                            <strong>Reach for this when:</strong> you see "detect cycle", "find cycle entry", "find middle of linked list", "happy number", or any problem where following a chain of values could loop.
+                        </div>
+
+                        <h5 style="margin-top:1rem;">Template — Cycle Detection</h5>
+                        <div class="code-wrap">
+                            <span class="code-lang">Python</span>
+                            <button class="code-copy" onclick="(function(b){var t=b.previousElementSibling;navigator.clipboard.writeText(t.textContent).then(function(){b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})})(this)">Copy</button>
+                            <pre class="code-block">def has_cycle(head):
+    slow = fast = head
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+        if slow is fast:
+            return True         # cycle detected
+    return False</pre>
+                        </div>
+
+                        <h5>Template — Find Cycle Entry (Linked List Cycle II)</h5>
+                        <div class="code-wrap">
+                            <span class="code-lang">Python</span>
+                            <button class="code-copy" onclick="(function(b){var t=b.previousElementSibling;navigator.clipboard.writeText(t.textContent).then(function(){b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})})(this)">Copy</button>
+                            <pre class="code-block">def detect_cycle(head):
+    slow = fast = head
+    while fast and fast.next:
+        slow, fast = slow.next, fast.next.next
+        if slow is fast:
+            # Reset one pointer to head; advance both at speed 1.
+            # They meet at the cycle entry.
+            slow = head
+            while slow is not fast:
+                slow, fast = slow.next, fast.next
+            return slow
+    return None</pre>
+                        </div>
+
+                        <h5>Template — Find Middle</h5>
+                        <div class="code-wrap">
+                            <span class="code-lang">Python</span>
+                            <button class="code-copy" onclick="(function(b){var t=b.previousElementSibling;navigator.clipboard.writeText(t.textContent).then(function(){b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})})(this)">Copy</button>
+                            <pre class="code-block">def middle_node(head):
+    slow = fast = head
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+    return slow                 # for even length, returns second middle</pre>
+                        </div>
+
+                        <div class="complexity-row">
+                            <span class="cpill cpill-time">Time: O(n)</span>
+                            <span class="cpill cpill-space">Space: O(1)</span>
+                        </div>
+                    </div>
+
+                    <p class="problems-heading">Problems</p>
+                    <div class="problem-item" data-diff="E"><input type="checkbox" class="prob-check" data-id="p876"/><a href="https://leetcode.com/problems/middle-of-the-linked-list/" target="_blank">876. Middle of the Linked List</a><span class="technique-tag">fast reaches null when slow is at mid</span><span class="diff diff-E">Easy</span></div>
+                    <div class="problem-item" data-diff="E"><input type="checkbox" class="prob-check" data-id="p202"/><a href="https://leetcode.com/problems/happy-number/" target="_blank">202. Happy Number</a><span class="technique-tag">sum-of-squares forms implicit linked list; detect cycle</span><span class="diff diff-E">Easy</span></div>
+                    <div class="problem-item" data-diff="M"><input type="checkbox" class="prob-check" data-id="p142"/><a href="https://leetcode.com/problems/linked-list-cycle-ii/" target="_blank">142. Linked List Cycle II</a><span class="technique-tag">meet inside cycle → reset one to head → meet at entry</span><span class="diff diff-M">Medium</span></div>
+                    <div class="problem-item" data-diff="M"><input type="checkbox" class="prob-check" data-id="p287"/><a href="https://leetcode.com/problems/find-the-duplicate-number/" target="_blank">287. Find the Duplicate Number</a><span class="technique-tag">index→value = implicit linked list; Floyd's finds duplicate</span><span class="diff diff-M">Medium</span></div>
+                    <div class="problem-item" data-diff="M"><input type="checkbox" class="prob-check" data-id="p457"/><a href="https://leetcode.com/problems/circular-array-loop/" target="_blank">457. Circular Array Loop</a><span class="technique-tag">fast/slow on circular index jumps; direction must stay consistent</span><span class="diff diff-M">Medium</span></div>
+                </div>
+            </section>
+            <hr class="m-0" />
+
+            <!-- ══════════════════════════════════════════
+                 6. HASHING
             ══════════════════════════════════════════ -->
             <section class="resume-section topic-section" id="hashing" data-topic-name="Hashing">
                 <div class="resume-section-content">
@@ -750,7 +922,73 @@ def pop():
             <hr class="m-0" />
 
             <!-- ══════════════════════════════════════════
-                 6. TREES
+                 9. MERGE INTERVALS
+            ══════════════════════════════════════════ -->
+            <section class="resume-section topic-section" id="merge-intervals" data-topic-name="Merge Intervals">
+                <div class="resume-section-content">
+                    <h2 class="mb-4"><i class="fas fa-compress-arrows-alt text-primary mr-2" style="font-size:1.2rem;"></i>Merge Intervals</h2>
+
+                    <div class="concept-box topic-concept">
+                        <h5>The Pattern</h5>
+                        <p>Sort intervals by start time. Then iterate: if the current interval's start is <strong>≤ the previous interval's end</strong>, they overlap — merge by extending the end to <code>max(prev.end, curr.end)</code>. Otherwise push the previous interval and start fresh with the current one.</p>
+                        <p>A common variant is "how many rooms are needed?" — sort start and end times into separate arrays and use a two-pointer sweep to count concurrent overlaps.</p>
+
+                        <div class="when-box">
+                            <strong>Reach for this when:</strong> the input is a list of intervals and the problem asks to merge, count overlaps, find gaps, remove minimum, or find intersections. Dead giveaway words: "meeting rooms", "overlapping", "insert interval", "minimum arrows".
+                        </div>
+
+                        <h5 style="margin-top:1rem;">Template — Merge Overlapping Intervals</h5>
+                        <div class="code-wrap">
+                            <span class="code-lang">Python</span>
+                            <button class="code-copy" onclick="(function(b){var t=b.previousElementSibling;navigator.clipboard.writeText(t.textContent).then(function(){b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})})(this)">Copy</button>
+                            <pre class="code-block">def merge(intervals):
+    intervals.sort(key=lambda x: x[0])
+    merged = [intervals[0]]
+    for start, end in intervals[1:]:
+        if start <= merged[-1][1]:          # overlap
+            merged[-1][1] = max(merged[-1][1], end)
+        else:
+            merged.append([start, end])
+    return merged</pre>
+                        </div>
+
+                        <h5>Template — Minimum Meeting Rooms (sweep)</h5>
+                        <div class="code-wrap">
+                            <span class="code-lang">Python</span>
+                            <button class="code-copy" onclick="(function(b){var t=b.previousElementSibling;navigator.clipboard.writeText(t.textContent).then(function(){b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})})(this)">Copy</button>
+                            <pre class="code-block">import heapq
+
+def min_meeting_rooms(intervals):
+    intervals.sort()            # sort by start
+    heap = []                   # min-heap of end times
+    for start, end in intervals:
+        if heap and heap[0] <= start:
+            heapq.heapreplace(heap, end)  # reuse freed room
+        else:
+            heapq.heappush(heap, end)     # need new room
+    return len(heap)</pre>
+                        </div>
+
+                        <div class="complexity-row">
+                            <span class="cpill cpill-time">Time: O(n log n)</span>
+                            <span class="cpill cpill-space">Space: O(n)</span>
+                        </div>
+                    </div>
+
+                    <p class="problems-heading">Problems</p>
+                    <div class="problem-item" data-diff="M"><input type="checkbox" class="prob-check" data-id="p56"/><a href="https://leetcode.com/problems/merge-intervals/" target="_blank">56. Merge Intervals</a><span class="technique-tag">sort by start, extend end on overlap</span><span class="diff diff-M">Medium</span></div>
+                    <div class="problem-item" data-diff="M"><input type="checkbox" class="prob-check" data-id="p57"/><a href="https://leetcode.com/problems/insert-interval/" target="_blank">57. Insert Interval</a><span class="technique-tag">walk list: add before/overlap/after new interval</span><span class="diff diff-M">Medium</span></div>
+                    <div class="problem-item" data-diff="M"><input type="checkbox" class="prob-check" data-id="p435"/><a href="https://leetcode.com/problems/non-overlapping-intervals/" target="_blank">435. Non-Overlapping Intervals</a><span class="technique-tag">greedy: remove interval with larger end when overlap found</span><span class="diff diff-M">Medium</span></div>
+                    <div class="problem-item" data-diff="M"><input type="checkbox" class="prob-check" data-id="p452"/><a href="https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/" target="_blank">452. Minimum Number of Arrows to Burst Balloons</a><span class="technique-tag">sort by end; arrow at curr.end bursts all overlapping</span><span class="diff diff-M">Medium</span></div>
+                    <div class="problem-item" data-diff="M"><input type="checkbox" class="prob-check" data-id="p986"/><a href="https://leetcode.com/problems/interval-list-intersections/" target="_blank">986. Interval List Intersections</a><span class="technique-tag">two-pointer on sorted lists; advance whichever ends earlier</span><span class="diff diff-M">Medium</span></div>
+                    <div class="problem-item" data-diff="M"><input type="checkbox" class="prob-check" data-id="p1288"/><a href="https://leetcode.com/problems/remove-covered-intervals/" target="_blank">1288. Remove Covered Intervals</a><span class="technique-tag">sort by start desc end; count non-covered</span><span class="diff diff-M">Medium</span></div>
+                    <div class="problem-item" data-diff="H"><input type="checkbox" class="prob-check" data-id="p759"/><a href="https://leetcode.com/problems/employee-free-time/" target="_blank">759. Employee Free Time</a><span class="technique-tag">flatten + sort all intervals; find gaps between merged spans</span><span class="diff diff-H">Hard</span></div>
+                </div>
+            </section>
+            <hr class="m-0" />
+
+            <!-- ══════════════════════════════════════════
+                 10. TREES
             ══════════════════════════════════════════ -->
             <section class="resume-section topic-section" id="trees" data-topic-name="Trees">
                 <div class="resume-section-content">
@@ -911,7 +1149,129 @@ while q:
             <hr class="m-0" />
 
             <!-- ══════════════════════════════════════════
-                 8. DYNAMIC PROGRAMMING
+                 13. TOP K ELEMENTS
+            ══════════════════════════════════════════ -->
+            <section class="resume-section topic-section" id="top-k" data-topic-name="Top K Elements">
+                <div class="resume-section-content">
+                    <h2 class="mb-4"><i class="fas fa-sort-amount-down text-primary mr-2" style="font-size:1.2rem;"></i>Top K Elements</h2>
+
+                    <div class="concept-box topic-concept">
+                        <h5>The Pattern</h5>
+                        <p>Whenever a problem asks for the <strong>K largest</strong>, <strong>K most frequent</strong>, or <strong>K closest</strong> items, a heap is almost always the right tool. The key insight: maintain a <strong>min-heap of size K</strong> while scanning. When the heap exceeds size K, pop the smallest — what remains is the K largest seen so far.</p>
+                        <p>For K smallest, flip to a max-heap (negate values in Python). For "top K frequent", use a bucket sort approach for O(n) time.</p>
+
+                        <div class="when-box">
+                            <strong>Reach for this when:</strong> you see "kth largest/smallest", "top K frequent elements", "K closest points". The brute-force is sort-then-slice at O(n log n); a heap gives O(n log k) — better when k ≪ n. Use <code>heapq.nlargest(k, arr)</code> in a pinch, but know the manual approach.
+                        </div>
+
+                        <h5 style="margin-top:1rem;">Template — K Largest with Min-Heap</h5>
+                        <div class="code-wrap">
+                            <span class="code-lang">Python</span>
+                            <button class="code-copy" onclick="(function(b){var t=b.previousElementSibling;navigator.clipboard.writeText(t.textContent).then(function(){b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})})(this)">Copy</button>
+                            <pre class="code-block">import heapq
+
+def find_kth_largest(nums, k):
+    heap = []
+    for n in nums:
+        heapq.heappush(heap, n)
+        if len(heap) > k:
+            heapq.heappop(heap)     # discard smallest seen
+    return heap[0]                  # smallest of the K largest = kth largest</pre>
+                        </div>
+
+                        <h5>Template — Top K Frequent (bucket sort, O(n))</h5>
+                        <div class="code-wrap">
+                            <span class="code-lang">Python</span>
+                            <button class="code-copy" onclick="(function(b){var t=b.previousElementSibling;navigator.clipboard.writeText(t.textContent).then(function(){b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})})(this)">Copy</button>
+                            <pre class="code-block">from collections import Counter
+
+def top_k_frequent(nums, k):
+    count   = Counter(nums)
+    buckets = [[] for _ in range(len(nums) + 1)]
+    for num, freq in count.items():
+        buckets[freq].append(num)
+    result = []
+    for i in range(len(buckets) - 1, 0, -1):
+        result.extend(buckets[i])
+        if len(result) >= k:
+            return result[:k]</pre>
+                        </div>
+
+                        <div class="complexity-row">
+                            <span class="cpill cpill-time">Time: O(n log k) heap · O(n) bucket sort</span>
+                            <span class="cpill cpill-space">Space: O(k)</span>
+                        </div>
+                    </div>
+
+                    <p class="problems-heading">Problems</p>
+                    <div class="problem-item" data-diff="M"><input type="checkbox" class="prob-check" data-id="p215"/><a href="https://leetcode.com/problems/kth-largest-element-in-an-array/" target="_blank">215. Kth Largest Element in an Array</a><span class="technique-tag">min-heap size k; or quickselect O(n) avg</span><span class="diff diff-M">Medium</span></div>
+                    <div class="problem-item" data-diff="M"><input type="checkbox" class="prob-check" data-id="p347"/><a href="https://leetcode.com/problems/top-k-frequent-elements/" target="_blank">347. Top K Frequent Elements</a><span class="technique-tag">Counter + bucket sort or heap</span><span class="diff diff-M">Medium</span></div>
+                    <div class="problem-item" data-diff="M"><input type="checkbox" class="prob-check" data-id="p973"/><a href="https://leetcode.com/problems/k-closest-points-to-origin/" target="_blank">973. K Closest Points to Origin</a><span class="technique-tag">max-heap of size k keyed by dist²</span><span class="diff diff-M">Medium</span></div>
+                    <div class="problem-item" data-diff="M"><input type="checkbox" class="prob-check" data-id="p658"/><a href="https://leetcode.com/problems/find-k-closest-elements/" target="_blank">658. Find K Closest Elements</a><span class="technique-tag">binary search for left boundary of k-window</span><span class="diff diff-M">Medium</span></div>
+                    <div class="problem-item" data-diff="M"><input type="checkbox" class="prob-check" data-id="p767"/><a href="https://leetcode.com/problems/reorganize-string/" target="_blank">767. Reorganize String</a><span class="technique-tag">max-heap; always place most-frequent char not equal to last</span><span class="diff diff-M">Medium</span></div>
+                    <div class="problem-item" data-diff="H"><input type="checkbox" class="prob-check" data-id="p358"/><a href="https://leetcode.com/problems/rearrange-string-k-distance-apart/" target="_blank">358. Rearrange String k Distance Apart</a><span class="technique-tag">max-heap + cooldown queue of size k</span><span class="diff diff-H">Hard</span></div>
+                </div>
+            </section>
+            <hr class="m-0" />
+
+            <!-- ══════════════════════════════════════════
+                 14. TWO HEAPS
+            ══════════════════════════════════════════ -->
+            <section class="resume-section topic-section" id="two-heaps" data-topic-name="Two Heaps">
+                <div class="resume-section-content">
+                    <h2 class="mb-4"><i class="fas fa-balance-scale text-primary mr-2" style="font-size:1.2rem;"></i>Two Heaps</h2>
+
+                    <div class="concept-box topic-concept">
+                        <h5>The Pattern</h5>
+                        <p>Maintain two heaps that partition a running dataset at its median: a <strong>max-heap for the lower half</strong> and a <strong>min-heap for the upper half</strong>. Keep them balanced (size difference ≤ 1). The median is either the top of the larger heap, or the average of both tops.</p>
+                        <p>Each insertion is O(log n). Finding the median is O(1). This beats sorting the array on every query (O(n log n) per query).</p>
+
+                        <div class="when-box">
+                            <strong>Reach for this when:</strong> you need a <strong>running median</strong> as elements arrive, or when a problem partitions a set into two halves where you need the maximum of one half and the minimum of the other simultaneously (scheduling, IPO).
+                        </div>
+
+                        <h5 style="margin-top:1rem;">Template — Running Median</h5>
+                        <div class="code-wrap">
+                            <span class="code-lang">Python</span>
+                            <button class="code-copy" onclick="(function(b){var t=b.previousElementSibling;navigator.clipboard.writeText(t.textContent).then(function(){b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},1500)})})(this)">Copy</button>
+                            <pre class="code-block">import heapq
+
+class MedianFinder:
+    def __init__(self):
+        self.lo = []    # max-heap (negate values): lower half
+        self.hi = []    # min-heap: upper half
+
+    def addNum(self, num):
+        heapq.heappush(self.lo, -num)       # push to lower half
+        # ensure max(lo) <= min(hi)
+        heapq.heappush(self.hi, -heapq.heappop(self.lo))
+        # rebalance sizes so |lo| >= |hi|
+        if len(self.lo) < len(self.hi):
+            heapq.heappush(self.lo, -heapq.heappop(self.hi))
+
+    def findMedian(self):
+        if len(self.lo) > len(self.hi):
+            return -self.lo[0]
+        return (-self.lo[0] + self.hi[0]) / 2</pre>
+                        </div>
+
+                        <div class="complexity-row">
+                            <span class="cpill cpill-time">Time: O(log n) add · O(1) median</span>
+                            <span class="cpill cpill-space">Space: O(n)</span>
+                        </div>
+                    </div>
+
+                    <p class="problems-heading">Problems</p>
+                    <div class="problem-item" data-diff="H"><input type="checkbox" class="prob-check" data-id="p295"/><a href="https://leetcode.com/problems/find-median-from-data-stream/" target="_blank">295. Find Median from Data Stream</a><span class="technique-tag">max-heap lower half + min-heap upper half, keep balanced</span><span class="diff diff-H">Hard</span></div>
+                    <div class="problem-item" data-diff="H"><input type="checkbox" class="prob-check" data-id="p480"/><a href="https://leetcode.com/problems/sliding-window-median/" target="_blank">480. Sliding Window Median</a><span class="technique-tag">two heaps + lazy deletion for the evicted element</span><span class="diff diff-H">Hard</span></div>
+                    <div class="problem-item" data-diff="H"><input type="checkbox" class="prob-check" data-id="p502"/><a href="https://leetcode.com/problems/ipo/" target="_blank">502. IPO</a><span class="technique-tag">min-heap by capital to unlock projects; max-heap by profit to pick best</span><span class="diff diff-H">Hard</span></div>
+                    <div class="problem-item" data-diff="H"><input type="checkbox" class="prob-check" data-id="p1439"/><a href="https://leetcode.com/problems/find-the-kth-smallest-sum-of-a-matrix-with-sorted-rows/" target="_blank">1439. Kth Smallest Sum (Matrix)</a><span class="technique-tag">min-heap over row combinations; pop k times</span><span class="diff diff-H">Hard</span></div>
+                </div>
+            </section>
+            <hr class="m-0" />
+
+            <!-- ══════════════════════════════════════════
+                 15. DYNAMIC PROGRAMMING
             ══════════════════════════════════════════ -->
             <section class="resume-section topic-section" id="dp" data-topic-name="Dynamic Programming">
                 <div class="resume-section-content">
@@ -1555,6 +1915,8 @@ graph relationships                → Neo4j</div>
             }, { threshold: 0.05 });
             document.querySelectorAll('.resume-section-content, .topic-section').forEach(function(el) { _sio.observe(el); });
         </script>
+        <!-- Theme toggle -->
+        <script src="js/theme.js"></script>
 
     </body>
 </html>

@@ -613,3 +613,188 @@ kbd {
 @media (max-width: 991px) {
     body::after { display: none; }
 }
+
+/* ═══════════════════════════════════════
+   DARK THEME TOKENS  (html[data-theme="dark"])
+   All text/background pairs verified ≥ 4.5:1 (WCAG AA):
+   --text-1 #e6edf3 on #0d1117 → ~16:1  ✓
+   --text-2 #9ca3af on #0d1117 →  ~7:1  ✓
+   --text-3 #8b929e on #0d1117 →  ~5:1  ✓
+   --accent #e88a5c on #0d1117 →  ~8:1  ✓  (on surface #161b22 → ~7:1 ✓)
+═══════════════════════════════════════ */
+[data-theme="dark"] {
+    --bg:           #0d1117;
+    --bg-surface:   #161b22;
+    --accent:       #e88a5c;
+    --accent-dark:  #d4723e;
+    --accent-dim:   rgba(232, 138, 92, 0.15);
+    --accent-glow:  rgba(232, 138, 92, 0.30);
+    --text-1:       #e6edf3;
+    --text-2:       #9ca3af;
+    --text-3:       #8b929e;
+    --border:       rgba(255, 255, 255, 0.09);
+    --shadow-sm:    0 1px 3px rgba(0,0,0,.4), 0 1px 2px rgba(0,0,0,.3);
+    --shadow-md:    0 4px 12px rgba(0,0,0,.5), 0 2px 4px rgba(0,0,0,.3);
+    --green:        #4ade80;
+    --yellow:       #fbbf24;
+    --red:          #f87171;
+    --cyan:         #38bdf8;
+}
+
+/* Background pseudo-elements: adapt to dark */
+[data-theme="dark"] body::before {
+    background-image: radial-gradient(rgba(255,255,255,.04) 1px, transparent 1px);
+}
+[data-theme="dark"] body::after {
+    background: radial-gradient(circle, rgba(232,138,92,.07) 0%, transparent 65%);
+}
+
+/* Nav */
+[data-theme="dark"] #sideNav {
+    background: #161b22 !important;
+    border-right-color: rgba(255,255,255,.07) !important;
+    box-shadow: 2px 0 16px rgba(0,0,0,.5) !important;
+}
+[data-theme="dark"] .topnav #sideNav .navbar-collapse {
+    background: #161b22 !important;
+    border-top-color: rgba(255,255,255,.08) !important;
+}
+@media (max-width: 991px) {
+    [data-theme="dark"] #sideNav {
+        border-bottom-color: rgba(255,255,255,.07) !important;
+    }
+}
+
+/* Section/hr dividers */
+[data-theme="dark"] .resume-section {
+    border-bottom-color: rgba(255,255,255,.06) !important;
+}
+[data-theme="dark"] hr.m-0 { border-color: rgba(255,255,255,.07) !important; }
+
+/* Experience/education left-border */
+[data-theme="dark"] .d-flex.flex-column.flex-md-row {
+    border-left-color: rgba(255,255,255,.08) !important;
+}
+
+/* Social icons */
+[data-theme="dark"] .social-icon {
+    background: #1c2128 !important;
+    border-color: rgba(255,255,255,.1) !important;
+}
+
+/* Text selection */
+[data-theme="dark"] ::selection { background: rgba(232,138,92,.22); color: var(--text-1); }
+
+/* Scrollbar */
+[data-theme="dark"] ::-webkit-scrollbar-thumb { background: rgba(255,255,255,.14); }
+
+/* Dark hamburger → light strokes */
+[data-theme="dark"] .topnav .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28230%2C237%2C243%2C0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+[data-theme="dark"] .topnav .navbar-toggler { border-color: rgba(255,255,255,.15) !important; }
+
+/* ── Interview Prep dark overrides ── */
+[data-theme="dark"] .concept-box {
+    background: #1c2128 !important;
+}
+[data-theme="dark"] .concept-box code {
+    background: rgba(255,255,255,.08) !important;
+    color: var(--accent) !important;
+}
+[data-theme="dark"] .when-box {
+    background: rgba(251,191,36,.07) !important;
+    border-color: rgba(251,191,36,.2) !important;
+}
+[data-theme="dark"] .prep-toolbar {
+    background: rgba(22,27,34,.97) !important;
+    border-bottom-color: rgba(255,255,255,.08) !important;
+    box-shadow: 0 2px 12px rgba(0,0,0,.4) !important;
+}
+[data-theme="dark"] #searchInput {
+    background: #1c2128 !important;
+    border-color: rgba(255,255,255,.12) !important;
+}
+[data-theme="dark"] #searchInput:focus {
+    background: #1c2128 !important;
+    border-color: var(--accent) !important;
+}
+[data-theme="dark"] .toggle-concepts-btn {
+    background: #1c2128 !important;
+    border-color: rgba(255,255,255,.1) !important;
+}
+[data-theme="dark"] .toggle-concepts-btn:hover { background: #242b35 !important; }
+[data-theme="dark"] .hero-how {
+    background: #1c2128 !important;
+    border-color: rgba(255,255,255,.08) !important;
+}
+[data-theme="dark"] .problem-item { border-bottom-color: rgba(255,255,255,.06) !important; }
+[data-theme="dark"] .problem-item:hover { background: rgba(232,138,92,.06) !important; }
+[data-theme="dark"] .nav-divider { border-color: rgba(255,255,255,.1) !important; }
+[data-theme="dark"] .nav-prog {
+    background: rgba(255,255,255,.08) !important;
+    color: var(--text-3) !important;
+}
+[data-theme="dark"] .nav-prog.done {
+    background: rgba(74,222,128,.15) !important;
+    color: var(--green) !important;
+}
+[data-theme="dark"] .diff-E { background: rgba(74,222,128,.12) !important; }
+[data-theme="dark"] .diff-M { background: rgba(251,191,36,.12) !important; }
+[data-theme="dark"] .diff-H { background: rgba(248,113,113,.12) !important; }
+[data-theme="dark"] .cpill-time {
+    background: rgba(56,189,248,.1) !important;
+    border-color: rgba(56,189,248,.2) !important;
+}
+[data-theme="dark"] .cpill-space {
+    background: rgba(74,222,128,.1) !important;
+    border-color: rgba(74,222,128,.2) !important;
+}
+[data-theme="dark"] kbd { background: #1c2128 !important; border-color: rgba(255,255,255,.1) !important; }
+[data-theme="dark"] .progress-track { background: rgba(255,255,255,.1) !important; }
+[data-theme="dark"] .problems-heading { border-bottom-color: rgba(255,255,255,.08) !important; }
+
+/* ── Halal Scanner dark overrides ── */
+[data-theme="dark"] .hs-header {
+    background: #161b22 !important;
+    border-bottom-color: rgba(255,255,255,.08) !important;
+}
+
+/* ═══════════════════════════════════════
+   THEME TOGGLE BUTTON
+═══════════════════════════════════════ */
+.theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.3rem 0.45rem;
+    font-size: 1rem;
+    color: var(--text-2);
+    transition: color .15s, transform .15s;
+    line-height: 1;
+    flex-shrink: 0;
+    border-radius: 6px;
+}
+.theme-toggle:hover {
+    color: var(--accent);
+    transform: rotate(12deg);
+}
+/* Appears inline in the topnav */
+.topnav .theme-toggle { margin-left: 0.5rem; }
+/* Appears in sidebar nav of interview-prep */
+.sidebar-toggle-wrap {
+    padding: 0.6rem 1.5rem 0.8rem 1.6rem;
+    border-top: 1px solid rgba(0,0,0,.07);
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+[data-theme="dark"] .sidebar-toggle-wrap { border-top-color: rgba(255,255,255,.08); }
+.sidebar-toggle-label {
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.09rem;
+    text-transform: uppercase;
+    color: var(--text-3);
+}
