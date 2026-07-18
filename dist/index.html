@@ -16,8 +16,22 @@
         <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
-        <!-- Futuristic dark design layer -->
+        <!-- Futuristic design layer -->
         <link href="css/futuristic.css" rel="stylesheet" />
+        <style>
+            /* ── Sub-section headers inside About ── */
+            .about-sub-h2 {
+                font-family: 'Saira Extra Condensed', sans-serif;
+                font-size: 1.75rem;
+                font-weight: 700;
+                color: var(--text-1) !important;
+                margin-top: 3rem;
+                margin-bottom: 1.25rem;
+                padding-bottom: 0.5rem;
+                border-bottom: 2px solid var(--accent-dim);
+                letter-spacing: 0.04rem;
+            }
+        </style>
     </head>
     <body id="page-top" class="topnav">
         <!-- Navigation-->
@@ -30,11 +44,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#education">Education</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#experience">Experience</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skills">Skills</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#projects">Projects</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#interests">Interests</a></li>
                     <li class="nav-item"><a class="nav-link" href="halal-scanner.html">Halal Scanner</a></li>
                     <li class="nav-item"><a class="nav-link" href="interview-prep.html">Interview Prep</a></li>
                 </ul>
@@ -45,9 +55,12 @@
         </nav>
         <!-- Page Content-->
         <div class="container-fluid p-0">
-            <!-- About-->
+
+            <!-- ══ ABOUT ══════════════════════════════════════ -->
             <section class="resume-section" id="about">
                 <div class="resume-section-content">
+
+                    <!-- ── Name & intro ── -->
                     <h1 class="mb-0">
                         Yavuzalp
                         <span class="text-primary">Turkoglu</span>
@@ -60,7 +73,7 @@
                     <p class="lead mb-4">B.S. Computer Science &amp; Systems, University of Washington Tacoma &mdash; cum laude, 3.84 GPA, Dean&rsquo;s List four consecutive quarters.</p>
 
                     <!-- Journey: Fethiye → USA -->
-                    <div class="journey-card mb-4">
+                    <div class="journey-card mb-5">
                         <svg viewBox="0 0 460 130" xmlns="http://www.w3.org/2000/svg"
                              role="img" aria-label="Moved from Fethiye, Muğla, Türkiye to the United States in 2016">
                             <defs>
@@ -68,24 +81,18 @@
                                     <feDropShadow dx="0" dy="2" stdDeviation="5" flood-color="rgba(0,0,0,.06)"/>
                                 </filter>
                             </defs>
-                            <!-- Card -->
                             <rect x="2" y="2" width="456" height="126" rx="10"
                                   fill="#fdf8f5" stroke="rgba(189,93,56,.18)" stroke-width="1.5"
                                   filter="url(#jcs)"/>
-                            <!-- Flags -->
                             <text x="90"  y="46" font-size="26" text-anchor="middle">🇹🇷</text>
                             <text x="370" y="46" font-size="26" text-anchor="middle">🇺🇸</text>
-                            <!-- Origin pin -->
                             <circle cx="90"  cy="67" r="7"   fill="rgba(189,93,56,.14)"/>
                             <circle cx="90"  cy="67" r="3.5" fill="#bd5d38"/>
-                            <!-- Destination pin -->
                             <circle cx="370" cy="67" r="7"   fill="rgba(189,93,56,.14)"/>
                             <circle cx="370" cy="67" r="3.5" fill="#bd5d38"/>
-                            <!-- Dashed flight arc -->
                             <path d="M 106 67 Q 230 14 354 67"
                                   fill="none" stroke="#bd5d38" stroke-width="1.5"
                                   stroke-dasharray="5 3.5" stroke-linecap="round" opacity=".6"/>
-                            <!-- Airplane at arc midpoint (~230, 40) pointing right with slight upward tilt -->
                             <g transform="translate(230,40) rotate(-6)" fill="#bd5d38" opacity=".88">
                                 <path d="M-12,-2 L9,-2 L13,0 L9,2 L-12,2 Z"/>
                                 <polygon points="-1,-2 6,-2 3,-9 -4,-2"/>
@@ -93,17 +100,14 @@
                                 <polygon points="-9,-2 -13,-6 -7,-2" opacity=".7"/>
                                 <polygon points="-9,2  -13,6  -7,2"  opacity=".7"/>
                             </g>
-                            <!-- Year -->
                             <text x="230" y="57" font-size="9" text-anchor="middle"
                                   font-family="'Saira Extra Condensed',sans-serif"
                                   font-weight="700" fill="#bd5d38" letter-spacing="2" opacity=".9">2016</text>
-                            <!-- Origin labels -->
                             <text x="90"  y="85" font-size="10.5" text-anchor="middle"
                                   font-family="'Saira Extra Condensed',sans-serif"
                                   font-weight="700" fill="#1e293b" letter-spacing=".5">FETHIYE</text>
                             <text x="90"  y="102" font-size="8.5" text-anchor="middle"
                                   font-family="Muli,sans-serif" fill="#64748b">Muğla, Türkiye</text>
-                            <!-- Destination labels -->
                             <text x="370" y="85" font-size="10.5" text-anchor="middle"
                                   font-family="'Saira Extra Condensed',sans-serif"
                                   font-weight="700" fill="#1e293b" letter-spacing=".5">UNITED STATES</text>
@@ -112,39 +116,13 @@
                         </svg>
                     </div>
 
-                    <div class="social-icons">
+                    <div class="social-icons mb-5">
                         <a class="social-icon" href="https://www.linkedin.com/in/yavuzalp-turkoglu-588b46143/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
                         <a class="social-icon" href="https://github.com/yavuzalp" target="_blank"><i class="fab fa-github"></i></a>
                     </div>
-                </div>
-            </section>
-            <hr class="m-0" />
-            <!-- Education-->
-            <section class="resume-section" id="education">
-                <div class="resume-section-content">
-                    <h2 class="mb-5">Education</h2>
-                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">University of Washington Tacoma</h3>
-                            <div class="subheading mb-3">Bachelor of Science &mdash; Computer Science &amp; Systems</div>
-                            <div>Cum Laude &middot; GPA 3.84 &middot; Dean&rsquo;s List 4 consecutive quarters</div>
-                        </div>
-                        <div class="flex-shrink-0"><span class="text-primary">September 2020 – May 2022</span></div>
-                    </div>
-                    <div class="d-flex flex-column flex-md-row justify-content-between">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">Bellevue College</h3>
-                            <div class="subheading mb-3">Transfer Degree</div>
-                        </div>
-                        <div class="flex-shrink-0"><span class="text-primary">January 2017 - January 2020</span></div>
-                    </div>
-                </div>
-            </section>
-            <hr class="m-0" />
-                        <!-- Experience-->
-            <section class="resume-section" id="experience">
-                <div class="resume-section-content">
-                    <h2 class="mb-5">Experience</h2>
+
+                    <!-- ── Experience ── -->
+                    <h2 class="about-sub-h2">Experience</h2>
                     <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                         <div class="flex-grow-1">
                             <h3 class="mb-0">Full Stack Developer</h3>
@@ -169,49 +147,50 @@
                         </div>
                         <div class="flex-shrink-0"><span class="text-primary">May 2020 – January 2021</span></div>
                     </div>
-                </div>
-            </section>
-            <hr class="m-0" />
-            <!-- Skills-->
-            <section class="resume-section" id="skills">
-                <div class="resume-section-content">
-                    <h2 class="mb-5">Skills</h2>
-                    <div class="subheading mb-3">Programming Languages & Tools</div>
+
+                    <!-- ── Education ── -->
+                    <h2 class="about-sub-h2">Education</h2>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <h3 class="mb-0">University of Washington Tacoma</h3>
+                            <div class="subheading mb-3">Bachelor of Science &mdash; Computer Science &amp; Systems</div>
+                            <div>Cum Laude &middot; GPA 3.84 &middot; Dean&rsquo;s List 4 consecutive quarters</div>
+                        </div>
+                        <div class="flex-shrink-0"><span class="text-primary">September 2020 – May 2022</span></div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <h3 class="mb-0">Bellevue College</h3>
+                            <div class="subheading mb-3">Transfer Degree</div>
+                        </div>
+                        <div class="flex-shrink-0"><span class="text-primary">January 2017 – January 2020</span></div>
+                    </div>
+
+                    <!-- ── Skills ── -->
+                    <h2 class="about-sub-h2">Skills</h2>
+                    <div class="subheading mb-3">Programming Languages &amp; Tools</div>
                     <ul class="list-inline dev-icons">
                         <li class="list-inline-item"><i class="fab fa-docker"></i></li>
                         <li class="list-inline-item"><i class="fab fa-react"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-flask"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-sql"></i></li>
+                        <li class="list-inline-item"><i class="fab fa-python"></i></li>
                         <li class="list-inline-item"><i class="fab fa-npm"></i></li>
                         <li class="list-inline-item"><i class="fab fa-aws"></i></li>
                         <li class="list-inline-item"><i class="fab fa-html5"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-css3"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-gulp"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-grunt"></i></li>
+                        <li class="list-inline-item"><i class="fab fa-css3-alt"></i></li>
+                        <li class="list-inline-item"><i class="fab fa-git-alt"></i></li>
                     </ul>
-                    <!-- <div class="subheading mb-3">Workflow</div> -->
                     <ul class="fa-ul mb-0">
-                        <li>
-                            <span class="fa-li"><i class="fas fa-check"></i></span>
-                            Rest-API
-                        </li>
-                        <li>
-                            <span class="fa-li"><i class="fas fa-check"></i></span>
-                            Sql
-                        </li>
-                        <!-- <li>
-                            <span class="fa-li"><i class="fas fa-check"></i></span>
-                            
-                        </li>
-                        <li>
-                            <span class="fa-li"><i class="fas fa-check"></i></span>
-                            
-                        </li> -->
+                        <li><span class="fa-li"><i class="fas fa-check"></i></span>React / .NET / Node.js / Python / Java / C#</li>
+                        <li><span class="fa-li"><i class="fas fa-check"></i></span>AWS · Azure · GCP · Docker · CI/CD</li>
+                        <li><span class="fa-li"><i class="fas fa-check"></i></span>PostgreSQL · MySQL · SQLite · REST APIs</li>
+                        <li><span class="fa-li"><i class="fas fa-check"></i></span>Git · Agile · Test-Driven Development</li>
                     </ul>
+
                 </div>
             </section>
             <hr class="m-0" />
-            <!-- Projects-->
+
+            <!-- ══ PROJECTS ════════════════════════════════════ -->
             <section class="resume-section" id="projects">
                 <div class="resume-section-content">
                     <h2 class="mb-5">Projects</h2>
@@ -234,62 +213,7 @@
                 </div>
             </section>
             <hr class="m-0" />
-            <!-- Interests-->
-            <section class="resume-section" id="interests">
-                <div class="resume-section-content">
-                    <h2 class="mb-5">Interests</h2>
-                    <p>The website is still under construction. Thank you for your visit</p>
-                    <!-- <p>Apart from being a web developer, I enjoy most of my time being outdoors. In the winter, I am a snowboarder.</p>
-                    <p class="mb-0">When forced indoors, I follow a number of sci-fi and fantasy genre movies and television shows, and I spend a large amount of my free time exploring the latest technology advancements in the front-end web development world.</p> -->
-                </div>
-            </section>
-            <hr class="m-0" />
-            <!-- Awards-->
-            <!-- <section class="resume-section" id="awards">
-                <div class="resume-section-content">
-                    <h2 class="mb-5">Awards & Certifications</h2>
-                    <ul class="fa-ul mb-0">
-                        <li>
-                            <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                            Google Analytics Certified Developer
-                        </li>
-                        <li>
-                            <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                            Mobile Web Specialist - Google Certification
-                        </li>
-                        <li>
-                            <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                            1
-                            <sup>st</sup>
-                            Place - University of Colorado Boulder - Emerging Tech Competition 2009
-                        </li>
-                        <li>
-                            <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                            1
-                            <sup>st</sup>
-                            Place - University of Colorado Boulder - Adobe Creative Jam 2008 (UI Design Category)
-                        </li>
-                        <li>
-                            <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                            2
-                            <sup>nd</sup>
-                            Place - University of Colorado Boulder - Emerging Tech Competition 2008
-                        </li>
-                        <li>
-                            <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                            1
-                            <sup>st</sup>
-                            Place - James Buchanan High School - Hackathon 2006
-                        </li>
-                        <li>
-                            <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                            3
-                            <sup>rd</sup>
-                            Place - James Buchanan High School - Hackathon 2005
-                        </li>
-                    </ul>
-                </div>
-            </section> -->
+
         </div>
         <!-- Bootstrap core JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
