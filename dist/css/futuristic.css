@@ -806,6 +806,35 @@ kbd {
     gap: 0.5rem;
 }
 [data-theme="dark"] .sidebar-toggle-wrap { border-top-color: rgba(255,255,255,.08); }
+
+/* Pin the toggle to the bottom of the fixed left sidebar (interview-prep).
+   #sideNav .navbar-collapse defaults to a row flex container (styles.css)
+   because the vendor template only expected a single <ul> child; with our
+   .sidebar-toggle-wrap added as a second child it was rendering beside the
+   pattern list instead of below it, partly overflowing past the sidebar's
+   right edge. Switch it to a column so the list and the toggle stack, let
+   the (long, 18-item) pattern list scroll independently if it overflows,
+   and push the toggle to the bottom via margin-top: auto. Scoped to
+   >=992px only — below that the collapse is a plain in-flow mobile
+   dropdown, not a fixed-height column, so "bottom of sidebar" doesn't
+   apply and the toggle stays right after the list. .topnav pages override
+   this with !important rules of their own, so this doesn't affect them. */
+@media (min-width: 992px) {
+    #sideNav .navbar-collapse {
+        flex-direction: column;
+        flex: 1 1 auto;
+        min-height: 0;
+        margin-bottom: 0;   /* override styles.css's margin-bottom:auto, which would eat the growth this rule needs */
+    }
+    #sideNav .navbar-collapse .navbar-nav {
+        flex: 0 1 auto;
+        overflow-y: auto;
+    }
+    .sidebar-toggle-wrap {
+        margin-top: auto;
+        flex-shrink: 0;
+    }
+}
 .sidebar-toggle-label {
     font-size: 0.7rem;
     font-weight: 800;
