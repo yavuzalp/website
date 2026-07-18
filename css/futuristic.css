@@ -88,10 +88,19 @@ body::after {
 }
 
 /* Nav must be ABOVE content: .container-fluid starts at y=0 and its
-   60px padding-top area would otherwise intercept clicks on the fixed nav. */
+   60px padding-top area would otherwise intercept clicks on the fixed nav.
+   NOTE: only force position:relative below the 992px breakpoint — at
+   desktop widths #sideNav must stay position:fixed (set in styles.css)
+   so it renders as a pinned left column, not an in-flow block above the
+   hero. z-index alone is enough to fix click-through at desktop widths
+   since position:fixed already establishes a stacking context. */
 #sideNav {
-    position: relative;
     z-index: 100;
+}
+@media (max-width: 991px) {
+    #sideNav {
+        position: relative;
+    }
 }
 
 /* Scrollbar */
