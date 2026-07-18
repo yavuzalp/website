@@ -79,13 +79,19 @@ body::after {
     to   { transform: translate(60px, -50px) scale(1.1); }
 }
 
-/* Content above background layer */
-#sideNav,
+/* Content above dot-grid/orb background pseudo-elements (z-index: 0) */
 .container-fluid,
 .prep-toolbar,
 #backToTop {
     position: relative;
     z-index: 1;
+}
+
+/* Nav must be ABOVE content: .container-fluid starts at y=0 and its
+   60px padding-top area would otherwise intercept clicks on the fixed nav. */
+#sideNav {
+    position: relative;
+    z-index: 100;
 }
 
 /* Scrollbar */
