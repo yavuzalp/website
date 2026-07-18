@@ -6,6 +6,8 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Yavuzalp Turkoglu</title>
+        <!-- Anti-flash: set theme before first paint -->
+        <script>!function(){var t=localStorage.getItem('theme-pref')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t)}();</script>
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
@@ -37,6 +39,9 @@
                     <li class="nav-item"><a class="nav-link" href="interview-prep.html">Interview Prep</a></li>
                 </ul>
             </div>
+            <button class="theme-toggle" id="theme-toggle" title="Switch to dark mode" aria-label="Toggle dark/light mode">
+                <i class="fas fa-moon" id="theme-icon"></i>
+            </button>
         </nav>
         <!-- Page Content-->
         <div class="container-fluid p-0">
@@ -293,6 +298,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
+        <!-- Theme toggle -->
+        <script src="js/theme.js"></script>
         <!-- Scroll-reveal -->
         <script>
             document.documentElement.classList.add('js-loaded');
