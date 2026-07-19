@@ -216,6 +216,26 @@
             .admin-table td:last-child, .admin-table th:last-child { text-align: right; }
             .admin-table tr:last-child td { border-bottom: none; }
 
+            .admin-traffic-row {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 1rem;
+                flex-wrap: wrap;
+                background: var(--bg-2, rgba(0,0,0,.02));
+                border: 1px solid var(--border);
+                border-radius: 8px;
+                padding: 0.8rem 0.9rem;
+            }
+            .admin-ga-link {
+                flex-shrink: 0;
+                font-size: 0.78rem;
+                font-weight: 700;
+                color: var(--accent);
+                white-space: nowrap;
+            }
+            .admin-ga-link:hover { text-decoration: underline; }
+
             .admin-error-box {
                 font-size: 0.82rem;
                 color: var(--text-2);
@@ -291,6 +311,15 @@
                     </div>
                     <h1>Admin Dashboard</h1>
 
+                    <div class="admin-section-title" style="margin-top:0;">Site traffic</div>
+                    <div class="admin-traffic-row">
+                        <p class="admin-placeholder" style="margin:0;">Visitor counts, page views, and referrers are tracked via Google Analytics (GA4).</p>
+                        <a class="admin-ga-link" href="https://analytics.google.com/" target="_blank" rel="noopener">
+                            Open Google Analytics <i class="fas fa-external-link-alt" style="font-size:0.7em;margin-left:0.3em;"></i>
+                        </a>
+                    </div>
+
+                    <div class="admin-section-title">Solved problems</div>
                     <div id="statsLoading" class="admin-loading-inline">Loading solve stats…</div>
                     <div id="statsError" class="admin-error-box" hidden></div>
 
