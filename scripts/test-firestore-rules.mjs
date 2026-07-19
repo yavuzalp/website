@@ -56,6 +56,14 @@ async function run() {
   await test('p2 can create own player doc', () => assertSucceeds(setDoc(doc(p2Db, 'arenaRooms/ROOM1/players/p2-uid'), {
     displayName: 'P2', currentQuestionIndex: 0
   })));
+  // p3 also needs to actually be a room member (real players always are, via
+  // room.js's joinRoom()) before "any room member can finish the match" is a
+  // meaningful thing to test against them below — without this, the later
+  // finish-the-room assertions fail for the right reason (not a member) but
+  // the wrong scenario (this test means to check a real member finishing).
+  await test('p3 can create own player doc', () => assertSucceeds(setDoc(doc(p3Db, 'arenaRooms/ROOM1/players/p3-uid'), {
+    displayName: 'P3', currentQuestionIndex: 0
+  })));
   await test('p3 cannot create player doc for p2', () => assertFails(setDoc(doc(p3Db, 'arenaRooms/ROOM1/players/p2-uid'), {
     displayName: 'hijack'
   })));
