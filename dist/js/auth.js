@@ -101,7 +101,9 @@ import {
         'auth/invalid-credential':   'Incorrect email or password.',
         'auth/email-already-in-use': 'An account with that email already exists — try signing in instead.',
         'auth/weak-password':        'Password must be at least 6 characters.',
-        'auth/too-many-requests':    'Too many attempts. Please wait a moment and try again.'
+        'auth/too-many-requests':    'Too many attempts. Please wait a moment and try again.',
+        'auth/popup-blocked':        'Your browser blocked the sign-in popup. Please allow popups for this site and try again.',
+        'auth/popup-closed-by-user': 'Sign-in was cancelled.'
     };
     function showError(err) {
         errorBox.textContent = ERROR_MESSAGES[err && err.code] || 'Something went wrong. Please try again.';
@@ -192,8 +194,16 @@ import {
     // Called by the inline progress script after every checkbox change.
     window.__ipAuthSync = function (id, checked) {
         if (!currentUid) return;
-        var partial = {};
-        partial['solved.' + id] = checked;
+        // A literal string key like 'solved.' + id is NOT treated as a
+        // nested-field path by setDoc(...,{merge:true}) — that dot-path
+        // parsing only happens for updateDoc(). Passed as a plain object
+        // key it would create a separate top-level field literally named
+        // "solved.p1" instead of merging into the solved map (confirmed by
+        // testing against the real project). Firestore's merge is
+        // leaf-path-based: a genuinely nested object merges at exactly the
+        // keys present, leaving sibling keys in the map untouched.
+        var partial = { solved: {} };
+        partial.solved[id] = checked;
         setDoc(userDocRef(currentUid), partial, { merge: true }).catch(function (err) {
             console.error('Progress sync failed:', err);
         });

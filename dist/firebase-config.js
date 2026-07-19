@@ -14,10 +14,10 @@
 // original behavior) — nothing breaks, no errors are thrown.
 //
 window.FIREBASE_CONFIG = {
-    apiKey: "REPLACE_ME",
-    authDomain: "REPLACE_ME.firebaseapp.com",
-    projectId: "REPLACE_ME",
-    storageBucket: "REPLACE_ME.appspot.com",
-    messagingSenderId: "REPLACE_ME",
-    appId: "REPLACE_ME"
+    apiKey: "AIzaSyDtZ7znOjIV5cj-hKtwwnlgUjjAMNUDlj0",
+    authDomain: "yavuzalpturkoglu.firebaseapp.com",
+    projectId: "yavuzalpturkoglu",
+    storageBucket: "yavuzalpturkoglu.firebasestorage.app",
+    messagingSenderId: "578028168703",
+    appId: "1:578028168703:web:d2c6bd9755accec3bbf3ca"
 };
