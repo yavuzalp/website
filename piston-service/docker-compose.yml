@@ -1,4 +1,4 @@
-# Local self-hosted stack: real Piston (executes Python) + the AlgoArena
+# Local self-hosted stack: real Piston (executes Java) + the AlgoArena
 # grading proxy in front of it. Mirrors the halalLife docker-compose.yml
 # pattern (multiple services, env-driven config) but only two services here.
 #
@@ -15,15 +15,16 @@ services:
     volumes:
       - piston-data:/piston/packages
 
-  # One-time init container: installs the Python 3.10 runtime package into
+  # One-time init container: installs the Java 15.0.2 runtime package into
   # the shared piston-data volume. Run once (`docker compose run piston-init`)
-  # after the piston service is up, or whenever you bump the pinned version.
+  # after the piston service is up, or whenever you bump the pinned version
+  # (re-check `GET /api/v2/piston/runtimes` for the current java version).
   piston-init:
     image: curlimages/curl:8.9.1
     depends_on:
       - piston
     entrypoint: >
-      sh -c "curl -s -X POST http://piston:2000/api/v2/packages/python/3.10.0/install -H 'Content-Type: application/json'"
+      sh -c "curl -s -X POST http://piston:2000/api/v2/packages/java/15.0.2/install -H 'Content-Type: application/json'"
 
   proxy:
     build:

@@ -83,11 +83,11 @@ app.post('/execute', requireAuth, rateLimit, async function (req, res) {
             headers: { 'Content-Type': 'application/json' },
             signal: controller.signal,
             body: JSON.stringify({
-                language: 'python',
-                version: '3.10.0',
-                files: [{ name: 'submission.py', content: driverSource }],
+                language: 'java',
+                version: '15.0.2',
+                files: [{ name: 'Main.java', content: driverSource }],
                 run_timeout: 5000,
-                compile_timeout: 5000
+                compile_timeout: 10000
             })
         });
         clearTimeout(timer);
@@ -96,20 +96,32 @@ app.post('/execute', requireAuth, rateLimit, async function (req, res) {
         return res.status(502).json({ error: 'Execution engine unavailable — please try again shortly.' });
     }
 
+    if (pistonRes.compile && pistonRes.compile.code !== 0) {
+        // javac failed — surface the compiler error so the player can fix their code.
+        return res.json({
+            results: [],
+            passCount: 0,
+            totalCount: problem.tests.length,
+            allPassed: false,
+            executionError: (pistonRes.compile.stderr || pistonRes.compile.output || 'Compilation failed.').slice(0, 2000)
+        });
+    }
+
     if (!pistonRes.run) {
         return res.status(502).json({ error: 'Execution engine returned an unexpected response.' });
     }
 
     const parsed = parseDriverOutput(pistonRes.run.stdout);
     if (!parsed) {
-        // No results marker: either a syntax error or the process crashed before
-        // grading ran. Surface stderr so the player can fix their own code.
+        // No results marker: the process crashed before grading ran (e.g. a
+        // thrown error in static initialization). Surface stderr so the
+        // player can fix their own code.
         return res.json({
             results: [],
             passCount: 0,
             totalCount: problem.tests.length,
             allPassed: false,
-            executionError: (pistonRes.run.stderr || pistonRes.compile && pistonRes.compile.stderr || 'Unknown error').slice(0, 2000)
+            executionError: (pistonRes.run.stderr || 'Unknown error').slice(0, 2000)
         });
     }
 

@@ -5,13 +5,15 @@
     "pattern": "Two Pointers",
     "patternId": "two-pointers",
     "difficulty": "Easy",
-    "functionName": "pair_sum_indices",
-    "statement": "You are given a list of integers **sorted in ascending order** and a target value. Return the 1-indexed positions of the two numbers that add up exactly to the target, as a two-element list `[i, j]` with `i < j`. You may assume exactly one valid pair exists, and you may not use the same element twice.\n\nYour solution should run in O(n) time using the two-pointer technique — an O(n^2) brute force will time out on the hidden tests.",
+    "functionName": "pairSumIndices",
+    "paramTypes": ["int[]", "int"],
+    "returnType": "int[]",
+    "statement": "You are given an array of integers **sorted in ascending order** and a target value. Return the 1-indexed positions of the two numbers that add up exactly to the target, as a two-element array `[i, j]` with `i < j`. You may assume exactly one valid pair exists, and you may not use the same element twice.\n\nYour solution should run in O(n) time using the two-pointer technique — an O(n^2) brute force will time out on the hidden tests.",
     "examples": [
       {"input": "nums = [2, 7, 11, 15], target = 9", "output": "[1, 2]", "explanation": "nums[0] + nums[1] = 2 + 7 = 9, so the 1-indexed positions are 1 and 2."},
       {"input": "nums = [1, 2, 3], target = 5", "output": "[2, 3]", "explanation": "nums[1] + nums[2] = 2 + 3 = 5."}
     ],
-    "starterCode": "def pair_sum_indices(nums, target):\n    \"\"\"\n    nums: List[int] sorted ascending\n    target: int\n    return: List[int] -- 1-indexed [i, j], i < j\n    \"\"\"\n    # your code here\n    pass\n",
+    "starterCode": "public int[] pairSumIndices(int[] nums, int target) {\n    // nums is sorted ascending; return 1-indexed [i, j], i < j\n    // your code here\n    return new int[0];\n}\n",
     "paramNames": ["nums", "target"],
     "tests": [
       {"input": [[2, 7, 11, 15], 9], "expected": [1, 2], "hidden": false},
@@ -27,13 +29,15 @@
     "pattern": "Sliding Window",
     "patternId": "sliding-window",
     "difficulty": "Medium",
-    "functionName": "longest_window_k_distinct",
-    "statement": "A row of fruit trees is represented as a list of strings, each a fruit type (e.g. `\"A\"`, `\"B\"`). You're carrying baskets that can hold **at most `k` distinct fruit types** at once (unlimited quantity of each type). Picking must be done on a contiguous run of trees. Return the length of the **longest contiguous window** that contains at most `k` distinct fruit types.\n\nAn empty input list should return 0. Aim for O(n) using the sliding window technique.",
+    "functionName": "longestWindowKDistinct",
+    "paramTypes": ["String[]", "int"],
+    "returnType": "int",
+    "statement": "A row of fruit trees is represented as an array of strings, each a fruit type (e.g. `\"A\"`, `\"B\"`). You're carrying baskets that can hold **at most `k` distinct fruit types** at once (unlimited quantity of each type). Picking must be done on a contiguous run of trees. Return the length of the **longest contiguous window** that contains at most `k` distinct fruit types.\n\nAn empty input array should return 0. Aim for O(n) using the sliding window technique.",
     "examples": [
       {"input": "fruits = [\"A\",\"B\",\"C\",\"A\",\"A\",\"B\"], k = 2", "output": "3", "explanation": "The window [\"A\",\"A\",\"B\"] (last 3 trees) has 2 distinct types and length 3; no longer window with <=2 types exists."},
       {"input": "fruits = [\"A\",\"A\",\"A\"], k = 1", "output": "3", "explanation": "The whole list has only 1 distinct type."}
     ],
-    "starterCode": "def longest_window_k_distinct(fruits, k):\n    \"\"\"\n    fruits: List[str]\n    k: int\n    return: int -- length of longest contiguous window with at most k distinct types\n    \"\"\"\n    # your code here\n    pass\n",
+    "starterCode": "public int longestWindowKDistinct(String[] fruits, int k) {\n    // return the length of the longest contiguous window with at most k distinct types\n    // your code here\n    return 0;\n}\n",
     "paramNames": ["fruits", "k"],
     "tests": [
       {"input": [["A", "B", "C", "A", "A", "B"], 2], "expected": 3, "hidden": false},
@@ -50,13 +54,15 @@
     "pattern": "Hashing",
     "patternId": "hashing",
     "difficulty": "Easy",
-    "functionName": "group_by_signature",
-    "statement": "Two words share a **letter signature** if one is a rearrangement of the other's letters (an anagram). Given a list of lowercase words, group words that share a signature together.\n\nTo make the output checkable, use this exact ordering contract:\n- Each group (inner list) must be sorted alphabetically.\n- The groups themselves (outer list) must be sorted by their first element, alphabetically.",
+    "functionName": "groupBySignature",
+    "paramTypes": ["String[]"],
+    "returnType": "List<List<String>>",
+    "statement": "Two words share a **letter signature** if one is a rearrangement of the other's letters (an anagram). Given an array of lowercase words, group words that share a signature together.\n\nTo make the output checkable, use this exact ordering contract:\n- Each group (inner list) must be sorted alphabetically.\n- The groups themselves (outer list) must be sorted by their first element, alphabetically.",
     "examples": [
       {"input": "words = [\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]", "output": "[[\"ate\",\"eat\",\"tea\"],[\"bat\"],[\"nat\",\"tan\"]]", "explanation": "\"eat\",\"tea\",\"ate\" share letters e,a,t; \"tan\",\"nat\" share a,n,t; \"bat\" is alone."},
       {"input": "words = [\"a\"]", "output": "[[\"a\"]]", "explanation": "A single word is its own group."}
     ],
-    "starterCode": "def group_by_signature(words):\n    \"\"\"\n    words: List[str]\n    return: List[List[str]] -- see ordering contract in the problem statement\n    \"\"\"\n    # your code here\n    pass\n",
+    "starterCode": "public List<List<String>> groupBySignature(String[] words) {\n    // see the ordering contract in the problem statement\n    // your code here\n    return new ArrayList<>();\n}\n",
     "paramNames": ["words"],
     "tests": [
       {"input": [["eat", "tea", "tan", "ate", "nat", "bat"]], "expected": [["ate", "eat", "tea"], ["bat"], ["nat", "tan"]], "hidden": false},
@@ -71,13 +77,15 @@
     "pattern": "Stacks and Queues",
     "patternId": "stacks-queues",
     "difficulty": "Easy",
-    "functionName": "is_valid_brackets",
+    "functionName": "isValidBrackets",
+    "paramTypes": ["String"],
+    "returnType": "boolean",
     "statement": "Given a string containing only the characters `(`, `)`, `[`, `]`, `{`, `}`, determine if it is valid. A string is valid if every opening bracket has a matching closing bracket of the same type, in the correct order (properly nested, not just balanced counts). An empty string is valid.",
     "examples": [
       {"input": "s = \"()[]{}\"", "output": "true", "explanation": "Every bracket closes in the correct order."},
       {"input": "s = \"(]\"", "output": "false", "explanation": "'(' is closed by ']', which doesn't match."}
     ],
-    "starterCode": "def is_valid_brackets(s):\n    \"\"\"\n    s: str\n    return: bool\n    \"\"\"\n    # your code here\n    pass\n",
+    "starterCode": "public boolean isValidBrackets(String s) {\n    // your code here\n    return false;\n}\n",
     "paramNames": ["s"],
     "tests": [
       {"input": ["()[]{}"], "expected": true, "hidden": false},
@@ -94,15 +102,17 @@
     "pattern": "Trees",
     "patternId": "trees",
     "difficulty": "Medium",
-    "functionName": "is_balanced",
-    "statement": "Given the root of a binary tree, determine if it is **height-balanced**: for every node in the tree, the heights of its left and right subtrees differ by no more than 1.\n\nThe tree is provided level-order as a Python list (with `None` for missing children, LeetCode-style) and already converted into a linked `TreeNode` structure for you by the `build_tree` helper — **do not redefine `TreeNode` or `build_tree`**, they're provided in the execution environment. Implement `is_balanced(root)` where `root` is a `TreeNode` or `None`.\n\nAim for O(n) — a naive approach that recomputes height from scratch at every node is O(n^2) and may time out on deep trees.",
+    "functionName": "isBalanced",
+    "paramTypes": ["tree"],
+    "returnType": "boolean",
+    "treeParam": true,
+    "statement": "Given the root of a binary tree, determine if it is **height-balanced**: for every node in the tree, the heights of its left and right subtrees differ by no more than 1.\n\nThe tree is built for you from a level-order array (with `null` for missing children, LeetCode-style) — **do not redefine `TreeNode`**, it's provided in the execution environment with fields `val`, `left`, `right`. Implement `isBalanced(TreeNode root)`.\n\nAim for O(n) — a naive approach that recomputes height from scratch at every node is O(n^2) and may time out on deep trees.",
     "examples": [
       {"input": "root built from [3,9,20,null,null,15,7]", "output": "true", "explanation": "Every subtree's left/right height differs by at most 1."},
       {"input": "root built from [1,2,2,3,3,null,null,4,4]", "output": "false", "explanation": "The left subtree is 2 levels deeper than the right at some node."}
     ],
-    "starterCode": "# TreeNode and build_tree(values) are already defined for you:\n#   class TreeNode:\n#       def __init__(self, val=0, left=None, right=None):\n#           self.val, self.left, self.right = val, left, right\n#   build_tree(values) builds a tree from a level-order list with None gaps\n#   and returns the root TreeNode (or None for an empty list).\n\ndef is_balanced(root):\n    \"\"\"\n    root: Optional[TreeNode]\n    return: bool\n    \"\"\"\n    # your code here\n    pass\n",
+    "starterCode": "// TreeNode is already defined for you:\n//   class TreeNode {\n//       int val;\n//       TreeNode left;\n//       TreeNode right;\n//       TreeNode(int val) { this.val = val; }\n//   }\n\npublic boolean isBalanced(TreeNode root) {\n    // your code here\n    return false;\n}\n",
     "paramNames": ["root"],
-    "treeParam": true,
     "tests": [
       {"input": [[3, 9, 20, null, null, 15, 7]], "expected": true, "hidden": false},
       {"input": [[1, 2, 2, 3, 3, null, null, 4, 4]], "expected": false, "hidden": false},
@@ -117,13 +127,15 @@
     "pattern": "Graphs",
     "patternId": "graphs",
     "difficulty": "Medium",
-    "functionName": "num_islands",
+    "functionName": "numIslands",
+    "paramTypes": ["int[][]"],
+    "returnType": "int",
     "statement": "Given a 2D grid of `0`s (water) and `1`s (land), an **island** is a group of `1`s connected horizontally or vertically (not diagonally). Return the number of distinct islands.",
     "examples": [
       {"input": "grid = [[1,1,0,0,0],[1,1,0,0,0],[0,0,1,0,0],[0,0,0,1,1]]", "output": "3", "explanation": "A 2x2 block top-left, a single cell in the middle, and a 2-cell block bottom-right."},
       {"input": "grid = [[1,0,1,0,1]]", "output": "3", "explanation": "Three isolated single-cell islands separated by water."}
     ],
-    "starterCode": "def num_islands(grid):\n    \"\"\"\n    grid: List[List[int]] of 0s and 1s\n    return: int -- number of connected islands\n    \"\"\"\n    # your code here\n    pass\n",
+    "starterCode": "public int numIslands(int[][] grid) {\n    // your code here\n    return 0;\n}\n",
     "paramNames": ["grid"],
     "tests": [
       {"input": [[[1, 1, 0, 0, 0], [1, 1, 0, 0, 0], [0, 0, 1, 0, 0], [0, 0, 0, 1, 1]]], "expected": 3, "hidden": false},
@@ -139,13 +151,15 @@
     "pattern": "Dynamic Programming",
     "patternId": "dp",
     "difficulty": "Medium",
-    "functionName": "max_non_adjacent_sum",
-    "statement": "Given a list of non-negative integers, choose a subset of elements such that **no two chosen elements are adjacent** in the list, maximizing their sum. Return that maximum sum. An empty list has a maximum sum of 0.",
+    "functionName": "maxNonAdjacentSum",
+    "paramTypes": ["int[]"],
+    "returnType": "int",
+    "statement": "Given an array of non-negative integers, choose a subset of elements such that **no two chosen elements are adjacent** in the array, maximizing their sum. Return that maximum sum. An empty array has a maximum sum of 0.",
     "examples": [
       {"input": "nums = [2,7,9,3,1]", "output": "12", "explanation": "Take 2 + 9 + 1 = 12 (indices 0, 2, 4)."},
       {"input": "nums = [5,1,1,5]", "output": "10", "explanation": "Take the first and last elements: 5 + 5 = 10."}
     ],
-    "starterCode": "def max_non_adjacent_sum(nums):\n    \"\"\"\n    nums: List[int], all non-negative\n    return: int\n    \"\"\"\n    # your code here\n    pass\n",
+    "starterCode": "public int maxNonAdjacentSum(int[] nums) {\n    // your code here\n    return 0;\n}\n",
     "paramNames": ["nums"],
     "tests": [
       {"input": [[2, 7, 9, 3, 1]], "expected": 12, "hidden": false},
@@ -162,13 +176,15 @@
     "pattern": "Greedy",
     "patternId": "greedy",
     "difficulty": "Medium",
-    "functionName": "max_non_overlapping_meetings",
-    "statement": "You're given a list of meeting intervals `[start, end]` (a meeting occupies the half-open range from `start` up to `end`; meetings that touch at an endpoint, e.g. `[1,2]` and `[2,3]`, do **not** conflict). Return the maximum number of meetings you can attend if you can only attend one at a time.",
+    "functionName": "maxNonOverlappingMeetings",
+    "paramTypes": ["int[][]"],
+    "returnType": "int",
+    "statement": "You're given an array of meeting intervals `[start, end]` (a meeting occupies the half-open range from `start` up to `end`; meetings that touch at an endpoint, e.g. `[1,2]` and `[2,3]`, do **not** conflict). Return the maximum number of meetings you can attend if you can only attend one at a time.",
     "examples": [
       {"input": "intervals = [[1,3],[2,4],[3,5],[6,8]]", "output": "3", "explanation": "Attend [1,3], [3,5], [6,8] -- three non-overlapping meetings."},
       {"input": "intervals = [[5,6]]", "output": "1", "explanation": "Just the one meeting."}
     ],
-    "starterCode": "def max_non_overlapping_meetings(intervals):\n    \"\"\"\n    intervals: List[List[int]], each [start, end]\n    return: int -- max number of non-overlapping meetings\n    \"\"\"\n    # your code here\n    pass\n",
+    "starterCode": "public int maxNonOverlappingMeetings(int[][] intervals) {\n    // your code here\n    return 0;\n}\n",
     "paramNames": ["intervals"],
     "tests": [
       {"input": [[[1, 3], [2, 4], [3, 5], [6, 8]]], "expected": 3, "hidden": false},
@@ -184,13 +200,15 @@
     "pattern": "Binary Search",
     "patternId": "binary-search",
     "difficulty": "Easy",
-    "functionName": "first_true_index",
-    "statement": "You're given a list of booleans that is **sorted** in the sense that all `False` values come before all `True` values (e.g. `[False, False, True, True]`). Return the index of the first `True` value, or `-1` if there are none. Solve it in O(log n) using binary search on the boolean predicate — don't just scan linearly.",
+    "functionName": "firstTrueIndex",
+    "paramTypes": ["boolean[]"],
+    "returnType": "int",
+    "statement": "You're given an array of booleans that is **sorted** in the sense that all `false` values come before all `true` values (e.g. `[false, false, true, true]`). Return the index of the first `true` value, or `-1` if there are none. Solve it in O(log n) using binary search on the boolean predicate — don't just scan linearly.",
     "examples": [
-      {"input": "flags = [false,false,false,true,true]", "output": "3", "explanation": "Index 3 is the first True."},
-      {"input": "flags = [false,false]", "output": "-1", "explanation": "No True values exist."}
+      {"input": "flags = [false,false,false,true,true]", "output": "3", "explanation": "Index 3 is the first true."},
+      {"input": "flags = [false,false]", "output": "-1", "explanation": "No true values exist."}
     ],
-    "starterCode": "def first_true_index(flags):\n    \"\"\"\n    flags: List[bool], all False before all True\n    return: int -- index of first True, or -1\n    \"\"\"\n    # your code here\n    pass\n",
+    "starterCode": "public int firstTrueIndex(boolean[] flags) {\n    // your code here\n    return -1;\n}\n",
     "paramNames": ["flags"],
     "tests": [
       {"input": [[false, false, false, true, true]], "expected": 3, "hidden": false},
@@ -206,13 +224,15 @@
     "pattern": "Backtracking",
     "patternId": "backtracking",
     "difficulty": "Hard",
-    "functionName": "combination_sum",
-    "statement": "Given a list of **distinct** positive integers `candidates` and a target, return all unique combinations where the chosen numbers sum to `target`. The same number may be reused an unlimited number of times.\n\nOrdering contract for deterministic checking: each combination must be sorted ascending, and the outer list of combinations must be sorted lexicographically (Python's default list/tuple comparison).",
+    "functionName": "combinationSum",
+    "paramTypes": ["int[]", "int"],
+    "returnType": "List<List<Integer>>",
+    "statement": "Given an array of **distinct** positive integers `candidates` and a target, return all unique combinations where the chosen numbers sum to `target`. The same number may be reused an unlimited number of times.\n\nOrdering contract for deterministic checking: each combination must be sorted ascending, and the outer list of combinations must be sorted lexicographically.",
     "examples": [
       {"input": "candidates = [2,3,6,7], target = 7", "output": "[[2,2,3],[7]]", "explanation": "2+2+3=7 and 7=7 are the two combinations."},
       {"input": "candidates = [1], target = 2", "output": "[[1,1]]", "explanation": "Only 1+1=2 works."}
     ],
-    "starterCode": "def combination_sum(candidates, target):\n    \"\"\"\n    candidates: List[int], distinct positive integers\n    target: int\n    return: List[List[int]] -- see ordering contract in the problem statement\n    \"\"\"\n    # your code here\n    pass\n",
+    "starterCode": "public List<List<Integer>> combinationSum(int[] candidates, int target) {\n    // see the ordering contract in the problem statement\n    // your code here\n    return new ArrayList<>();\n}\n",
     "paramNames": ["candidates", "target"],
     "tests": [
       {"input": [[2, 3, 6, 7], 7], "expected": [[2, 2, 3], [7]], "hidden": false},

@@ -1,185 +1,224 @@
-// Verifies the exact Python source that AlgoArena would ship to Piston.
-// We can't run Piston itself here (no Docker in this environment), so this
-// test executes the generated driver against a real local Python interpreter
-// as the closest available substitute — same driver-building code path
-// (driver.js) that server.js uses to talk to Piston, just executed locally
-// instead of inside Piston's sandbox. See piston-service/README.md for what
-// still needs verifying against the real self-hosted Piston instance.
+// Verifies the exact Java source that AlgoArena would ship to Piston (java
+// 15.0.2, confirmed against the public Piston runtimes API — see
+// piston-service/README.md). We can't run Piston itself here (no Docker in
+// this environment), so this test compiles + runs the generated driver
+// against a real local JDK as the closest available substitute — same
+// driver-building code path (driver.js) that server.js uses, just executed
+// locally instead of inside Piston's sandbox.
 const { test } = require('node:test');
 const assert = require('node:assert');
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
 const { execFileSync } = require('child_process');
-const { buildDriver, parseDriverOutput } = require('../driver');
+const { buildDriver, parseDriverOutput, toJavaLiteral } = require('../driver');
 
 const problems = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'problems-private.json'), 'utf8'));
 
-function findPython() {
-    const candidates = process.env.PYTHON_BIN
-        ? [process.env.PYTHON_BIN]
-        : ['python3', 'python', 'C:\\Python310\\python.exe', 'C:\\Python39\\python.exe',
-           'C:\\Users\\Alp\\AppData\\Local\\Programs\\Python\\Python312\\python.exe'];
-    for (const bin of candidates) {
+// Picks ONE JDK's bin/ directory and uses both javac and java from it —
+// resolving javac and java independently (e.g. one via PATH, one via a
+// specific install) risks compiling with one JDK version and running with
+// another, which fails with UnsupportedClassVersionError and has nothing to
+// do with whether the driver-generation logic itself is correct.
+function findJdkDir() {
+    const candidates = process.env['JAVA_BIN_DIR']
+        ? [process.env['JAVA_BIN_DIR']]
+        : [
+            'C:\\Users\\Alp\\.jdks\\corretto-11.0.11\\bin',
+            'C:\\Users\\Alp\\.jdks\\openjdk-16.0.1\\bin',
+            'C:\\Users\\Alp\\.jdks\\corretto-1.8.0_312\\bin',
+            '' // last resort: rely on PATH for both
+        ];
+    for (const dir of candidates) {
+        const javac = dir ? path.join(dir, 'javac.exe') : 'javac.exe';
+        const java = dir ? path.join(dir, 'java.exe') : 'java.exe';
         try {
-            execFileSync(bin, ['--version'], { stdio: 'pipe' });
-            return bin;
+            execFileSync(javac, ['-version'], { stdio: 'pipe' });
+            execFileSync(java, ['-version'], { stdio: 'pipe' });
+            return { javac, java };
         } catch (e) { /* try next */ }
     }
     return null;
 }
 
-const PYTHON = findPython();
+const JDK = findJdkDir();
+const JAVAC = JDK && JDK.javac;
+const JAVA = JDK && JDK.java;
+const HAVE_JDK = !!JDK;
 
 const solutions = {
-    'pair-sum-target': `def pair_sum_indices(nums, target):
-    lo, hi = 0, len(nums) - 1
-    while lo < hi:
-        s = nums[lo] + nums[hi]
-        if s == target:
-            return [lo + 1, hi + 1]
-        elif s < target:
-            lo += 1
-        else:
-            hi -= 1
-    return []
+    'pair-sum-target': `public int[] pairSumIndices(int[] nums, int target) {
+    int lo = 0, hi = nums.length - 1;
+    while (lo < hi) {
+        int s = nums[lo] + nums[hi];
+        if (s == target) return new int[]{lo + 1, hi + 1};
+        else if (s < target) lo++;
+        else hi--;
+    }
+    return new int[0];
+}
 `,
-    'longest-fruit-window': `def longest_window_k_distinct(fruits, k):
-    if k <= 0:
-        return 0
-    from collections import defaultdict
-    count = defaultdict(int)
-    left = 0
-    best = 0
-    for right, f in enumerate(fruits):
-        count[f] += 1
-        while len(count) > k:
-            lf = fruits[left]
-            count[lf] -= 1
-            if count[lf] == 0:
-                del count[lf]
-            left += 1
-        best = max(best, right - left + 1)
-    return best
+    'longest-fruit-window': `public int longestWindowKDistinct(String[] fruits, int k) {
+    if (k <= 0) return 0;
+    Map<String, Integer> count = new HashMap<>();
+    int left = 0, best = 0;
+    for (int right = 0; right < fruits.length; right++) {
+        count.merge(fruits[right], 1, Integer::sum);
+        while (count.size() > k) {
+            String lf = fruits[left];
+            count.put(lf, count.get(lf) - 1);
+            if (count.get(lf) == 0) count.remove(lf);
+            left++;
+        }
+        best = Math.max(best, right - left + 1);
+    }
+    return best;
+}
 `,
-    'group-by-signature': `def group_by_signature(words):
-    from collections import defaultdict
-    groups = defaultdict(list)
-    for w in words:
-        sig = ''.join(sorted(w))
-        groups[sig].append(w)
-    result = [sorted(g) for g in groups.values()]
-    result.sort(key=lambda g: g[0])
-    return result
+    'group-by-signature': `public List<List<String>> groupBySignature(String[] words) {
+    Map<String, List<String>> groups = new HashMap<>();
+    for (String w : words) {
+        char[] chars = w.toCharArray();
+        Arrays.sort(chars);
+        String sig = new String(chars);
+        groups.computeIfAbsent(sig, k -> new ArrayList<>()).add(w);
+    }
+    List<List<String>> result = new ArrayList<>();
+    for (List<String> g : groups.values()) {
+        Collections.sort(g);
+        result.add(g);
+    }
+    result.sort((a, b) -> a.get(0).compareTo(b.get(0)));
+    return result;
+}
 `,
-    'valid-bracket-sequence': `def is_valid_brackets(s):
-    pairs = {')': '(', ']': '[', '}': '{'}
-    opens = set(pairs.values())
-    stack = []
-    for ch in s:
-        if ch in opens:
-            stack.append(ch)
-        elif ch in pairs:
-            if not stack or stack.pop() != pairs[ch]:
-                return False
-    return len(stack) == 0
+    'valid-bracket-sequence': `public boolean isValidBrackets(String s) {
+    Map<Character, Character> pairs = new HashMap<>();
+    pairs.put(')', '('); pairs.put(']', '['); pairs.put('}', '{');
+    Deque<Character> stack = new ArrayDeque<>();
+    for (char ch : s.toCharArray()) {
+        if (ch == '(' || ch == '[' || ch == '{') stack.push(ch);
+        else if (pairs.containsKey(ch)) {
+            if (stack.isEmpty() || stack.pop() != pairs.get(ch)) return false;
+        }
+    }
+    return stack.isEmpty();
+}
 `,
-    'balanced-binary-tree': `def is_balanced(root):
-    def height(node):
-        if node is None:
-            return 0
-        lh = height(node.left)
-        if lh == -1:
-            return -1
-        rh = height(node.right)
-        if rh == -1:
-            return -1
-        if abs(lh - rh) > 1:
-            return -1
-        return max(lh, rh) + 1
-    return height(root) != -1
+    'balanced-binary-tree': `public boolean isBalanced(TreeNode root) {
+    return height(root) != -1;
+}
+private int height(TreeNode node) {
+    if (node == null) return 0;
+    int lh = height(node.left);
+    if (lh == -1) return -1;
+    int rh = height(node.right);
+    if (rh == -1) return -1;
+    if (Math.abs(lh - rh) > 1) return -1;
+    return Math.max(lh, rh) + 1;
+}
 `,
-    'count-islands': `def num_islands(grid):
-    if not grid:
-        return 0
-    rows, cols = len(grid), len(grid[0])
-    visited = [[False]*cols for _ in range(rows)]
-    count = 0
-    for r in range(rows):
-        for c in range(cols):
-            if grid[r][c] == 1 and not visited[r][c]:
-                count += 1
-                stack = [(r, c)]
-                visited[r][c] = True
-                while stack:
-                    cr, cc = stack.pop()
-                    for dr, dc in [(1,0),(-1,0),(0,1),(0,-1)]:
-                        nr, nc = cr+dr, cc+dc
-                        if 0 <= nr < rows and 0 <= nc < cols and grid[nr][nc] == 1 and not visited[nr][nc]:
-                            visited[nr][nc] = True
-                            stack.append((nr, nc))
-    return count
+    'count-islands': `public int numIslands(int[][] grid) {
+    if (grid.length == 0) return 0;
+    int rows = grid.length, cols = grid[0].length;
+    boolean[][] visited = new boolean[rows][cols];
+    int count = 0;
+    int[][] dirs = {{1,0},{-1,0},{0,1},{0,-1}};
+    for (int r = 0; r < rows; r++) {
+        for (int c = 0; c < cols; c++) {
+            if (grid[r][c] == 1 && !visited[r][c]) {
+                count++;
+                Deque<int[]> stack = new ArrayDeque<>();
+                stack.push(new int[]{r, c});
+                visited[r][c] = true;
+                while (!stack.isEmpty()) {
+                    int[] cur = stack.pop();
+                    for (int[] d : dirs) {
+                        int nr = cur[0] + d[0], nc = cur[1] + d[1];
+                        if (nr >= 0 && nr < rows && nc >= 0 && nc < cols && grid[nr][nc] == 1 && !visited[nr][nc]) {
+                            visited[nr][nc] = true;
+                            stack.push(new int[]{nr, nc});
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return count;
+}
 `,
-    'max-non-adjacent-sum': `def max_non_adjacent_sum(nums):
-    incl, excl = 0, 0
-    for n in nums:
-        incl, excl = excl + n, max(incl, excl)
-    return max(incl, excl)
+    'max-non-adjacent-sum': `public int maxNonAdjacentSum(int[] nums) {
+    int incl = 0, excl = 0;
+    for (int n : nums) {
+        int newIncl = excl + n;
+        excl = Math.max(incl, excl);
+        incl = newIncl;
+    }
+    return Math.max(incl, excl);
+}
 `,
-    'max-non-overlapping-meetings': `def max_non_overlapping_meetings(intervals):
-    intervals = sorted(intervals, key=lambda iv: iv[1])
-    count = 0
-    last_end = float('-inf')
-    for s, e in intervals:
-        if s >= last_end:
-            count += 1
-            last_end = e
-    return count
+    'max-non-overlapping-meetings': `public int maxNonOverlappingMeetings(int[][] intervals) {
+    int[][] sorted = intervals.clone();
+    Arrays.sort(sorted, (a, b) -> Integer.compare(a[1], b[1]));
+    int count = 0;
+    long lastEnd = Long.MIN_VALUE;
+    for (int[] iv : sorted) {
+        if (iv[0] >= lastEnd) {
+            count++;
+            lastEnd = iv[1];
+        }
+    }
+    return count;
+}
 `,
-    'first-true-index': `def first_true_index(flags):
-    lo, hi = 0, len(flags) - 1
-    result = -1
-    while lo <= hi:
-        mid = (lo + hi) // 2
-        if flags[mid]:
-            result = mid
-            hi = mid - 1
-        else:
-            lo = mid + 1
-    return result
+    'first-true-index': `public int firstTrueIndex(boolean[] flags) {
+    int lo = 0, hi = flags.length - 1, result = -1;
+    while (lo <= hi) {
+        int mid = (lo + hi) / 2;
+        if (flags[mid]) { result = mid; hi = mid - 1; }
+        else lo = mid + 1;
+    }
+    return result;
+}
 `,
-    'combination-sum': `def combination_sum(candidates, target):
-    candidates = sorted(set(candidates))
-    result = []
-    path = []
-    def backtrack(start, remaining):
-        if remaining == 0:
-            result.append(list(path))
-            return
-        if remaining < 0:
-            return
-        for i in range(start, len(candidates)):
-            path.append(candidates[i])
-            backtrack(i, remaining - candidates[i])
-            path.pop()
-    backtrack(0, target)
-    result.sort()
-    return result
+    'combination-sum': `public List<List<Integer>> combinationSum(int[] candidates, int target) {
+    int[] sorted = Arrays.stream(candidates).distinct().sorted().toArray();
+    List<List<Integer>> result = new ArrayList<>();
+    backtrack(sorted, target, 0, new ArrayList<>(), result);
+    result.sort((a, b) -> {
+        for (int i = 0; i < Math.min(a.size(), b.size()); i++) {
+            int cmp = Integer.compare(a.get(i), b.get(i));
+            if (cmp != 0) return cmp;
+        }
+        return Integer.compare(a.size(), b.size());
+    });
+    return result;
+}
+private void backtrack(int[] candidates, int remaining, int start, List<Integer> path, List<List<Integer>> result) {
+    if (remaining == 0) { result.add(new ArrayList<>(path)); return; }
+    if (remaining < 0) return;
+    for (int i = start; i < candidates.length; i++) {
+        path.add(candidates[i]);
+        backtrack(candidates, remaining - candidates[i], i, path, result);
+        path.remove(path.size() - 1);
+    }
+}
 `
 };
 
 function runDriver(source) {
-    const tmpFile = path.join(os.tmpdir(), 'algoarena_driver_' + Math.random().toString(36).slice(2) + '.py');
-    fs.writeFileSync(tmpFile, source);
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'algoarena_java_'));
+    const file = path.join(dir, 'Main.java');
+    fs.writeFileSync(file, source);
     try {
-        const stdout = execFileSync(PYTHON, [tmpFile], { encoding: 'utf8' });
-        return stdout;
+        execFileSync(JAVAC, ['Main.java'], { cwd: dir, encoding: 'utf8', stdio: 'pipe' });
+        return execFileSync(JAVA, ['Main'], { cwd: dir, encoding: 'utf8' });
     } finally {
-        fs.unlinkSync(tmpFile);
+        fs.rmSync(dir, { recursive: true, force: true });
     }
 }
 
-test('all 10 problems: correct solution passes every test case', { skip: !PYTHON && 'no python interpreter found on this machine' }, () => {
+test('all 10 problems: correct Java solution passes every test case', { skip: !HAVE_JDK && 'no JDK (javac) found on this machine' }, () => {
     for (const problem of problems) {
         const solution = solutions[problem.id];
         assert.ok(solution, 'missing reference solution for ' + problem.id);
@@ -192,20 +231,32 @@ test('all 10 problems: correct solution passes every test case', { skip: !PYTHON
     }
 });
 
-test('wrong solution is correctly marked as failing', { skip: !PYTHON && 'no python interpreter found on this machine' }, () => {
+test('wrong solution is correctly marked as failing', { skip: !HAVE_JDK && 'no JDK found' }, () => {
     const problem = problems.find(p => p.id === 'pair-sum-target');
-    const driver = buildDriver(problem, 'def pair_sum_indices(nums, target):\n    return [0, 0]\n');
+    const driver = buildDriver(problem, 'public int[] pairSumIndices(int[] nums, int target) {\n    return new int[]{0, 0};\n}\n');
     const parsed = parseDriverOutput(runDriver(driver));
     assert.strictEqual(parsed.allPassed, false);
     assert.strictEqual(parsed.passCount, 0);
 });
 
-test('a raised exception is captured per-test, not a hard crash', { skip: !PYTHON && 'no python interpreter found on this machine' }, () => {
+test('a thrown exception is captured per-test, not a hard crash', { skip: !HAVE_JDK && 'no JDK found' }, () => {
     const problem = problems.find(p => p.id === 'pair-sum-target');
-    const driver = buildDriver(problem, 'def pair_sum_indices(nums, target):\n    raise ValueError("boom")\n');
+    const driver = buildDriver(problem, 'public int[] pairSumIndices(int[] nums, int target) {\n    throw new RuntimeException("boom");\n}\n');
     const parsed = parseDriverOutput(runDriver(driver));
     assert.strictEqual(parsed.allPassed, false);
     assert.ok(parsed.results.every(r => r.error === 'boom'));
+});
+
+test('a compile error yields no result marker (server.js treats this as executionError)', { skip: !HAVE_JDK && 'no JDK found' }, () => {
+    const problem = problems.find(p => p.id === 'pair-sum-target');
+    const driver = buildDriver(problem, 'public int[] pairSumIndices(int[] nums, int target) {\n    this is not valid java\n}\n');
+    let threw = false;
+    try {
+        runDriver(driver);
+    } catch (e) {
+        threw = true; // javac exits non-zero on a compile error, execFileSync throws
+    }
+    assert.ok(threw, 'expected javac to fail on invalid syntax');
 });
 
 test('parseDriverOutput redacts "actual" for hidden tests but keeps it for visible ones', () => {
@@ -218,23 +269,29 @@ test('parseDriverOutput redacts "actual" for hidden tests but keeps it for visib
     assert.strictEqual(parsed.results[1].actual, undefined, 'hidden test must NOT expose actual (would leak toward the expected answer)');
 });
 
-test('parseDriverOutput returns null when there is no result marker (e.g. syntax error)', () => {
-    assert.strictEqual(parseDriverOutput('Traceback...\nSyntaxError: invalid syntax'), null);
+test('parseDriverOutput returns null when there is no result marker', () => {
+    assert.strictEqual(parseDriverOutput('Exception in thread "main" java.lang.Error'), null);
 });
 
-test('malicious/odd code cannot break out of the JSON test-data literal', () => {
-    // A submission containing a string that itself looks like our result
-    // marker or embeds quotes/newlines must not corrupt the harness's own
-    // json.loads(...) call for the embedded test data.
-    const problem = problems.find(p => p.id === 'valid-bracket-sequence');
-    const trickyCode = `def is_valid_brackets(s):\n    x = "___ALGOARENA_RESULT___ \\' \\"\\" \\n done"\n    return s == "()"\n`;
-    const driver = buildDriver(problem, trickyCode);
-    // The embedded test JSON literal must still be syntactically valid Python
-    // regardless of what the user's code contains, since it's a separate
-    // statement, not string-concatenated with user code.
-    assert.ok(driver.includes('_TESTS = json.loads('));
-    if (PYTHON) {
-        const parsed = parseDriverOutput(runDriver(driver));
-        assert.ok(parsed, 'driver with tricky user code should still run and print exactly one result marker');
-    }
+test('toJavaLiteral renders every declared parameter/return type correctly', () => {
+    assert.strictEqual(toJavaLiteral(5, 'int'), '5');
+    assert.strictEqual(toJavaLiteral(true, 'boolean'), 'true');
+    assert.strictEqual(toJavaLiteral('a"b', 'String'), '"a\\"b"');
+    assert.strictEqual(toJavaLiteral([1, 2, 3], 'int[]'), 'new int[]{1,2,3}');
+    assert.strictEqual(toJavaLiteral([[1, 2], [3]], 'int[][]'), 'new int[][]{{1,2},{3}}');
+    assert.strictEqual(toJavaLiteral([true, false], 'boolean[]'), 'new boolean[]{true,false}');
+    assert.strictEqual(toJavaLiteral(['a', 'b'], 'String[]'), 'new String[]{"a","b"}');
+    assert.strictEqual(toJavaLiteral([1, null, 2], 'tree'), 'TestUtil.buildTree(new Integer[]{1,null,2})');
+});
+
+test('a String-returning problem with quotes/backslashes in its data round-trips through the JSON result line', { skip: !HAVE_JDK && 'no JDK found' }, () => {
+    // group-by-signature returns List<List<String>> — exercises toJson()'s
+    // string-escaping path, not just primitives.
+    const problem = problems.find(p => p.id === 'group-by-signature');
+    const driver = buildDriver(problem, solutions['group-by-signature']);
+    const parsed = parseDriverOutput(runDriver(driver));
+    assert.ok(parsed, 'driver should run and print exactly one result marker');
+    assert.strictEqual(parsed.allPassed, true);
+    const visible = parsed.results.find(r => !r.hidden);
+    assert.ok(Array.isArray(visible.actual), 'visible List<List<String>> result should deserialize as a JSON array');
 });

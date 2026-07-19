@@ -70,7 +70,7 @@ async function run() {
   })));
 
   await test('p2 can write own private submission', () => assertSucceeds(setDoc(doc(p2Db, 'arenaRooms/ROOM1/players/p2-uid/private/probA'), {
-    code: 'def f(): pass'
+    code: 'class Solution { void f() {} }'
   })));
   await test('p3 cannot write p2 private submission', () => assertFails(setDoc(doc(p3Db, 'arenaRooms/ROOM1/players/p2-uid/private/probA'), {
     code: 'sneaky'

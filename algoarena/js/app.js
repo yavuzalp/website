@@ -209,7 +209,7 @@ function setupEditor(problem) {
     const textarea = document.getElementById('raceEditor');
     if (!cm) {
         cm = CodeMirror.fromTextArea(textarea, {
-            mode: 'python', theme: 'dracula', lineNumbers: true,
+            mode: 'text/x-java', theme: 'dracula', lineNumbers: true,
             indentUnit: 4, tabSize: 4, indentWithTabs: false, matchBrackets: true
         });
     }
