@@ -21,6 +21,9 @@ import {
     getAuth, onAuthStateChanged, signOut,
     signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup
 } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js';
+import {
+    getFirestore, collection, getDocs
+} from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js';
 
 (function () {
     'use strict';
@@ -56,6 +59,7 @@ import {
 
     var app  = initializeApp(cfg);
     var auth = getAuth(app);
+    var db   = getFirestore(app);
 
     var form       = document.getElementById('adminForm');
     var emailInput = document.getElementById('adminEmail');
@@ -98,6 +102,133 @@ import {
     document.getElementById('forbiddenSignOutBtn').addEventListener('click', function () { signOut(auth); });
     document.getElementById('dashboardSignOutBtn').addEventListener('click', function () { signOut(auth); });
 
+    // ── Dashboard: aggregate solve stats across all users ──
+    var statsLoaded = false;
+
+    // The interview-prep page is the single source of truth for which
+    // problem ids belong to which pattern/topic — rather than duplicating
+    // that mapping here (and letting it drift), fetch the live page and
+    // read it out of the DOM.
+    function loadProblemCatalog() {
+        return fetch('/interview-prep/').then(function (res) { return res.text(); }).then(function (html) {
+            var doc = new DOMParser().parseFromString(html, 'text/html');
+            var catalog = {};
+            doc.querySelectorAll('.topic-section').forEach(function (section) {
+                var pattern = section.getAttribute('data-topic-name') || section.id;
+                section.querySelectorAll('.problem-item').forEach(function (item) {
+                    var input = item.querySelector('.prob-check');
+                    var link = item.querySelector('a');
+                    if (!input) return;
+                    catalog[input.getAttribute('data-id')] = {
+                        pattern: pattern,
+                        title: link ? link.textContent.trim() : input.getAttribute('data-id')
+                    };
+                });
+            });
+            return catalog;
+        });
+    }
+
+    function loadAllSolved() {
+        return getDocs(collection(db, 'users')).then(function (snap) {
+            var userCount = 0;
+            var perProblem = {}; // problemId -> solve count
+            var totalEvents = 0;
+            snap.forEach(function (docSnap) {
+                userCount++;
+                var solved = (docSnap.data() && docSnap.data().solved) || {};
+                Object.keys(solved).forEach(function (id) {
+                    if (!solved[id]) return;
+                    totalEvents++;
+                    perProblem[id] = (perProblem[id] || 0) + 1;
+                });
+            });
+            return { userCount: userCount, perProblem: perProblem, totalEvents: totalEvents };
+        });
+    }
+
+    function renderBar(container, label, count, max) {
+        var row = document.createElement('div');
+        row.className = 'admin-bar-row';
+        var pct = max > 0 ? Math.round((count / max) * 100) : 0;
+        row.innerHTML =
+            '<span class="admin-bar-label" title="' + label + '">' + label + '</span>' +
+            '<span class="admin-bar-track"><span class="admin-bar-fill" style="width:' + pct + '%"></span></span>' +
+            '<span class="admin-bar-count">' + count + '</span>';
+        container.appendChild(row);
+    }
+
+    function renderProblemRow(tbody, rank, id, info, count) {
+        var tr = document.createElement('tr');
+        tr.innerHTML =
+            '<td>' + rank + '</td>' +
+            '<td>' + (info ? info.title : id) + '</td>' +
+            '<td>' + (info ? info.pattern : '—') + '</td>' +
+            '<td>' + count + '</td>';
+        tbody.appendChild(tr);
+    }
+
+    function renderDashboardStats(catalog, data) {
+        document.getElementById('statUsers').textContent = data.userCount;
+        document.getElementById('statSolveEvents').textContent = data.totalEvents;
+        document.getElementById('statProblems').textContent = Object.keys(data.perProblem).length;
+
+        // Breakdown by pattern
+        var byPattern = {};
+        Object.keys(data.perProblem).forEach(function (id) {
+            var pattern = (catalog[id] && catalog[id].pattern) || 'Unknown';
+            byPattern[pattern] = (byPattern[pattern] || 0) + data.perProblem[id];
+        });
+        var patternEntries = Object.keys(byPattern).map(function (p) { return [p, byPattern[p]]; });
+        patternEntries.sort(function (a, b) { return b[1] - a[1]; });
+        var maxPattern = patternEntries.length ? patternEntries[0][1] : 0;
+        var patternBars = document.getElementById('patternBars');
+        patternBars.innerHTML = '';
+        if (patternEntries.length === 0) {
+            patternBars.innerHTML = '<p class="admin-placeholder">No solve data yet.</p>';
+        } else {
+            patternEntries.forEach(function (entry) {
+                renderBar(patternBars, entry[0], entry[1], maxPattern);
+            });
+        }
+
+        // Breakdown by problem, most/least solved
+        var problemEntries = Object.keys(data.perProblem).map(function (id) {
+            return [id, data.perProblem[id]];
+        });
+        problemEntries.sort(function (a, b) { return b[1] - a[1]; });
+
+        var topBody = document.getElementById('topProblemsBody');
+        var bottomBody = document.getElementById('bottomProblemsBody');
+        topBody.innerHTML = '';
+        bottomBody.innerHTML = '';
+
+        problemEntries.slice(0, 10).forEach(function (entry, i) {
+            renderProblemRow(topBody, i + 1, entry[0], catalog[entry[0]], entry[1]);
+        });
+        problemEntries.slice(-10).reverse().forEach(function (entry, i) {
+            renderProblemRow(bottomBody, i + 1, entry[0], catalog[entry[0]], entry[1]);
+        });
+    }
+
+    function loadDashboardStats() {
+        if (statsLoaded) return;
+        statsLoaded = true;
+        Promise.all([loadProblemCatalog(), loadAllSolved()]).then(function (results) {
+            renderDashboardStats(results[0], results[1]);
+            document.getElementById('statsLoading').hidden = true;
+            document.getElementById('statsContent').hidden = false;
+        }).catch(function (err) {
+            console.error('Failed to load admin stats:', err);
+            document.getElementById('statsLoading').hidden = true;
+            var errBox = document.getElementById('statsError');
+            errBox.hidden = false;
+            errBox.textContent = (err && err.code === 'permission-denied')
+                ? 'Firestore denied this read — the security rules need to grant the admin account read access to the users collection.'
+                : 'Something went wrong loading solve stats. Please try again.';
+        });
+    }
+
     onAuthStateChanged(auth, function (user) {
         if (!user) {
             showState('signedOut');
@@ -107,6 +238,7 @@ import {
             document.getElementById('adminAccountEmail').textContent = user.email;
             document.getElementById('adminAvatar').textContent = user.email.charAt(0).toUpperCase();
             showState('dashboard');
+            loadDashboardStats();
         }
     });
 })();
