@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "yavuzalpturkoglu"
+  },
+  "targets": {
+    "yavuzalpturkoglu": {
+      "hosting": {
+        "algoarena": [
+          "algoarena-yavuzalp"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "algoarena-piston-service",
+  "version": "1.0.0",
+  "description": "Thin auth + CORS + grading proxy in front of a self-hosted Piston instance, for AlgoArena code execution.",
+  "main": "server.js",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test tests/driver.test.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "firebase-admin": "^12.3.1"
+  }
+}
