@@ -218,6 +218,34 @@ function runDriver(source) {
     }
 }
 
+// Piston's actual `java` package does NOT javac-then-`java ClassName` like
+// runDriver() above — its run script does `mv $1 $1.java && java $filename`,
+// i.e. Java's single-file source-launcher (JEP 330). That launcher invokes
+// main() on the FIRST top-level class declared in the file, regardless of
+// which one is `public` or matches the filename. runDriver()'s two-step
+// javac+java approach can't catch a class-ordering bug like that (explicitly
+// naming the class to run sidesteps the whole issue) — this is what
+// actually caught driver.js emitting TreeNode/TestUtil before Main and
+// breaking every real submission against the live self-hosted Piston
+// instance despite 100% local pass rates. Keep both runners: this one for
+// fidelity to Piston's real mechanism, the other for a faster compile-error
+// signal via javac's normal diagnostics.
+function runDriverSingleFileLaunch(source) {
+    // Mirror Piston's run script exactly: files are uploaded as "Main.java",
+    // then `mv $1 $1.java` renames it to "Main.java.java" before
+    // `java Main.java.java` launches it.
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'algoarena_java_sfl_'));
+    const uploaded = path.join(dir, 'Main.java');
+    const renamed = path.join(dir, 'Main.java.java');
+    fs.writeFileSync(uploaded, source);
+    fs.renameSync(uploaded, renamed);
+    try {
+        return execFileSync(JAVA, ['Main.java.java'], { cwd: dir, encoding: 'utf8' });
+    } finally {
+        fs.rmSync(dir, { recursive: true, force: true });
+    }
+}
+
 test('all 10 problems: correct Java solution passes every test case', { skip: !HAVE_JDK && 'no JDK (javac) found on this machine' }, () => {
     for (const problem of problems) {
         const solution = solutions[problem.id];
@@ -228,6 +256,17 @@ test('all 10 problems: correct Java solution passes every test case', { skip: !H
         assert.ok(parsed, problem.id + ': driver produced no result marker — stdout was: ' + stdout);
         assert.strictEqual(parsed.allPassed, true, problem.id + ' failed: ' + JSON.stringify(parsed.results));
         assert.strictEqual(parsed.totalCount, problem.tests.length);
+    }
+});
+
+test('all 10 problems, run via Piston\'s ACTUAL mechanism (java single-file source-launch, not javac+java)', { skip: !HAVE_JDK && 'no JDK found' }, () => {
+    for (const problem of problems) {
+        const solution = solutions[problem.id];
+        const driver = buildDriver(problem, solution);
+        const stdout = runDriverSingleFileLaunch(driver);
+        const parsed = parseDriverOutput(stdout);
+        assert.ok(parsed, problem.id + ' (single-file launch): no result marker — stdout was: ' + stdout);
+        assert.strictEqual(parsed.allPassed, true, problem.id + ' (single-file launch) failed: ' + JSON.stringify(parsed.results));
     }
 });
 

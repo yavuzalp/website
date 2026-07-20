@@ -2,16 +2,31 @@
 # grading proxy in front of it. Mirrors the halalLife docker-compose.yml
 # pattern (multiple services, env-driven config) but only two services here.
 #
-# NOTE: this file could not be run end-to-end in the sandbox this project was
-# built in (no Docker available there) — see README.md "What still needs
-# verifying" before relying on it in production.
+# Run end-to-end for real on a DigitalOcean droplet (Railway can't grant the
+# privileged/cgroup access Piston's isolate sandbox needs — its filesystem
+# is read-only). See README.md for what that verification found and fixed.
 services:
   piston:
     image: ghcr.io/engineer-man/piston:latest
     restart: unless-stopped
     privileged: true  # Piston's isolate sandbox needs cgroup access
     ports:
-      - "2000:2000"
+      # Bind to loopback only — Piston is never meant to be reachable from
+      # the public internet, only from the proxy service. Deliberately NOT
+      # relying on ufw alone to keep this private: Docker manipulates
+      # iptables directly and commonly bypasses ufw's rules for published
+      # ports, so binding to 127.0.0.1 here avoids that pitfall entirely.
+      - "127.0.0.1:2000:2000"
+    environment:
+      # Piston's Java package has no separate compile step — its `run`
+      # script single-file-launches the submission (`java Main.java.java`,
+      # JEP 330), which compiles AND executes in one process. That means
+      # the default 3000ms run_timeout has to cover compiling the grading
+      # harness AND running every test case for a problem, which is tight
+      # for JVM startup + backtracking-heavy problems. Give it real headroom;
+      # server.js requests a run_timeout under this ceiling per-submission.
+      PISTON_RUN_TIMEOUT: "10000"
+      PISTON_COMPILE_TIMEOUT: "10000"
     volumes:
       - piston-data:/piston/packages
 
@@ -19,12 +34,14 @@ services:
   # the shared piston-data volume. Run once (`docker compose run piston-init`)
   # after the piston service is up, or whenever you bump the pinned version
   # (re-check `GET /api/v2/piston/runtimes` for the current java version).
+  # NOTE: the install endpoint takes language+version in the JSON BODY, not
+  # the URL path — `POST /api/v2/packages/{lang}/{version}/install` 404s.
   piston-init:
     image: curlimages/curl:8.9.1
     depends_on:
       - piston
     entrypoint: >
-      sh -c "curl -s -X POST http://piston:2000/api/v2/packages/java/15.0.2/install -H 'Content-Type: application/json'"
+      sh -c "curl -s -X POST http://piston:2000/api/v2/packages -H 'Content-Type: application/json' -d '{\"language\":\"java\",\"version\":\"15.0.2\"}'"
 
   proxy:
     build:

@@ -147,6 +147,7 @@ const MAIN_HELPERS = `
 
 function buildDriver(problem, userCode) {
     const fn = problem.functionName;
+    const isTree = !!problem.treeParam;
 
     const testBlocks = problem.tests.map(function (t) {
         const args = t.input.map(function (v, idx) { return toJavaLiteral(v, problem.paramTypes[idx]); }).join(', ');
@@ -176,13 +177,17 @@ function buildDriver(problem, userCode) {
         ].join('\n');
     }).join('\n');
 
+    // Piston's `java` package runs submissions via Java's single-file
+    // source-code launcher (JEP 330: `java Main.java`), which invokes
+    // main() on the FIRST top-level class declared in the file — not the
+    // `public` one, not one matching the filename. `Main` MUST come first,
+    // or Piston fails with "can't find main(String[]) method in class: X"
+    // for whichever class happens to be declared first instead. (Confirmed
+    // against the real Piston `run` script: `mv $1 $1.java; java $filename`.)
+    // Also: only emit TreeNode/TestUtil for problems that actually need
+    // them, rather than unconditionally for every problem.
     return [
         'import java.util.*;',
-        '',
-        HARNESS_PREAMBLE,
-        'class Solution {',
-        userCode,
-        '}',
         '',
         'public class Main {',
         MAIN_HELPERS,
@@ -194,7 +199,12 @@ function buildDriver(problem, userCode) {
         '        System.out.println("[" + String.join(",", __results) + "]");',
         '    }',
         '}',
-        ''
+        '',
+        'class Solution {',
+        userCode,
+        '}',
+        '',
+        isTree ? HARNESS_PREAMBLE : ''
     ].join('\n');
 }
 

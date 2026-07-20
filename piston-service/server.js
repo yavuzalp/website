@@ -11,7 +11,7 @@ const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS || 'https://algoarena.yavuz
     .split(',').map(function (s) { return s.trim(); });
 const MAX_CODE_CHARS = 20000;
 const RATE_LIMIT_PER_MINUTE = 20;
-const EXEC_TIMEOUT_MS = 8000;
+const EXEC_TIMEOUT_MS = 12000; // must exceed the run_timeout sent to Piston below, or we'd abort our own in-flight request
 
 const problems = JSON.parse(fs.readFileSync(path.join(__dirname, 'problems-private.json'), 'utf8'));
 const problemsById = new Map(problems.map(function (p) { return [p.id, p]; }));
@@ -86,7 +86,12 @@ app.post('/execute', requireAuth, rateLimit, async function (req, res) {
                 language: 'java',
                 version: '15.0.2',
                 files: [{ name: 'Main.java', content: driverSource }],
-                run_timeout: 5000,
+                // Must stay under Piston's configured PISTON_RUN_TIMEOUT
+                // ceiling (set to 10000ms in docker-compose.yml) — Piston
+                // rejects the request outright if this exceeds that limit.
+                // Java's single-file launch compiles AND runs every test
+                // case within this one window (see docker-compose.yml).
+                run_timeout: 8000,
                 compile_timeout: 10000
             })
         });
