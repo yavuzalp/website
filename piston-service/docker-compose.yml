@@ -49,9 +49,17 @@ services:
       dockerfile: Dockerfile
     restart: unless-stopped
     ports:
-      - "3000:3000"
+      # Loopback only, same reasoning as piston's port above — Caddy (run
+      # directly on the host, outside Docker) reverse-proxies HTTPS traffic
+      # to this port; nothing should reach it directly, unencrypted, from
+      # the public internet.
+      - "127.0.0.1:3000:3000"
     environment:
       PORT: 3000
+      # "piston" here is the Docker Compose SERVICE NAME, resolved via the
+      # compose-internal network — NOT the host's localhost. A container
+      # can't reach another container's published port via the host's
+      # loopback; it reaches it by service name on the shared network.
       PISTON_URL: http://piston:2000
       ALLOWED_ORIGINS: ${ALLOWED_ORIGINS:-http://localhost:5000}
       GOOGLE_APPLICATION_CREDENTIALS_JSON: ${GOOGLE_APPLICATION_CREDENTIALS_JSON:-}
