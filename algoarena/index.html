@@ -43,18 +43,11 @@
             </div>
             <div class="form-row">
                 <label for="patternSelect">Topic / pattern</label>
+                <!-- Options beyond "Mixed" are populated by app.js from the
+                     patterns actually present in Firestore's arenaProblems,
+                     so new problem categories appear here automatically. -->
                 <select id="patternSelect">
                     <option value="mixed" selected>Mixed (any pattern)</option>
-                    <option value="two-pointers">Two Pointers</option>
-                    <option value="sliding-window">Sliding Window</option>
-                    <option value="hashing">Hashing</option>
-                    <option value="stacks-queues">Stacks and Queues</option>
-                    <option value="trees">Trees</option>
-                    <option value="graphs">Graphs</option>
-                    <option value="dp">Dynamic Programming</option>
-                    <option value="greedy">Greedy</option>
-                    <option value="binary-search">Binary Search</option>
-                    <option value="backtracking">Backtracking</option>
                 </select>
             </div>
             <div class="form-row">

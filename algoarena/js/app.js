@@ -395,7 +395,23 @@ onUserChange(function (u) {
     if (roomCode) trackRoom(roomCode); // re-subscribe so player-scoped views recompute with the signed-in uid
 });
 
-loadAllProblems().catch(function (err) {
+loadAllProblems().then(function (problems) {
+    // Populate the pattern filter from what actually exists in Firestore,
+    // so new problem categories show up here without an HTML change.
+    const select = document.getElementById('patternSelect');
+    const seen = new Map(); // patternId -> pattern label
+    problems.forEach(function (p) {
+        if (p.patternId && !seen.has(p.patternId)) seen.set(p.patternId, p.pattern);
+    });
+    Array.from(seen.entries())
+        .sort(function (a, b) { return a[1].localeCompare(b[1]); })
+        .forEach(function (entry) {
+            const opt = document.createElement('option');
+            opt.value = entry[0];
+            opt.textContent = entry[1];
+            select.appendChild(opt);
+        });
+}).catch(function (err) {
     console.error('Failed to load AlgoArena problems from Firestore:', err);
 });
 
