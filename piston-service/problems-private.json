@@ -6,21 +6,114 @@
     "patternId": "two-pointers",
     "difficulty": "Easy",
     "functionName": "pairSumIndices",
-    "paramTypes": ["int[]", "int"],
+    "paramTypes": [
+      "int[]",
+      "int"
+    ],
     "returnType": "int[]",
     "statement": "You are given an array of integers **sorted in ascending order** and a target value. Return the 1-indexed positions of the two numbers that add up exactly to the target, as a two-element array `[i, j]` with `i < j`. You may assume exactly one valid pair exists, and you may not use the same element twice.\n\nYour solution should run in O(n) time using the two-pointer technique — an O(n^2) brute force will time out on the hidden tests.",
     "examples": [
-      {"input": "nums = [2, 7, 11, 15], target = 9", "output": "[1, 2]", "explanation": "nums[0] + nums[1] = 2 + 7 = 9, so the 1-indexed positions are 1 and 2."},
-      {"input": "nums = [1, 2, 3], target = 5", "output": "[2, 3]", "explanation": "nums[1] + nums[2] = 2 + 3 = 5."}
+      {
+        "input": "nums = [2, 7, 11, 15], target = 9",
+        "output": "[1, 2]",
+        "explanation": "nums[0] + nums[1] = 2 + 7 = 9, so the 1-indexed positions are 1 and 2."
+      },
+      {
+        "input": "nums = [1, 2, 3], target = 5",
+        "output": "[2, 3]",
+        "explanation": "nums[1] + nums[2] = 2 + 3 = 5."
+      }
     ],
     "starterCode": "public int[] pairSumIndices(int[] nums, int target) {\n    // nums is sorted ascending; return 1-indexed [i, j], i < j\n    // your code here\n    return new int[0];\n}\n",
-    "paramNames": ["nums", "target"],
+    "paramNames": [
+      "nums",
+      "target"
+    ],
     "tests": [
-      {"input": [[2, 7, 11, 15], 9], "expected": [1, 2], "hidden": false},
-      {"input": [[1, 2, 3], 5], "expected": [2, 3], "hidden": false},
-      {"input": [[1, 2, 3, 4, 4, 9, 56, 90], 8], "expected": [4, 5], "hidden": true},
-      {"input": [[-3, -1, 0, 2, 5, 8], 7], "expected": [2, 6], "hidden": true},
-      {"input": [[5, 25, 75], 100], "expected": [2, 3], "hidden": true}
+      {
+        "input": [
+          [
+            2,
+            7,
+            11,
+            15
+          ],
+          9
+        ],
+        "expected": [
+          1,
+          2
+        ],
+        "hidden": false
+      },
+      {
+        "input": [
+          [
+            1,
+            2,
+            3
+          ],
+          5
+        ],
+        "expected": [
+          2,
+          3
+        ],
+        "hidden": false
+      },
+      {
+        "input": [
+          [
+            1,
+            2,
+            3,
+            4,
+            4,
+            9,
+            56,
+            90
+          ],
+          8
+        ],
+        "expected": [
+          4,
+          5
+        ],
+        "hidden": true
+      },
+      {
+        "input": [
+          [
+            -3,
+            -1,
+            0,
+            2,
+            5,
+            8
+          ],
+          7
+        ],
+        "expected": [
+          2,
+          6
+        ],
+        "hidden": true
+      },
+      {
+        "input": [
+          [
+            5,
+            25,
+            75
+          ],
+          100
+        ],
+        "expected": [
+          2,
+          3
+        ],
+        "hidden": true
+      }
     ]
   },
   {
@@ -30,22 +123,107 @@
     "patternId": "sliding-window",
     "difficulty": "Medium",
     "functionName": "longestWindowKDistinct",
-    "paramTypes": ["String[]", "int"],
+    "paramTypes": [
+      "String[]",
+      "int"
+    ],
     "returnType": "int",
     "statement": "A row of fruit trees is represented as an array of strings, each a fruit type (e.g. `\"A\"`, `\"B\"`). You're carrying baskets that can hold **at most `k` distinct fruit types** at once (unlimited quantity of each type). Picking must be done on a contiguous run of trees. Return the length of the **longest contiguous window** that contains at most `k` distinct fruit types.\n\nAn empty input array should return 0. Aim for O(n) using the sliding window technique.",
     "examples": [
-      {"input": "fruits = [\"A\",\"B\",\"C\",\"A\",\"A\",\"B\"], k = 2", "output": "3", "explanation": "The window [\"A\",\"A\",\"B\"] (last 3 trees) has 2 distinct types and length 3; no longer window with <=2 types exists."},
-      {"input": "fruits = [\"A\",\"A\",\"A\"], k = 1", "output": "3", "explanation": "The whole list has only 1 distinct type."}
+      {
+        "input": "fruits = [\"A\",\"B\",\"C\",\"A\",\"A\",\"B\"], k = 2",
+        "output": "3",
+        "explanation": "The window [\"A\",\"A\",\"B\"] (last 3 trees) has 2 distinct types and length 3; no longer window with <=2 types exists."
+      },
+      {
+        "input": "fruits = [\"A\",\"A\",\"A\"], k = 1",
+        "output": "3",
+        "explanation": "The whole list has only 1 distinct type."
+      }
     ],
     "starterCode": "public int longestWindowKDistinct(String[] fruits, int k) {\n    // return the length of the longest contiguous window with at most k distinct types\n    // your code here\n    return 0;\n}\n",
-    "paramNames": ["fruits", "k"],
+    "paramNames": [
+      "fruits",
+      "k"
+    ],
     "tests": [
-      {"input": [["A", "B", "C", "A", "A", "B"], 2], "expected": 3, "hidden": false},
-      {"input": [["A", "A", "A"], 1], "expected": 3, "hidden": false},
-      {"input": [["A", "B", "C", "D"], 2], "expected": 2, "hidden": true},
-      {"input": [["A", "B", "B", "B", "C", "C", "C", "A"], 2], "expected": 6, "hidden": true},
-      {"input": [[], 2], "expected": 0, "hidden": true},
-      {"input": [["A", "B", "C"], 5], "expected": 3, "hidden": true}
+      {
+        "input": [
+          [
+            "A",
+            "B",
+            "C",
+            "A",
+            "A",
+            "B"
+          ],
+          2
+        ],
+        "expected": 3,
+        "hidden": false
+      },
+      {
+        "input": [
+          [
+            "A",
+            "A",
+            "A"
+          ],
+          1
+        ],
+        "expected": 3,
+        "hidden": false
+      },
+      {
+        "input": [
+          [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          2
+        ],
+        "expected": 2,
+        "hidden": true
+      },
+      {
+        "input": [
+          [
+            "A",
+            "B",
+            "B",
+            "B",
+            "C",
+            "C",
+            "C",
+            "A"
+          ],
+          2
+        ],
+        "expected": 6,
+        "hidden": true
+      },
+      {
+        "input": [
+          [],
+          2
+        ],
+        "expected": 0,
+        "hidden": true
+      },
+      {
+        "input": [
+          [
+            "A",
+            "B",
+            "C"
+          ],
+          5
+        ],
+        "expected": 3,
+        "hidden": true
+      }
     ]
   },
   {
@@ -55,20 +233,102 @@
     "patternId": "hashing",
     "difficulty": "Easy",
     "functionName": "groupBySignature",
-    "paramTypes": ["String[]"],
+    "paramTypes": [
+      "String[]"
+    ],
     "returnType": "List<List<String>>",
     "statement": "Two words share a **letter signature** if one is a rearrangement of the other's letters (an anagram). Given an array of lowercase words, group words that share a signature together.\n\nTo make the output checkable, use this exact ordering contract:\n- Each group (inner list) must be sorted alphabetically.\n- The groups themselves (outer list) must be sorted by their first element, alphabetically.",
     "examples": [
-      {"input": "words = [\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]", "output": "[[\"ate\",\"eat\",\"tea\"],[\"bat\"],[\"nat\",\"tan\"]]", "explanation": "\"eat\",\"tea\",\"ate\" share letters e,a,t; \"tan\",\"nat\" share a,n,t; \"bat\" is alone."},
-      {"input": "words = [\"a\"]", "output": "[[\"a\"]]", "explanation": "A single word is its own group."}
+      {
+        "input": "words = [\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]",
+        "output": "[[\"ate\",\"eat\",\"tea\"],[\"bat\"],[\"nat\",\"tan\"]]",
+        "explanation": "\"eat\",\"tea\",\"ate\" share letters e,a,t; \"tan\",\"nat\" share a,n,t; \"bat\" is alone."
+      },
+      {
+        "input": "words = [\"a\"]",
+        "output": "[[\"a\"]]",
+        "explanation": "A single word is its own group."
+      }
     ],
     "starterCode": "public List<List<String>> groupBySignature(String[] words) {\n    // see the ordering contract in the problem statement\n    // your code here\n    return new ArrayList<>();\n}\n",
-    "paramNames": ["words"],
+    "paramNames": [
+      "words"
+    ],
     "tests": [
-      {"input": [["eat", "tea", "tan", "ate", "nat", "bat"]], "expected": [["ate", "eat", "tea"], ["bat"], ["nat", "tan"]], "hidden": false},
-      {"input": [["a"]], "expected": [["a"]], "hidden": false},
-      {"input": [[""]], "expected": [[""]], "hidden": true},
-      {"input": [["abc", "cba", "bca", "xyz"]], "expected": [["abc", "bca", "cba"], ["xyz"]], "hidden": true}
+      {
+        "input": [
+          [
+            "eat",
+            "tea",
+            "tan",
+            "ate",
+            "nat",
+            "bat"
+          ]
+        ],
+        "expected": [
+          [
+            "ate",
+            "eat",
+            "tea"
+          ],
+          [
+            "bat"
+          ],
+          [
+            "nat",
+            "tan"
+          ]
+        ],
+        "hidden": false
+      },
+      {
+        "input": [
+          [
+            "a"
+          ]
+        ],
+        "expected": [
+          [
+            "a"
+          ]
+        ],
+        "hidden": false
+      },
+      {
+        "input": [
+          [
+            ""
+          ]
+        ],
+        "expected": [
+          [
+            ""
+          ]
+        ],
+        "hidden": true
+      },
+      {
+        "input": [
+          [
+            "abc",
+            "cba",
+            "bca",
+            "xyz"
+          ]
+        ],
+        "expected": [
+          [
+            "abc",
+            "bca",
+            "cba"
+          ],
+          [
+            "xyz"
+          ]
+        ],
+        "hidden": true
+      }
     ]
   },
   {
@@ -78,22 +338,70 @@
     "patternId": "stacks-queues",
     "difficulty": "Easy",
     "functionName": "isValidBrackets",
-    "paramTypes": ["String"],
+    "paramTypes": [
+      "String"
+    ],
     "returnType": "boolean",
     "statement": "Given a string containing only the characters `(`, `)`, `[`, `]`, `{`, `}`, determine if it is valid. A string is valid if every opening bracket has a matching closing bracket of the same type, in the correct order (properly nested, not just balanced counts). An empty string is valid.",
     "examples": [
-      {"input": "s = \"()[]{}\"", "output": "true", "explanation": "Every bracket closes in the correct order."},
-      {"input": "s = \"(]\"", "output": "false", "explanation": "'(' is closed by ']', which doesn't match."}
+      {
+        "input": "s = \"()[]{}\"",
+        "output": "true",
+        "explanation": "Every bracket closes in the correct order."
+      },
+      {
+        "input": "s = \"(]\"",
+        "output": "false",
+        "explanation": "'(' is closed by ']', which doesn't match."
+      }
     ],
     "starterCode": "public boolean isValidBrackets(String s) {\n    // your code here\n    return false;\n}\n",
-    "paramNames": ["s"],
+    "paramNames": [
+      "s"
+    ],
     "tests": [
-      {"input": ["()[]{}"], "expected": true, "hidden": false},
-      {"input": ["(]"], "expected": false, "hidden": false},
-      {"input": [""], "expected": true, "hidden": true},
-      {"input": ["([)]"], "expected": false, "hidden": true},
-      {"input": ["{[]}"], "expected": true, "hidden": true},
-      {"input": ["((("], "expected": false, "hidden": true}
+      {
+        "input": [
+          "()[]{}"
+        ],
+        "expected": true,
+        "hidden": false
+      },
+      {
+        "input": [
+          "(]"
+        ],
+        "expected": false,
+        "hidden": false
+      },
+      {
+        "input": [
+          ""
+        ],
+        "expected": true,
+        "hidden": true
+      },
+      {
+        "input": [
+          "([)]"
+        ],
+        "expected": false,
+        "hidden": true
+      },
+      {
+        "input": [
+          "{[]}"
+        ],
+        "expected": true,
+        "hidden": true
+      },
+      {
+        "input": [
+          "((("
+        ],
+        "expected": false,
+        "hidden": true
+      }
     ]
   },
   {
@@ -103,22 +411,92 @@
     "patternId": "trees",
     "difficulty": "Medium",
     "functionName": "isBalanced",
-    "paramTypes": ["tree"],
+    "paramTypes": [
+      "tree"
+    ],
     "returnType": "boolean",
     "treeParam": true,
     "statement": "Given the root of a binary tree, determine if it is **height-balanced**: for every node in the tree, the heights of its left and right subtrees differ by no more than 1.\n\nThe tree is built for you from a level-order array (with `null` for missing children, LeetCode-style) — **do not redefine `TreeNode`**, it's provided in the execution environment with fields `val`, `left`, `right`. Implement `isBalanced(TreeNode root)`.\n\nAim for O(n) — a naive approach that recomputes height from scratch at every node is O(n^2) and may time out on deep trees.",
     "examples": [
-      {"input": "root built from [3,9,20,null,null,15,7]", "output": "true", "explanation": "Every subtree's left/right height differs by at most 1."},
-      {"input": "root built from [1,2,2,3,3,null,null,4,4]", "output": "false", "explanation": "The left subtree is 2 levels deeper than the right at some node."}
+      {
+        "input": "root built from [3,9,20,null,null,15,7]",
+        "output": "true",
+        "explanation": "Every subtree's left/right height differs by at most 1."
+      },
+      {
+        "input": "root built from [1,2,2,3,3,null,null,4,4]",
+        "output": "false",
+        "explanation": "The left subtree is 2 levels deeper than the right at some node."
+      }
     ],
     "starterCode": "// TreeNode is already defined for you:\n//   class TreeNode {\n//       int val;\n//       TreeNode left;\n//       TreeNode right;\n//       TreeNode(int val) { this.val = val; }\n//   }\n\npublic boolean isBalanced(TreeNode root) {\n    // your code here\n    return false;\n}\n",
-    "paramNames": ["root"],
+    "paramNames": [
+      "root"
+    ],
     "tests": [
-      {"input": [[3, 9, 20, null, null, 15, 7]], "expected": true, "hidden": false},
-      {"input": [[1, 2, 2, 3, 3, null, null, 4, 4]], "expected": false, "hidden": false},
-      {"input": [[]], "expected": true, "hidden": true},
-      {"input": [[1]], "expected": true, "hidden": true},
-      {"input": [[1, 2, null, 3, null, 4, null]], "expected": false, "hidden": true}
+      {
+        "input": [
+          [
+            3,
+            9,
+            20,
+            null,
+            null,
+            15,
+            7
+          ]
+        ],
+        "expected": true,
+        "hidden": false
+      },
+      {
+        "input": [
+          [
+            1,
+            2,
+            2,
+            3,
+            3,
+            null,
+            null,
+            4,
+            4
+          ]
+        ],
+        "expected": false,
+        "hidden": false
+      },
+      {
+        "input": [
+          []
+        ],
+        "expected": true,
+        "hidden": true
+      },
+      {
+        "input": [
+          [
+            1
+          ]
+        ],
+        "expected": true,
+        "hidden": true
+      },
+      {
+        "input": [
+          [
+            1,
+            2,
+            null,
+            3,
+            null,
+            4,
+            null
+          ]
+        ],
+        "expected": false,
+        "hidden": true
+      }
     ]
   },
   {
@@ -128,21 +506,142 @@
     "patternId": "graphs",
     "difficulty": "Medium",
     "functionName": "numIslands",
-    "paramTypes": ["int[][]"],
+    "paramTypes": [
+      "int[][]"
+    ],
     "returnType": "int",
     "statement": "Given a 2D grid of `0`s (water) and `1`s (land), an **island** is a group of `1`s connected horizontally or vertically (not diagonally). Return the number of distinct islands.",
     "examples": [
-      {"input": "grid = [[1,1,0,0,0],[1,1,0,0,0],[0,0,1,0,0],[0,0,0,1,1]]", "output": "3", "explanation": "A 2x2 block top-left, a single cell in the middle, and a 2-cell block bottom-right."},
-      {"input": "grid = [[1,0,1,0,1]]", "output": "3", "explanation": "Three isolated single-cell islands separated by water."}
+      {
+        "input": "grid = [[1,1,0,0,0],[1,1,0,0,0],[0,0,1,0,0],[0,0,0,1,1]]",
+        "output": "3",
+        "explanation": "A 2x2 block top-left, a single cell in the middle, and a 2-cell block bottom-right."
+      },
+      {
+        "input": "grid = [[1,0,1,0,1]]",
+        "output": "3",
+        "explanation": "Three isolated single-cell islands separated by water."
+      }
     ],
     "starterCode": "public int numIslands(int[][] grid) {\n    // your code here\n    return 0;\n}\n",
-    "paramNames": ["grid"],
+    "paramNames": [
+      "grid"
+    ],
     "tests": [
-      {"input": [[[1, 1, 0, 0, 0], [1, 1, 0, 0, 0], [0, 0, 1, 0, 0], [0, 0, 0, 1, 1]]], "expected": 3, "hidden": false},
-      {"input": [[[1, 0, 1, 0, 1]]], "expected": 3, "hidden": false},
-      {"input": [[[0, 0], [0, 0]]], "expected": 0, "hidden": true},
-      {"input": [[[1]]], "expected": 1, "hidden": true},
-      {"input": [[[1, 1, 1, 1, 0], [1, 1, 0, 1, 0], [1, 0, 0, 0, 0], [0, 0, 0, 1, 1]]], "expected": 2, "hidden": true}
+      {
+        "input": [
+          [
+            [
+              1,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              1,
+              1
+            ]
+          ]
+        ],
+        "expected": 3,
+        "hidden": false
+      },
+      {
+        "input": [
+          [
+            [
+              1,
+              0,
+              1,
+              0,
+              1
+            ]
+          ]
+        ],
+        "expected": 3,
+        "hidden": false
+      },
+      {
+        "input": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "expected": 0,
+        "hidden": true
+      },
+      {
+        "input": [
+          [
+            [
+              1
+            ]
+          ]
+        ],
+        "expected": 1,
+        "hidden": true
+      },
+      {
+        "input": [
+          [
+            [
+              1,
+              1,
+              1,
+              1,
+              0
+            ],
+            [
+              1,
+              1,
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              1,
+              1
+            ]
+          ]
+        ],
+        "expected": 2,
+        "hidden": true
+      }
     ]
   },
   {
@@ -152,22 +651,93 @@
     "patternId": "dp",
     "difficulty": "Medium",
     "functionName": "maxNonAdjacentSum",
-    "paramTypes": ["int[]"],
+    "paramTypes": [
+      "int[]"
+    ],
     "returnType": "int",
     "statement": "Given an array of non-negative integers, choose a subset of elements such that **no two chosen elements are adjacent** in the array, maximizing their sum. Return that maximum sum. An empty array has a maximum sum of 0.",
     "examples": [
-      {"input": "nums = [2,7,9,3,1]", "output": "12", "explanation": "Take 2 + 9 + 1 = 12 (indices 0, 2, 4)."},
-      {"input": "nums = [5,1,1,5]", "output": "10", "explanation": "Take the first and last elements: 5 + 5 = 10."}
+      {
+        "input": "nums = [2,7,9,3,1]",
+        "output": "12",
+        "explanation": "Take 2 + 9 + 1 = 12 (indices 0, 2, 4)."
+      },
+      {
+        "input": "nums = [5,1,1,5]",
+        "output": "10",
+        "explanation": "Take the first and last elements: 5 + 5 = 10."
+      }
     ],
     "starterCode": "public int maxNonAdjacentSum(int[] nums) {\n    // your code here\n    return 0;\n}\n",
-    "paramNames": ["nums"],
+    "paramNames": [
+      "nums"
+    ],
     "tests": [
-      {"input": [[2, 7, 9, 3, 1]], "expected": 12, "hidden": false},
-      {"input": [[5, 1, 1, 5]], "expected": 10, "hidden": false},
-      {"input": [[]], "expected": 0, "hidden": true},
-      {"input": [[4]], "expected": 4, "hidden": true},
-      {"input": [[1, 2, 3, 1]], "expected": 4, "hidden": true},
-      {"input": [[2, 1, 1, 2]], "expected": 4, "hidden": true}
+      {
+        "input": [
+          [
+            2,
+            7,
+            9,
+            3,
+            1
+          ]
+        ],
+        "expected": 12,
+        "hidden": false
+      },
+      {
+        "input": [
+          [
+            5,
+            1,
+            1,
+            5
+          ]
+        ],
+        "expected": 10,
+        "hidden": false
+      },
+      {
+        "input": [
+          []
+        ],
+        "expected": 0,
+        "hidden": true
+      },
+      {
+        "input": [
+          [
+            4
+          ]
+        ],
+        "expected": 4,
+        "hidden": true
+      },
+      {
+        "input": [
+          [
+            1,
+            2,
+            3,
+            1
+          ]
+        ],
+        "expected": 4,
+        "hidden": true
+      },
+      {
+        "input": [
+          [
+            2,
+            1,
+            1,
+            2
+          ]
+        ],
+        "expected": 4,
+        "hidden": true
+      }
     ]
   },
   {
@@ -177,21 +747,115 @@
     "patternId": "greedy",
     "difficulty": "Medium",
     "functionName": "maxNonOverlappingMeetings",
-    "paramTypes": ["int[][]"],
+    "paramTypes": [
+      "int[][]"
+    ],
     "returnType": "int",
     "statement": "You're given an array of meeting intervals `[start, end]` (a meeting occupies the half-open range from `start` up to `end`; meetings that touch at an endpoint, e.g. `[1,2]` and `[2,3]`, do **not** conflict). Return the maximum number of meetings you can attend if you can only attend one at a time.",
     "examples": [
-      {"input": "intervals = [[1,3],[2,4],[3,5],[6,8]]", "output": "3", "explanation": "Attend [1,3], [3,5], [6,8] -- three non-overlapping meetings."},
-      {"input": "intervals = [[5,6]]", "output": "1", "explanation": "Just the one meeting."}
+      {
+        "input": "intervals = [[1,3],[2,4],[3,5],[6,8]]",
+        "output": "3",
+        "explanation": "Attend [1,3], [3,5], [6,8] -- three non-overlapping meetings."
+      },
+      {
+        "input": "intervals = [[5,6]]",
+        "output": "1",
+        "explanation": "Just the one meeting."
+      }
     ],
     "starterCode": "public int maxNonOverlappingMeetings(int[][] intervals) {\n    // your code here\n    return 0;\n}\n",
-    "paramNames": ["intervals"],
+    "paramNames": [
+      "intervals"
+    ],
     "tests": [
-      {"input": [[[1, 3], [2, 4], [3, 5], [6, 8]]], "expected": 3, "hidden": false},
-      {"input": [[[5, 6]]], "expected": 1, "hidden": false},
-      {"input": [[[1, 2], [2, 3], [3, 4]]], "expected": 3, "hidden": true},
-      {"input": [[]], "expected": 0, "hidden": true},
-      {"input": [[[1, 10], [2, 3], [4, 5], [6, 7]]], "expected": 3, "hidden": true}
+      {
+        "input": [
+          [
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              6,
+              8
+            ]
+          ]
+        ],
+        "expected": 3,
+        "hidden": false
+      },
+      {
+        "input": [
+          [
+            [
+              5,
+              6
+            ]
+          ]
+        ],
+        "expected": 1,
+        "hidden": false
+      },
+      {
+        "input": [
+          [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ]
+          ]
+        ],
+        "expected": 3,
+        "hidden": true
+      },
+      {
+        "input": [
+          []
+        ],
+        "expected": 0,
+        "hidden": true
+      },
+      {
+        "input": [
+          [
+            [
+              1,
+              10
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              6,
+              7
+            ]
+          ]
+        ],
+        "expected": 3,
+        "hidden": true
+      }
     ]
   },
   {
@@ -201,21 +865,79 @@
     "patternId": "binary-search",
     "difficulty": "Easy",
     "functionName": "firstTrueIndex",
-    "paramTypes": ["boolean[]"],
+    "paramTypes": [
+      "boolean[]"
+    ],
     "returnType": "int",
     "statement": "You're given an array of booleans that is **sorted** in the sense that all `false` values come before all `true` values (e.g. `[false, false, true, true]`). Return the index of the first `true` value, or `-1` if there are none. Solve it in O(log n) using binary search on the boolean predicate — don't just scan linearly.",
     "examples": [
-      {"input": "flags = [false,false,false,true,true]", "output": "3", "explanation": "Index 3 is the first true."},
-      {"input": "flags = [false,false]", "output": "-1", "explanation": "No true values exist."}
+      {
+        "input": "flags = [false,false,false,true,true]",
+        "output": "3",
+        "explanation": "Index 3 is the first true."
+      },
+      {
+        "input": "flags = [false,false]",
+        "output": "-1",
+        "explanation": "No true values exist."
+      }
     ],
     "starterCode": "public int firstTrueIndex(boolean[] flags) {\n    // your code here\n    return -1;\n}\n",
-    "paramNames": ["flags"],
+    "paramNames": [
+      "flags"
+    ],
     "tests": [
-      {"input": [[false, false, false, true, true]], "expected": 3, "hidden": false},
-      {"input": [[false, false]], "expected": -1, "hidden": false},
-      {"input": [[true, true, true]], "expected": 0, "hidden": true},
-      {"input": [[]], "expected": -1, "hidden": true},
-      {"input": [[false, true]], "expected": 1, "hidden": true}
+      {
+        "input": [
+          [
+            false,
+            false,
+            false,
+            true,
+            true
+          ]
+        ],
+        "expected": 3,
+        "hidden": false
+      },
+      {
+        "input": [
+          [
+            false,
+            false
+          ]
+        ],
+        "expected": -1,
+        "hidden": false
+      },
+      {
+        "input": [
+          [
+            true,
+            true,
+            true
+          ]
+        ],
+        "expected": 0,
+        "hidden": true
+      },
+      {
+        "input": [
+          []
+        ],
+        "expected": -1,
+        "hidden": true
+      },
+      {
+        "input": [
+          [
+            false,
+            true
+          ]
+        ],
+        "expected": 1,
+        "hidden": true
+      }
     ]
   },
   {
@@ -225,21 +947,659 @@
     "patternId": "backtracking",
     "difficulty": "Hard",
     "functionName": "combinationSum",
-    "paramTypes": ["int[]", "int"],
+    "paramTypes": [
+      "int[]",
+      "int"
+    ],
     "returnType": "List<List<Integer>>",
     "statement": "Given an array of **distinct** positive integers `candidates` and a target, return all unique combinations where the chosen numbers sum to `target`. The same number may be reused an unlimited number of times.\n\nOrdering contract for deterministic checking: each combination must be sorted ascending, and the outer list of combinations must be sorted lexicographically.",
     "examples": [
-      {"input": "candidates = [2,3,6,7], target = 7", "output": "[[2,2,3],[7]]", "explanation": "2+2+3=7 and 7=7 are the two combinations."},
-      {"input": "candidates = [1], target = 2", "output": "[[1,1]]", "explanation": "Only 1+1=2 works."}
+      {
+        "input": "candidates = [2,3,6,7], target = 7",
+        "output": "[[2,2,3],[7]]",
+        "explanation": "2+2+3=7 and 7=7 are the two combinations."
+      },
+      {
+        "input": "candidates = [1], target = 2",
+        "output": "[[1,1]]",
+        "explanation": "Only 1+1=2 works."
+      }
     ],
     "starterCode": "public List<List<Integer>> combinationSum(int[] candidates, int target) {\n    // see the ordering contract in the problem statement\n    // your code here\n    return new ArrayList<>();\n}\n",
-    "paramNames": ["candidates", "target"],
+    "paramNames": [
+      "candidates",
+      "target"
+    ],
     "tests": [
-      {"input": [[2, 3, 6, 7], 7], "expected": [[2, 2, 3], [7]], "hidden": false},
-      {"input": [[1], 2], "expected": [[1, 1]], "hidden": false},
-      {"input": [[2], 1], "expected": [], "hidden": true},
-      {"input": [[2, 3, 5], 8], "expected": [[2, 2, 2, 2], [2, 3, 3], [3, 5]], "hidden": true},
-      {"input": [[3, 5, 7], 14], "expected": [[3, 3, 3, 5], [7, 7]], "hidden": true}
+      {
+        "input": [
+          [
+            2,
+            3,
+            6,
+            7
+          ],
+          7
+        ],
+        "expected": [
+          [
+            2,
+            2,
+            3
+          ],
+          [
+            7
+          ]
+        ],
+        "hidden": false
+      },
+      {
+        "input": [
+          [
+            1
+          ],
+          2
+        ],
+        "expected": [
+          [
+            1,
+            1
+          ]
+        ],
+        "hidden": false
+      },
+      {
+        "input": [
+          [
+            2
+          ],
+          1
+        ],
+        "expected": [],
+        "hidden": true
+      },
+      {
+        "input": [
+          [
+            2,
+            3,
+            5
+          ],
+          8
+        ],
+        "expected": [
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            3,
+            3
+          ],
+          [
+            3,
+            5
+          ]
+        ],
+        "hidden": true
+      },
+      {
+        "input": [
+          [
+            3,
+            5,
+            7
+          ],
+          14
+        ],
+        "expected": [
+          [
+            3,
+            3,
+            3,
+            5
+          ],
+          [
+            7,
+            7
+          ]
+        ],
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "lone-number",
+    "title": "Find the Lone Number",
+    "pattern": "Bit Manipulation",
+    "patternId": "bits",
+    "difficulty": "Easy",
+    "functionName": "loneNumber",
+    "paramTypes": [
+      "int[]"
+    ],
+    "returnType": "int",
+    "statement": "You're given an array where every number appears **exactly twice**, except for one number that appears **exactly once**. Find that number.\n\nDo it in O(n) time using O(1) extra space — no hash sets allowed. Hint: XOR-ing a number with itself gives 0, and XOR is commutative/associative, so XOR-folding the whole array cancels every pair out.",
+    "examples": [
+      {
+        "input": "nums = [2, 2, 1]",
+        "output": "1",
+        "explanation": "2 appears twice, 1 appears once."
+      },
+      {
+        "input": "nums = [4, 1, 2, 1, 2]",
+        "output": "4",
+        "explanation": "1 and 2 each appear twice; 4 is alone."
+      }
+    ],
+    "starterCode": "public int loneNumber(int[] nums) {\n    // your code here\n    return 0;\n}\n",
+    "paramNames": [
+      "nums"
+    ],
+    "tests": [
+      {
+        "input": [
+          [
+            2,
+            2,
+            1
+          ]
+        ],
+        "expected": 1,
+        "hidden": false
+      },
+      {
+        "input": [
+          [
+            4,
+            1,
+            2,
+            1,
+            2
+          ]
+        ],
+        "expected": 4,
+        "hidden": false
+      },
+      {
+        "input": [
+          [
+            1
+          ]
+        ],
+        "expected": 1,
+        "hidden": true
+      },
+      {
+        "input": [
+          [
+            7,
+            3,
+            7
+          ]
+        ],
+        "expected": 3,
+        "hidden": true
+      },
+      {
+        "input": [
+          [
+            -1,
+            -1,
+            5
+          ]
+        ],
+        "expected": 5,
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "find-missing-number",
+    "title": "Find the Missing Number",
+    "pattern": "Bit Manipulation",
+    "patternId": "bits",
+    "difficulty": "Easy",
+    "functionName": "missingNumber",
+    "paramTypes": [
+      "int[]"
+    ],
+    "returnType": "int",
+    "statement": "You're given an array containing `n` distinct numbers, each drawn from the range `[0, n]` (that's `n + 1` possible values), with exactly one value missing. Find the missing number.\n\nSolve it in O(n) time and O(1) extra space. Hint: XOR every index `0..n` together with every value in the array — every present number cancels with its index-pass counterpart, leaving only the missing one. (Summing and subtracting works too, but can overflow for large inputs; XOR doesn't.)",
+    "examples": [
+      {
+        "input": "nums = [3, 0, 1]",
+        "output": "2",
+        "explanation": "n = 3, so the full range is [0,3]; 2 is missing."
+      },
+      {
+        "input": "nums = [0, 1]",
+        "output": "2",
+        "explanation": "n = 2, range is [0,2]; 2 is missing."
+      }
+    ],
+    "starterCode": "public int missingNumber(int[] nums) {\n    // your code here\n    return 0;\n}\n",
+    "paramNames": [
+      "nums"
+    ],
+    "tests": [
+      {
+        "input": [
+          [
+            3,
+            0,
+            1
+          ]
+        ],
+        "expected": 2,
+        "hidden": false
+      },
+      {
+        "input": [
+          [
+            0,
+            1
+          ]
+        ],
+        "expected": 2,
+        "hidden": false
+      },
+      {
+        "input": [
+          [
+            9,
+            6,
+            4,
+            2,
+            3,
+            5,
+            7,
+            0,
+            1
+          ]
+        ],
+        "expected": 8,
+        "hidden": true
+      },
+      {
+        "input": [
+          [
+            0
+          ]
+        ],
+        "expected": 1,
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "count-set-bits",
+    "title": "Count Set Bits",
+    "pattern": "Bit Manipulation",
+    "patternId": "bits",
+    "difficulty": "Easy",
+    "functionName": "countSetBits",
+    "paramTypes": [
+      "int"
+    ],
+    "returnType": "int",
+    "statement": "Given a non-negative integer `n`, return the number of `1` bits in its binary representation (its \"population count\" / Hamming weight).",
+    "examples": [
+      {
+        "input": "n = 11",
+        "output": "3",
+        "explanation": "11 in binary is 1011, which has three 1 bits."
+      },
+      {
+        "input": "n = 128",
+        "output": "1",
+        "explanation": "128 in binary is 10000000, which has one 1 bit."
+      }
+    ],
+    "starterCode": "public int countSetBits(int n) {\n    // your code here\n    return 0;\n}\n",
+    "paramNames": [
+      "n"
+    ],
+    "tests": [
+      {
+        "input": [
+          11
+        ],
+        "expected": 3,
+        "hidden": false
+      },
+      {
+        "input": [
+          128
+        ],
+        "expected": 1,
+        "hidden": false
+      },
+      {
+        "input": [
+          0
+        ],
+        "expected": 0,
+        "hidden": true
+      },
+      {
+        "input": [
+          255
+        ],
+        "expected": 8,
+        "hidden": true
+      },
+      {
+        "input": [
+          7
+        ],
+        "expected": 3,
+        "hidden": true
+      },
+      {
+        "input": [
+          1023
+        ],
+        "expected": 10,
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "bit-count-range",
+    "title": "Bit Count for a Range",
+    "pattern": "Bit Manipulation",
+    "patternId": "bits",
+    "difficulty": "Easy",
+    "functionName": "bitCountRange",
+    "paramTypes": [
+      "int"
+    ],
+    "returnType": "int[]",
+    "statement": "Given a non-negative integer `n`, return an array `result` of length `n + 1` where `result[i]` is the number of `1` bits in the binary representation of `i`, for every `i` from `0` to `n`.\n\nAim for O(n) total — don't just call a popcount routine independently for every `i` (that's O(n log n)). Hint: `result[i] = result[i >> 1] + (i & 1)` — the count for `i` is the count for `i` with its last bit dropped, plus that last bit.",
+    "examples": [
+      {
+        "input": "n = 2",
+        "output": "[0, 1, 1]",
+        "explanation": "0 has 0 bits, 1 has 1 bit, 2 (10) has 1 bit."
+      },
+      {
+        "input": "n = 5",
+        "output": "[0, 1, 1, 2, 1, 2]",
+        "explanation": "3 (11) has 2 bits, 4 (100) has 1 bit, 5 (101) has 2 bits."
+      }
+    ],
+    "starterCode": "public int[] bitCountRange(int n) {\n    // your code here\n    return new int[0];\n}\n",
+    "paramNames": [
+      "n"
+    ],
+    "tests": [
+      {
+        "input": [
+          2
+        ],
+        "expected": [
+          0,
+          1,
+          1
+        ],
+        "hidden": false
+      },
+      {
+        "input": [
+          5
+        ],
+        "expected": [
+          0,
+          1,
+          1,
+          2,
+          1,
+          2
+        ],
+        "hidden": false
+      },
+      {
+        "input": [
+          0
+        ],
+        "expected": [
+          0
+        ],
+        "hidden": true
+      },
+      {
+        "input": [
+          8
+        ],
+        "expected": [
+          0,
+          1,
+          1,
+          2,
+          1,
+          2,
+          2,
+          3,
+          1
+        ],
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "reverse-bits",
+    "title": "Reverse 32-Bit Integer Bits",
+    "pattern": "Bit Manipulation",
+    "patternId": "bits",
+    "difficulty": "Easy",
+    "functionName": "reverseBits",
+    "paramTypes": [
+      "int"
+    ],
+    "returnType": "int",
+    "statement": "Given a 32-bit integer `n` (Java's `int` is already exactly 32 bits, two's-complement), return the integer obtained by reversing the order of its bits.\n\nNote: negative inputs and outputs are expected and correct here — you're reversing the raw 32-bit pattern, not the mathematical value. Use unsigned right shift (`>>>`) so sign extension doesn't corrupt the bits you're rebuilding.",
+    "examples": [
+      {
+        "input": "n = 43261596 (binary 00000010100101000001111010011100)",
+        "output": "964176192",
+        "explanation": "The bit pattern is reversed end-to-end (binary 00111001011110000010100101000000)."
+      },
+      {
+        "input": "n = 1",
+        "output": "-2147483648",
+        "explanation": "1 is just a single low bit set; reversed, that bit lands in the sign position, giving Integer.MIN_VALUE."
+      }
+    ],
+    "starterCode": "public int reverseBits(int n) {\n    // your code here\n    return 0;\n}\n",
+    "paramNames": [
+      "n"
+    ],
+    "tests": [
+      {
+        "input": [
+          43261596
+        ],
+        "expected": 964176192,
+        "hidden": false
+      },
+      {
+        "input": [
+          1
+        ],
+        "expected": -2147483648,
+        "hidden": false
+      },
+      {
+        "input": [
+          0
+        ],
+        "expected": 0,
+        "hidden": true
+      },
+      {
+        "input": [
+          -1
+        ],
+        "expected": -1,
+        "hidden": true
+      },
+      {
+        "input": [
+          4
+        ],
+        "expected": 536870912,
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "add-without-plus",
+    "title": "Add Without the Plus Operator",
+    "pattern": "Bit Manipulation",
+    "patternId": "bits",
+    "difficulty": "Medium",
+    "functionName": "addWithoutPlus",
+    "paramTypes": [
+      "int",
+      "int"
+    ],
+    "returnType": "int",
+    "statement": "Given two integers `a` and `b`, return their sum — without using `+` or `-` anywhere in your solution.\n\nHint: at the bit level, XOR gives you the sum of two bits ignoring carry, and AND (shifted left by one) gives you the carry. Repeat until there's no carry left.",
+    "examples": [
+      {
+        "input": "a = 2, b = 3",
+        "output": "5",
+        "explanation": "2 + 3 = 5, computed via XOR/AND/shift instead of +."
+      },
+      {
+        "input": "a = -5, b = -3",
+        "output": "-8",
+        "explanation": "Works for negative operands too, since Java ints are two's-complement."
+      }
+    ],
+    "starterCode": "public int addWithoutPlus(int a, int b) {\n    // your code here\n    return 0;\n}\n",
+    "paramNames": [
+      "a",
+      "b"
+    ],
+    "tests": [
+      {
+        "input": [
+          2,
+          3
+        ],
+        "expected": 5,
+        "hidden": false
+      },
+      {
+        "input": [
+          -5,
+          -3
+        ],
+        "expected": -8,
+        "hidden": false
+      },
+      {
+        "input": [
+          -1,
+          1
+        ],
+        "expected": 0,
+        "hidden": true
+      },
+      {
+        "input": [
+          0,
+          0
+        ],
+        "expected": 0,
+        "hidden": true
+      },
+      {
+        "input": [
+          100,
+          200
+        ],
+        "expected": 300,
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "and-of-range",
+    "title": "Bitwise AND of a Range",
+    "pattern": "Bit Manipulation",
+    "patternId": "bits",
+    "difficulty": "Medium",
+    "functionName": "andRange",
+    "paramTypes": [
+      "int",
+      "int"
+    ],
+    "returnType": "int",
+    "statement": "Given two non-negative integers `left` and `right` with `left <= right`, return the bitwise AND of every number in the inclusive range `[left, right]`.\n\nDon't loop through the whole range for large inputs — think about what happens to a bit position once any two numbers in the range disagree on it (it gets zeroed out for the whole AND). Hint: right-shift `left` and `right` together until they're equal — that's the shared prefix — then shift back.",
+    "examples": [
+      {
+        "input": "left = 5, right = 7",
+        "output": "4",
+        "explanation": "5 & 6 & 7 = 101 & 110 & 111 = 100 = 4."
+      },
+      {
+        "input": "left = 26, right = 30",
+        "output": "24",
+        "explanation": "26 & 27 & 28 & 29 & 30 = 24."
+      }
+    ],
+    "starterCode": "public int andRange(int left, int right) {\n    // your code here\n    return 0;\n}\n",
+    "paramNames": [
+      "left",
+      "right"
+    ],
+    "tests": [
+      {
+        "input": [
+          5,
+          7
+        ],
+        "expected": 4,
+        "hidden": false
+      },
+      {
+        "input": [
+          26,
+          30
+        ],
+        "expected": 24,
+        "hidden": false
+      },
+      {
+        "input": [
+          0,
+          0
+        ],
+        "expected": 0,
+        "hidden": true
+      },
+      {
+        "input": [
+          1,
+          2147483647
+        ],
+        "expected": 0,
+        "hidden": true
+      },
+      {
+        "input": [
+          5,
+          5
+        ],
+        "expected": 5,
+        "hidden": true
+      }
     ]
   }
 ]

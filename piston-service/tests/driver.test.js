@@ -203,6 +203,62 @@ private void backtrack(int[] candidates, int remaining, int start, List<Integer>
         path.remove(path.size() - 1);
     }
 }
+`,
+    // ---- Batch 1: Bit Manipulation ----
+    'lone-number': `public int loneNumber(int[] nums) {
+    int x = 0;
+    for (int n : nums) x ^= n;
+    return x;
+}
+`,
+    'find-missing-number': `public int missingNumber(int[] nums) {
+    int n = nums.length;
+    int expected = 0;
+    for (int i = 0; i <= n; i++) expected ^= i;
+    int actual = 0;
+    for (int v : nums) actual ^= v;
+    return expected ^ actual;
+}
+`,
+    'count-set-bits': `public int countSetBits(int n) {
+    int count = 0;
+    while (n != 0) { count += (n & 1); n >>>= 1; }
+    return count;
+}
+`,
+    'bit-count-range': `public int[] bitCountRange(int n) {
+    int[] res = new int[n + 1];
+    for (int i = 1; i <= n; i++) res[i] = res[i >> 1] + (i & 1);
+    return res;
+}
+`,
+    'reverse-bits': `public int reverseBits(int n) {
+    int result = 0;
+    for (int i = 0; i < 32; i++) {
+        result = (result << 1) | (n & 1);
+        n >>>= 1;
+    }
+    return result;
+}
+`,
+    'add-without-plus': `public int addWithoutPlus(int a, int b) {
+    while (b != 0) {
+        int carry = a & b;
+        a = a ^ b;
+        b = carry << 1;
+    }
+    return a;
+}
+`,
+    'and-of-range': `public int andRange(int left, int right) {
+    int shift = 0;
+    while (left != right) {
+        left >>= 1;
+        right >>= 1;
+        shift++;
+    }
+    return left << shift;
+}
 `
 };
 
@@ -246,7 +302,7 @@ function runDriverSingleFileLaunch(source) {
     }
 }
 
-test('all 10 problems: correct Java solution passes every test case', { skip: !HAVE_JDK && 'no JDK (javac) found on this machine' }, () => {
+test('every problem: correct Java solution passes every test case', { skip: !HAVE_JDK && 'no JDK (javac) found on this machine' }, () => {
     for (const problem of problems) {
         const solution = solutions[problem.id];
         assert.ok(solution, 'missing reference solution for ' + problem.id);
@@ -259,7 +315,7 @@ test('all 10 problems: correct Java solution passes every test case', { skip: !H
     }
 });
 
-test('all 10 problems, run via Piston\'s ACTUAL mechanism (java single-file source-launch, not javac+java)', { skip: !HAVE_JDK && 'no JDK found' }, () => {
+test('every problem, run via Piston\'s ACTUAL mechanism (java single-file source-launch, not javac+java)', { skip: !HAVE_JDK && 'no JDK found' }, () => {
     for (const problem of problems) {
         const solution = solutions[problem.id];
         const driver = buildDriver(problem, solution);
