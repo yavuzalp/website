@@ -109,7 +109,17 @@ function onPlayersUpdate(players) {
     latestPlayers = players;
     if (!latestRoom) return;
     if (latestRoom.status === 'waiting') renderWaitingPlayers(players);
-    else if (latestRoom.status === 'active') { renderPlayerStrip(players); checkMatchEnd(players); }
+    else if (latestRoom.status === 'active') {
+        // renderRace() re-checks MY OWN currentQuestionIndex and loads the
+        // next problem when it's changed (it no-ops back to just a player-
+        // strip refresh when nothing relevant changed, via the
+        // currentProblem.id guard inside it) — the room document itself
+        // never changes when a player advances, only their own player doc
+        // does, so this listener is the only thing that can ever notice a
+        // successful Submit and move the race screen to the next question.
+        renderRace(latestRoom);
+        checkMatchEnd(players);
+    }
     else if (latestRoom.status === 'finished') renderResults(latestRoom);
 }
 
