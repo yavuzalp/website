@@ -180,6 +180,12 @@ button { font-family: inherit; }
 .reveal-card pre { margin: 0; padding: 0.8rem; font-size: 0.78rem; overflow-x: auto; background: var(--bg-surface); max-height: 320px; }
 
 .hidden { display: none !important; }
+/* Some components (.auth-modal-overlay, .account-pill, etc.) set their own
+   unconditional `display` and are toggled via the `hidden` DOM attribute
+   rather than the .hidden class above. Without this, an author rule of
+   equal specificity to the browser's built-in `[hidden]{display:none}`
+   wins by cascade order and the element stays visible even when hidden. */
+[hidden] { display: none !important; }
 .spinner-inline { display: inline-block; width: 14px; height: 14px; border: 2px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.7s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
 
