@@ -259,6 +259,146 @@ private void backtrack(int[] candidates, int remaining, int start, List<Integer>
     }
     return left << shift;
 }
+`,
+    // ---- Batch 2: Two Heaps + Top K ----
+    'running-medians': `public double[] runningMedians(int[] nums) {
+    PriorityQueue<Integer> lower = new PriorityQueue<>(Collections.reverseOrder());
+    PriorityQueue<Integer> upper = new PriorityQueue<>();
+    double[] result = new double[nums.length];
+    for (int i = 0; i < nums.length; i++) {
+        int n = nums[i];
+        if (lower.isEmpty() || n <= lower.peek()) lower.offer(n);
+        else upper.offer(n);
+        if (lower.size() > upper.size() + 1) upper.offer(lower.poll());
+        else if (upper.size() > lower.size()) lower.offer(upper.poll());
+        if (lower.size() == upper.size()) result[i] = (lower.peek() + upper.peek()) / 2.0;
+        else result[i] = lower.peek();
+    }
+    return result;
+}
+`,
+    'sliding-window-median': `public double[] slidingWindowMedians(int[] nums, int k) {
+    int n = nums.length;
+    double[] result = new double[n - k + 1];
+    for (int i = 0; i + k <= n; i++) {
+        int[] window = Arrays.copyOfRange(nums, i, i + k);
+        Arrays.sort(window);
+        if (k % 2 == 1) result[i] = window[k / 2];
+        else result[i] = (window[k / 2 - 1] + window[k / 2]) / 2.0;
+    }
+    return result;
+}
+`,
+    'maximize-capital': `public int maximizeCapital(int[] capital, int[] profits, int k, int initialCapital) {
+    int n = capital.length;
+    int[][] projects = new int[n][2];
+    for (int i = 0; i < n; i++) { projects[i][0] = capital[i]; projects[i][1] = profits[i]; }
+    Arrays.sort(projects, (a, b) -> a[0] - b[0]);
+    PriorityQueue<Integer> maxProfit = new PriorityQueue<>(Collections.reverseOrder());
+    int idx = 0;
+    long cap = initialCapital;
+    for (int t = 0; t < k; t++) {
+        while (idx < n && projects[idx][0] <= cap) { maxProfit.offer(projects[idx][1]); idx++; }
+        if (maxProfit.isEmpty()) break;
+        cap += maxProfit.poll();
+    }
+    return (int) cap;
+}
+`,
+    'kth-smallest-row-sum': `public int kthSmallestRowSum(int[][] matrix, int k) {
+    int[] result = matrix[0].clone();
+    for (int r = 1; r < matrix.length; r++) {
+        result = combineRows(result, matrix[r], k);
+    }
+    return result[k - 1];
+}
+private int[] combineRows(int[] a, int[] b, int k) {
+    int m = Math.min(k, a.length * b.length);
+    int[] res = new int[m];
+    final int[] aa = a, bb = b;
+    PriorityQueue<int[]> pq = new PriorityQueue<>((x, y) -> (aa[x[0]] + bb[x[1]]) - (aa[y[0]] + bb[y[1]]));
+    boolean[][] visited = new boolean[a.length][b.length];
+    pq.offer(new int[]{0, 0});
+    visited[0][0] = true;
+    for (int i = 0; i < m; i++) {
+        int[] cur = pq.poll();
+        res[i] = a[cur[0]] + b[cur[1]];
+        if (cur[0] + 1 < a.length && !visited[cur[0] + 1][cur[1]]) { visited[cur[0] + 1][cur[1]] = true; pq.offer(new int[]{cur[0] + 1, cur[1]}); }
+        if (cur[1] + 1 < b.length && !visited[cur[0]][cur[1] + 1]) { visited[cur[0]][cur[1] + 1] = true; pq.offer(new int[]{cur[0], cur[1] + 1}); }
+    }
+    return res;
+}
+`,
+    'kth-largest-element': `public int kthLargest(int[] nums, int k) {
+    PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+    for (int n : nums) {
+        minHeap.offer(n);
+        if (minHeap.size() > k) minHeap.poll();
+    }
+    return minHeap.peek();
+}
+`,
+    'top-k-frequent': `public int[] topKFrequent(int[] nums, int k) {
+    Map<Integer, Integer> freq = new HashMap<>();
+    for (int n : nums) freq.merge(n, 1, Integer::sum);
+    List<Integer> keys = new ArrayList<>(freq.keySet());
+    keys.sort((a, b) -> freq.get(b).equals(freq.get(a)) ? a - b : freq.get(b) - freq.get(a));
+    int[] result = new int[k];
+    for (int i = 0; i < k; i++) result[i] = keys.get(i);
+    return result;
+}
+`,
+    'k-closest-points': `public int[][] kClosestPoints(int[][] points, int k) {
+    int[][] sorted = points.clone();
+    Arrays.sort(sorted, (a, b) -> {
+        long da = (long) a[0] * a[0] + (long) a[1] * a[1];
+        long db = (long) b[0] * b[0] + (long) b[1] * b[1];
+        if (da != db) return Long.compare(da, db);
+        if (a[0] != b[0]) return a[0] - b[0];
+        return a[1] - b[1];
+    });
+    return Arrays.copyOfRange(sorted, 0, k);
+}
+`,
+    'find-k-closest-elements': `public int[] findKClosest(int[] arr, int k, int x) {
+    int lo = 0, hi = arr.length - k;
+    while (lo < hi) {
+        int mid = (lo + hi) / 2;
+        if (x - arr[mid] > arr[mid + k] - x) lo = mid + 1;
+        else hi = mid;
+    }
+    return Arrays.copyOfRange(arr, lo, lo + k);
+}
+`,
+    'can-reorganize-string': `public boolean canReorganize(String s) {
+    Map<Character, Integer> freq = new HashMap<>();
+    for (char c : s.toCharArray()) freq.merge(c, 1, Integer::sum);
+    int maxFreq = 0;
+    for (int v : freq.values()) maxFreq = Math.max(maxFreq, v);
+    return maxFreq <= (s.length() + 1) / 2;
+}
+`,
+    'rearrange-k-distance-apart': `public boolean canRearrangeKApart(String s, int k) {
+    if (k <= 1) return true;
+    Map<Character, Integer> freq = new HashMap<>();
+    for (char c : s.toCharArray()) freq.merge(c, 1, Integer::sum);
+    PriorityQueue<Map.Entry<Character, Integer>> maxHeap = new PriorityQueue<>((a, b) -> b.getValue() - a.getValue());
+    maxHeap.addAll(freq.entrySet());
+    Queue<Map.Entry<Character, Integer>> cooldown = new LinkedList<>();
+    int result = 0;
+    int n = s.length();
+    while (!maxHeap.isEmpty()) {
+        Map.Entry<Character, Integer> cur = maxHeap.poll();
+        int newCount = cur.getValue() - 1;
+        result++;
+        cooldown.offer(new AbstractMap.SimpleEntry<>(cur.getKey(), newCount));
+        if (cooldown.size() >= k) {
+            Map.Entry<Character, Integer> back = cooldown.poll();
+            if (back.getValue() > 0) maxHeap.offer(back);
+        }
+    }
+    return result == n;
+}
 `
 };
 

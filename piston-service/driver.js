@@ -26,6 +26,14 @@ function toJavaLiteral(value, type) {
         case 'int':
         case 'boolean':
             return String(value);
+        case 'double':
+            // Ensure a decimal point so Java infers double, and deepEquals
+            // compares Double-to-Double (Integer.equals(Double) is false).
+            return Number.isInteger(value) ? value + '.0' : String(value);
+        case 'double[]':
+            return 'new double[]{' + value.map(function (v) {
+                return Number.isInteger(v) ? v + '.0' : String(v);
+            }).join(',') + '}';
         case 'String':
             return javaStringLiteral(value);
         case 'int[]':
@@ -95,6 +103,11 @@ const MAIN_HELPERS = `
             for (boolean v : (boolean[]) o) r.add(v);
             return r;
         }
+        if (o instanceof double[]) {
+            java.util.List<Object> r = new java.util.ArrayList<Object>();
+            for (double v : (double[]) o) r.add(v);
+            return r;
+        }
         if (o instanceof Object[]) {
             java.util.List<Object> r = new java.util.ArrayList<Object>();
             for (Object v : (Object[]) o) r.add(normalize(v));
@@ -126,6 +139,12 @@ const MAIN_HELPERS = `
         if (o instanceof boolean[]) {
             StringBuilder sb = new StringBuilder("[");
             boolean[] arr = (boolean[]) o;
+            for (int i = 0; i < arr.length; i++) { if (i > 0) sb.append(","); sb.append(arr[i]); }
+            return sb.append("]").toString();
+        }
+        if (o instanceof double[]) {
+            StringBuilder sb = new StringBuilder("[");
+            double[] arr = (double[]) o;
             for (int i = 0; i < arr.length; i++) { if (i > 0) sb.append(","); sb.append(arr[i]); }
             return sb.append("]").toString();
         }

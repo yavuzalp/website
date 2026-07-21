@@ -1601,5 +1601,1040 @@
         "hidden": true
       }
     ]
+  },
+  {
+    "id": "running-medians",
+    "title": "Running Median",
+    "pattern": "Two Heaps",
+    "patternId": "two-heaps",
+    "difficulty": "Hard",
+    "functionName": "runningMedians",
+    "paramTypes": [
+      "int[]"
+    ],
+    "returnType": "double[]",
+    "statement": "Numbers arrive one at a time, in the order given by `nums`. After each number arrives, compute the median of all numbers seen so far. Return an array of these running medians, one per arrival.\n\nDon't re-sort everything from scratch after each arrival (that's O(n^2 log n) overall). Hint: maintain two heaps — a max-heap holding the smaller half of the numbers seen so far, and a min-heap holding the larger half, kept balanced in size (differing by at most 1). The median is then either the top of the larger heap, or the average of both tops.",
+    "examples": [
+      {
+        "input": "nums = [5, 15, 1, 3]",
+        "output": "[5.0, 10.0, 5.0, 4.0]",
+        "explanation": "After [5]: median 5. After [5,15]: median (5+15)/2=10. After [5,15,1]: sorted [1,5,15], median 5. After [5,15,1,3]: sorted [1,3,5,15], median (3+5)/2=4."
+      },
+      {
+        "input": "nums = [1, 2, 3, 4]",
+        "output": "[1.0, 1.5, 2.0, 2.5]",
+        "explanation": "Running medians of a strictly increasing sequence."
+      }
+    ],
+    "starterCode": "public double[] runningMedians(int[] nums) {\n    // your code here\n    return new double[0];\n}\n",
+    "paramNames": [
+      "nums"
+    ],
+    "tests": [
+      {
+        "input": [
+          [
+            5,
+            15,
+            1,
+            3
+          ]
+        ],
+        "expected": [
+          5,
+          10,
+          5,
+          4
+        ],
+        "hidden": false
+      },
+      {
+        "input": [
+          [
+            1,
+            2,
+            3,
+            4
+          ]
+        ],
+        "expected": [
+          1,
+          1.5,
+          2,
+          2.5
+        ],
+        "hidden": false
+      },
+      {
+        "input": [
+          [
+            40,
+            10,
+            20
+          ]
+        ],
+        "expected": [
+          40,
+          25,
+          20
+        ],
+        "hidden": true
+      },
+      {
+        "input": [
+          [
+            1
+          ]
+        ],
+        "expected": [
+          1
+        ],
+        "hidden": true
+      },
+      {
+        "input": [
+          [
+            1,
+            1,
+            1,
+            1
+          ]
+        ],
+        "expected": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "sliding-window-median",
+    "title": "Sliding Window Median",
+    "pattern": "Two Heaps",
+    "patternId": "two-heaps",
+    "difficulty": "Hard",
+    "functionName": "slidingWindowMedians",
+    "paramTypes": [
+      "int[]",
+      "int"
+    ],
+    "returnType": "double[]",
+    "statement": "Given an array `nums` and a window size `k`, return the median of every contiguous window of size `k`, in order (so the result has `nums.length - k + 1` entries).\n\nA correct solution using two heaps with lazy deletion (mark elements removed instead of actually removing them, and clean up only when they surface at a heap's top) runs in roughly O(n log k). A simpler O(n * k log k) approach — re-sort each window — is also accepted here; there's no strict time limit on these hidden tests, just don't go quadratic-in-a-silly-way for the sizes given.",
+    "examples": [
+      {
+        "input": "nums = [1,3,-1,-3,5,3,6,7], k = 3",
+        "output": "[1.0, -1.0, -1.0, 3.0, 5.0, 6.0]",
+        "explanation": "Window [1,3,-1] sorted is [-1,1,3], median 1. Window [3,-1,-3] sorted is [-3,-1,3], median -1. And so on."
+      },
+      {
+        "input": "nums = [1,4,2,3], k = 4",
+        "output": "[2.5]",
+        "explanation": "Only one window (the whole array): sorted [1,2,3,4], median (2+3)/2=2.5."
+      }
+    ],
+    "starterCode": "public double[] slidingWindowMedians(int[] nums, int k) {\n    // your code here\n    return new double[0];\n}\n",
+    "paramNames": [
+      "nums",
+      "k"
+    ],
+    "tests": [
+      {
+        "input": [
+          [
+            1,
+            3,
+            -1,
+            -3,
+            5,
+            3,
+            6,
+            7
+          ],
+          3
+        ],
+        "expected": [
+          1,
+          -1,
+          -1,
+          3,
+          5,
+          6
+        ],
+        "hidden": false
+      },
+      {
+        "input": [
+          [
+            1,
+            4,
+            2,
+            3
+          ],
+          4
+        ],
+        "expected": [
+          2.5
+        ],
+        "hidden": false
+      },
+      {
+        "input": [
+          [
+            1,
+            2,
+            3,
+            4,
+            2,
+            3,
+            1,
+            4,
+            2
+          ],
+          3
+        ],
+        "expected": [
+          2,
+          3,
+          3,
+          3,
+          2,
+          3,
+          2
+        ],
+        "hidden": true
+      },
+      {
+        "input": [
+          [
+            5,
+            5,
+            5,
+            5
+          ],
+          2
+        ],
+        "expected": [
+          5,
+          5,
+          5
+        ],
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "maximize-capital",
+    "title": "Maximize Capital",
+    "pattern": "Two Heaps",
+    "patternId": "two-heaps",
+    "difficulty": "Hard",
+    "functionName": "maximizeCapital",
+    "paramTypes": [
+      "int[]",
+      "int[]",
+      "int",
+      "int"
+    ],
+    "returnType": "int",
+    "statement": "You're picking at most `k` projects to maximize your final capital. `capital[i]` is the minimum capital required to start project `i`, and `profits[i]` is the capital you gain from completing it (added to your capital once finished, available to fund later projects). You start with `initialCapital` and can only start a project if your *current* capital is at least that project's required capital. Each project can be done at most once. Return the maximum capital achievable after choosing up to `k` projects optimally.\n\nGreedy with two heaps: a min-heap of projects by required capital (to find everything currently affordable), and a max-heap of profits among those affordable (to always pick the best one available). Repeat `k` times, or until nothing is affordable.",
+    "examples": [
+      {
+        "input": "capital = [0,1,1], profits = [1,2,3], k = 2, initialCapital = 0",
+        "output": "4",
+        "explanation": "Start with 0 capital: project 0 (needs 0) is affordable, gives +1 -> capital 1. Now projects 1 and 2 (need 1) are both affordable; pick profit 3 -> capital 4."
+      },
+      {
+        "input": "capital = [0,1,2], profits = [1,2,3], k = 1, initialCapital = 0",
+        "output": "1",
+        "explanation": "Only one project allowed; only project 0 is affordable at capital 0, giving profit 1."
+      }
+    ],
+    "starterCode": "public int maximizeCapital(int[] capital, int[] profits, int k, int initialCapital) {\n    // your code here\n    return initialCapital;\n}\n",
+    "paramNames": [
+      "capital",
+      "profits",
+      "k",
+      "initialCapital"
+    ],
+    "tests": [
+      {
+        "input": [
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          2,
+          0
+        ],
+        "expected": 4,
+        "hidden": false
+      },
+      {
+        "input": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          1,
+          0
+        ],
+        "expected": 1,
+        "hidden": false
+      },
+      {
+        "input": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          3,
+          0
+        ],
+        "expected": 0,
+        "hidden": true
+      },
+      {
+        "input": [
+          [
+            5
+          ],
+          [
+            10
+          ],
+          1,
+          0
+        ],
+        "expected": 0,
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "kth-smallest-row-sum",
+    "title": "Kth Smallest Sum From Sorted Rows",
+    "pattern": "Two Heaps",
+    "patternId": "two-heaps",
+    "difficulty": "Hard",
+    "functionName": "kthSmallestRowSum",
+    "paramTypes": [
+      "int[][]",
+      "int"
+    ],
+    "returnType": "int",
+    "statement": "You're given a matrix where **each row is sorted in ascending order**. Form a sum by picking exactly one element from every row. Considering all possible such sums, return the `k`-th smallest one (1-indexed).\n\nDon't enumerate every combination (that's exponential in the number of rows). Hint: combine two rows at a time into a merged \"top-k smallest sums\" list using a min-heap (classic \"k smallest pairs\" technique — you only ever need to keep the best `k` partial sums alive), then fold that merged list in with the next row, and so on.",
+    "examples": [
+      {
+        "input": "matrix = [[1,3,11],[2,4,6]], k = 5",
+        "output": "7",
+        "explanation": "All 9 possible sums, sorted: 3,5,5,7,7,9,13,15,17. The 5th smallest is 7."
+      },
+      {
+        "input": "matrix = [[1,1,3],[2,2,3]], k = 3",
+        "output": "3",
+        "explanation": "Sums sorted: 3,3,3,4,4,4,5,5,6 (up to duplicates) — the 3rd smallest is 3."
+      }
+    ],
+    "starterCode": "public int kthSmallestRowSum(int[][] matrix, int k) {\n    // your code here\n    return 0;\n}\n",
+    "paramNames": [
+      "matrix",
+      "k"
+    ],
+    "tests": [
+      {
+        "input": [
+          [
+            [
+              1,
+              3,
+              11
+            ],
+            [
+              2,
+              4,
+              6
+            ]
+          ],
+          5
+        ],
+        "expected": 7,
+        "hidden": false
+      },
+      {
+        "input": [
+          [
+            [
+              1,
+              1,
+              3
+            ],
+            [
+              2,
+              2,
+              3
+            ]
+          ],
+          3
+        ],
+        "expected": 3,
+        "hidden": false
+      },
+      {
+        "input": [
+          [
+            [
+              1,
+              3,
+              11
+            ],
+            [
+              2,
+              4,
+              6
+            ]
+          ],
+          9
+        ],
+        "expected": 17,
+        "hidden": true
+      },
+      {
+        "input": [
+          [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              2
+            ]
+          ],
+          4
+        ],
+        "expected": 4,
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "kth-largest-element",
+    "title": "Kth Largest Element",
+    "pattern": "Top K Elements",
+    "patternId": "top-k",
+    "difficulty": "Medium",
+    "functionName": "kthLargest",
+    "paramTypes": [
+      "int[]",
+      "int"
+    ],
+    "returnType": "int",
+    "statement": "Given an integer array `nums` and an integer `k`, return the `k`-th largest element — that's the `k`-th largest in **sorted order**, not the `k`-th distinct value (duplicates count individually).\n\nAim for better than a full O(n log n) sort: a min-heap of size `k` (or quickselect) gets you to O(n log k) / O(n) average respectively.",
+    "examples": [
+      {
+        "input": "nums = [3,2,1,5,6,4], k = 2",
+        "output": "5",
+        "explanation": "Sorted descending: 6,5,4,3,2,1 — the 2nd largest is 5."
+      },
+      {
+        "input": "nums = [3,2,3,1,2,4,5,5,6], k = 4",
+        "output": "4",
+        "explanation": "Sorted descending: 6,5,5,4,3,3,2,2,1 — the 4th largest is 4."
+      }
+    ],
+    "starterCode": "public int kthLargest(int[] nums, int k) {\n    // your code here\n    return 0;\n}\n",
+    "paramNames": [
+      "nums",
+      "k"
+    ],
+    "tests": [
+      {
+        "input": [
+          [
+            3,
+            2,
+            1,
+            5,
+            6,
+            4
+          ],
+          2
+        ],
+        "expected": 5,
+        "hidden": false
+      },
+      {
+        "input": [
+          [
+            3,
+            2,
+            3,
+            1,
+            2,
+            4,
+            5,
+            5,
+            6
+          ],
+          4
+        ],
+        "expected": 4,
+        "hidden": false
+      },
+      {
+        "input": [
+          [
+            1
+          ],
+          1
+        ],
+        "expected": 1,
+        "hidden": true
+      },
+      {
+        "input": [
+          [
+            7,
+            6,
+            5,
+            4,
+            3,
+            2,
+            1
+          ],
+          5
+        ],
+        "expected": 3,
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "top-k-frequent",
+    "title": "Top K Frequent Elements",
+    "pattern": "Top K Elements",
+    "patternId": "top-k",
+    "difficulty": "Medium",
+    "functionName": "topKFrequent",
+    "paramTypes": [
+      "int[]",
+      "int"
+    ],
+    "returnType": "int[]",
+    "statement": "Given an integer array `nums` and an integer `k`, return the `k` most frequent elements.\n\nOrdering contract for deterministic checking: sort the result by frequency **descending**; break ties among equal frequencies by value **ascending**.",
+    "examples": [
+      {
+        "input": "nums = [1,1,1,2,2,3], k = 2",
+        "output": "[1, 2]",
+        "explanation": "1 appears 3 times, 2 appears 2 times, 3 appears once — the top 2 are 1 and 2."
+      },
+      {
+        "input": "nums = [1], k = 1",
+        "output": "[1]",
+        "explanation": "Only one distinct value."
+      }
+    ],
+    "starterCode": "public int[] topKFrequent(int[] nums, int k) {\n    // see the ordering contract in the problem statement\n    // your code here\n    return new int[0];\n}\n",
+    "paramNames": [
+      "nums",
+      "k"
+    ],
+    "tests": [
+      {
+        "input": [
+          [
+            1,
+            1,
+            1,
+            2,
+            2,
+            3
+          ],
+          2
+        ],
+        "expected": [
+          1,
+          2
+        ],
+        "hidden": false
+      },
+      {
+        "input": [
+          [
+            1
+          ],
+          1
+        ],
+        "expected": [
+          1
+        ],
+        "hidden": false
+      },
+      {
+        "input": [
+          [
+            4,
+            1,
+            -1,
+            2,
+            -1,
+            2,
+            3
+          ],
+          2
+        ],
+        "expected": [
+          -1,
+          2
+        ],
+        "hidden": true
+      },
+      {
+        "input": [
+          [
+            5,
+            5,
+            4,
+            4,
+            3,
+            3,
+            2,
+            1
+          ],
+          3
+        ],
+        "expected": [
+          3,
+          4,
+          5
+        ],
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "k-closest-points",
+    "title": "K Closest Points to Origin",
+    "pattern": "Top K Elements",
+    "patternId": "top-k",
+    "difficulty": "Medium",
+    "functionName": "kClosestPoints",
+    "paramTypes": [
+      "int[][]",
+      "int"
+    ],
+    "returnType": "int[][]",
+    "statement": "Given an array of 2D points and an integer `k`, return the `k` points closest to the origin `(0, 0)` (Euclidean distance — comparing squared distance avoids needing square roots and is equivalent for ordering purposes).\n\nOrdering contract for deterministic checking: sort the result by squared distance from the origin **ascending**; break ties by `x` **ascending**, then by `y` **ascending**.",
+    "examples": [
+      {
+        "input": "points = [[1,3],[-2,2]], k = 1",
+        "output": "[[-2, 2]]",
+        "explanation": "(1,3) is distance^2 10 from origin; (-2,2) is distance^2 8 — closer."
+      },
+      {
+        "input": "points = [[0,1],[1,0]], k = 2",
+        "output": "[[0, 1], [1, 0]]",
+        "explanation": "Both are distance 1 from the origin (a tie) — broken by x ascending: 0 before 1."
+      }
+    ],
+    "starterCode": "public int[][] kClosestPoints(int[][] points, int k) {\n    // see the ordering contract in the problem statement\n    // your code here\n    return new int[0][0];\n}\n",
+    "paramNames": [
+      "points",
+      "k"
+    ],
+    "tests": [
+      {
+        "input": [
+          [
+            [
+              1,
+              3
+            ],
+            [
+              -2,
+              2
+            ]
+          ],
+          1
+        ],
+        "expected": [
+          [
+            -2,
+            2
+          ]
+        ],
+        "hidden": false
+      },
+      {
+        "input": [
+          [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          2
+        ],
+        "expected": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "hidden": false
+      },
+      {
+        "input": [
+          [
+            [
+              3,
+              3
+            ],
+            [
+              5,
+              -1
+            ],
+            [
+              -2,
+              4
+            ]
+          ],
+          2
+        ],
+        "expected": [
+          [
+            3,
+            3
+          ],
+          [
+            -2,
+            4
+          ]
+        ],
+        "hidden": true
+      },
+      {
+        "input": [
+          [
+            [
+              1,
+              1
+            ],
+            [
+              -1,
+              -1
+            ],
+            [
+              1,
+              -1
+            ],
+            [
+              -1,
+              1
+            ]
+          ],
+          2
+        ],
+        "expected": [
+          [
+            -1,
+            -1
+          ],
+          [
+            -1,
+            1
+          ]
+        ],
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "find-k-closest-elements",
+    "title": "Find K Closest Elements",
+    "pattern": "Top K Elements",
+    "patternId": "top-k",
+    "difficulty": "Medium",
+    "functionName": "findKClosest",
+    "paramTypes": [
+      "int[]",
+      "int",
+      "int"
+    ],
+    "returnType": "int[]",
+    "statement": "Given a **sorted** array `arr`, an integer `k`, and a target value `x`, return the `k` closest values to `x` in `arr`, in ascending order. \"Closest\" ties (equal absolute distance) are broken in favor of the **smaller** value.\n\nBinary search for the left edge of the answer window rather than scanning: for a candidate left boundary `mid`, compare how close `arr[mid]` is to `x` versus how close `arr[mid + k]` is — whichever is farther tells you which side to shrink.",
+    "examples": [
+      {
+        "input": "arr = [1,2,3,4,5], k = 4, x = 3",
+        "output": "[1, 2, 3, 4]",
+        "explanation": "The 4 closest values to 3 (with ties broken toward smaller values) are 1,2,3,4."
+      },
+      {
+        "input": "arr = [1,2,3,4,5], k = 4, x = -1",
+        "output": "[1, 2, 3, 4]",
+        "explanation": "x is far below the array, so the 4 closest are simply the 4 smallest values."
+      }
+    ],
+    "starterCode": "public int[] findKClosest(int[] arr, int k, int x) {\n    // your code here\n    return new int[0];\n}\n",
+    "paramNames": [
+      "arr",
+      "k",
+      "x"
+    ],
+    "tests": [
+      {
+        "input": [
+          [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          4,
+          3
+        ],
+        "expected": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "hidden": false
+      },
+      {
+        "input": [
+          [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          4,
+          -1
+        ],
+        "expected": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "hidden": false
+      },
+      {
+        "input": [
+          [
+            1,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          4,
+          -1
+        ],
+        "expected": [
+          1,
+          1,
+          2,
+          3
+        ],
+        "hidden": true
+      },
+      {
+        "input": [
+          [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          3,
+          5
+        ],
+        "expected": [
+          4,
+          5,
+          6
+        ],
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "can-reorganize-string",
+    "title": "Can You Reorganize It?",
+    "pattern": "Top K Elements",
+    "patternId": "top-k",
+    "difficulty": "Medium",
+    "functionName": "canReorganize",
+    "paramTypes": [
+      "String"
+    ],
+    "returnType": "boolean",
+    "statement": "Given a string `s`, determine whether its characters can be rearranged so that **no two adjacent characters are the same**. Return `true` or `false` — you don't need to produce the actual rearrangement, just decide whether one exists.\n\nThink about the most frequent character: if it appears more than `ceil(n / 2)` times (where `n` is the string length), there's no way to space its copies out enough, no matter how you arrange everything else. That condition turns out to be both necessary and sufficient.",
+    "examples": [
+      {
+        "input": "s = \"aab\"",
+        "output": "true",
+        "explanation": "\"aba\" works — no two adjacent characters match."
+      },
+      {
+        "input": "s = \"aaab\"",
+        "output": "false",
+        "explanation": "'a' appears 3 times out of 4 characters — too dominant to space out."
+      }
+    ],
+    "starterCode": "public boolean canReorganize(String s) {\n    // your code here\n    return false;\n}\n",
+    "paramNames": [
+      "s"
+    ],
+    "tests": [
+      {
+        "input": [
+          "aab"
+        ],
+        "expected": true,
+        "hidden": false
+      },
+      {
+        "input": [
+          "aaab"
+        ],
+        "expected": false,
+        "hidden": false
+      },
+      {
+        "input": [
+          "aa"
+        ],
+        "expected": false,
+        "hidden": true
+      },
+      {
+        "input": [
+          "a"
+        ],
+        "expected": true,
+        "hidden": true
+      },
+      {
+        "input": [
+          "aaabbbcc"
+        ],
+        "expected": true,
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "rearrange-k-distance-apart",
+    "title": "Is K-Distance Rearrangement Possible?",
+    "pattern": "Top K Elements",
+    "patternId": "top-k",
+    "difficulty": "Hard",
+    "functionName": "canRearrangeKApart",
+    "paramTypes": [
+      "String",
+      "int"
+    ],
+    "returnType": "boolean",
+    "statement": "Given a string `s` and an integer `k`, determine whether its characters can be rearranged so that **every pair of identical characters is at least `k` positions apart**. Return `true` or `false` — no need to construct the actual rearrangement.\n\nGreedy simulation with a max-heap: repeatedly place the currently most-frequent remaining character, then hold it in a \"cooldown\" queue of size `k` before it's eligible to be placed again. If you ever have characters left to place but the heap is empty (nothing is off cooldown yet), it's impossible. `k <= 1` is always trivially possible.",
+    "examples": [
+      {
+        "input": "s = \"aabbcc\", k = 3",
+        "output": "true",
+        "explanation": "e.g. \"abcabc\" spaces every repeated letter exactly 3 apart."
+      },
+      {
+        "input": "s = \"aaabc\", k = 3",
+        "output": "false",
+        "explanation": "'a' appears 3 times in a 5-character string with a spacing requirement of 3 — not enough room."
+      }
+    ],
+    "starterCode": "public boolean canRearrangeKApart(String s, int k) {\n    // your code here\n    return false;\n}\n",
+    "paramNames": [
+      "s",
+      "k"
+    ],
+    "tests": [
+      {
+        "input": [
+          "aabbcc",
+          3
+        ],
+        "expected": true,
+        "hidden": false
+      },
+      {
+        "input": [
+          "aaabc",
+          3
+        ],
+        "expected": false,
+        "hidden": false
+      },
+      {
+        "input": [
+          "aa",
+          2
+        ],
+        "expected": false,
+        "hidden": true
+      },
+      {
+        "input": [
+          "aaadbbcc",
+          2
+        ],
+        "expected": true,
+        "hidden": true
+      },
+      {
+        "input": [
+          "aa",
+          1
+        ],
+        "expected": true,
+        "hidden": true
+      }
+    ]
   }
 ]
