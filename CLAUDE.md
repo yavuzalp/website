@@ -25,6 +25,10 @@ Yavuzalp Turkoglu's personal site, plus a few small apps attached to it:
   `piston-service/`) but is a structurally separate subsystem: different
   deploy target, different hosting provider, currently unmerged into
   `master`. See the dedicated section near the bottom before touching it.
+- **Travel Plan** (`/travel-plan/`) — a road-trip plan page, **unlisted on
+  purpose**: not linked from any nav, `noindex`/`nofollow`, reachable only
+  by direct URL. Generated from a source file, not hand-edited — see
+  "Travel Plan page" below.
 
 ## Tech stack
 
@@ -138,6 +142,30 @@ page-relative paths, they'll break depending on nesting depth.
 must serve `dist/` over real HTTP to test them (e.g. `npx serve dist` or
 similar). Opening the HTML file directly in a browser will show broken
 CSS/JS and you'll waste time debugging something that isn't actually broken.
+
+## Travel Plan page
+
+`dist/travel-plan/index.html` is **generated, not hand-edited** — see
+`travel-plan-src/README.md` for the full explanation. Short version: the
+trip content originated as a self-contained HTML document with its own
+dark theme and generic class names (`.row`, `.box`, etc.); dropped in
+unmodified it would collide with Bootstrap's `.row` and get its text
+silently recolored by `futuristic.css`'s global `!important` rules on
+headings/paragraphs. `scripts/build-travel-plan.js` scopes the source's
+`<style>` block under `.travel-plan-page` and injects it, plus the
+source's `<body>` content verbatim, into `travel-plan-src/template.html`
+(the fixed nav/head/`noindex` shell) to produce the dist file.
+
+To update the trip plan: replace `travel-plan-src/roadtrip.html`, run
+`node scripts/build-travel-plan.js`, then deploy `dist/travel-plan/
+index.html` the normal way. Don't hand-edit the generated file — the next
+regeneration will silently discard any changes made directly to it.
+
+This page is **intentionally unlisted**: not linked from any page's nav
+(including its own), `noindex`/`nofollow`, no sitemap.xml exists on this
+site to worry about. That's enforced by `template.html`, which the build
+script never touches — don't add a nav link to this page anywhere, and
+don't remove the noindex meta tag.
 
 ## Firebase project
 
