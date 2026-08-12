@@ -66,7 +66,7 @@
             .travel-plan-page .stars{position:absolute;inset:0;pointer-events:none;opacity:.55}
             .travel-plan-page .tag{display:inline-block;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase; color: var(--purple) !important;border:1px solid rgba(176,124,255,.4); background: rgba(176,124,255,.1) !important;
     padding:3px 10px;border-radius:999px;margin-bottom:12px}
-            .travel-plan-page h1{font-size:2rem;line-height:1.15;margin:0 0 10px;letter-spacing:-.02em}
+            .travel-plan-page h1{font-size:1.95rem;line-height:1.15;margin:0 0 10px;letter-spacing:-.02em}
             .travel-plan-page h1 span{ color: var(--accent) !important}
             .travel-plan-page .sub{ color: var(--dim) !important;font-size:1.02rem;margin:0 0 20px;max-width:64ch}
             .travel-plan-page .stats{display:flex;flex-wrap:wrap;gap:10px}
@@ -89,6 +89,7 @@
     margin:40px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--line)}
             .travel-plan-page .day{ background: var(--card) !important;border:1px solid var(--line);border-radius:14px;margin-bottom:12px;overflow:hidden}
             .travel-plan-page .day.dark-night{border-color:rgba(176,124,255,.45);box-shadow:0 0 0 1px rgba(176,124,255,.12),0 0 40px -18px rgba(176,124,255,.6)}
+            .travel-plan-page .day.new{border-color:rgba(78,203,143,.5)}
             .travel-plan-page .dhead{display:flex;align-items:center;gap:14px;padding:16px 18px;cursor:pointer;user-select:none;transition:background .15s}
             .travel-plan-page .dhead:hover{ background: rgba(255,255,255,.025) !important}
             .travel-plan-page .dnum{flex:none;width:44px;height:44px;border-radius:10px; background: var(--bg2) !important;border:1px solid var(--line);
@@ -103,6 +104,7 @@
             .travel-plan-page .b-mi{ color: var(--dim) !important}
             .travel-plan-page .b-chg{ color: var(--green) !important;border-color:rgba(78,203,143,.35); background: rgba(78,203,143,.08) !important}
             .travel-plan-page .b-moon{ color: var(--purple) !important;border-color:rgba(176,124,255,.4); background: rgba(176,124,255,.1) !important}
+            .travel-plan-page .b-new{ color: var(--green) !important;border-color:rgba(78,203,143,.5); background: rgba(78,203,143,.14) !important;font-weight:600}
             .travel-plan-page .chev{flex:none; color: var(--faint) !important;transition:transform .2s;font-size:.9rem}
             .travel-plan-page .day.open .chev{transform:rotate(90deg)}
             .travel-plan-page .dbody{display:none;padding:0 18px 20px;border-top:1px solid var(--line)}
@@ -158,7 +160,7 @@
                 .travel-plan-page .row{grid-template-columns:1fr;gap:4px}
                 .travel-plan-page .badges{justify-content:flex-start}
                 .travel-plan-page .dhead{flex-wrap:wrap}
-                .travel-plan-page h1{font-size:1.55rem}
+                .travel-plan-page h1{font-size:1.5rem}
             }
         </style>
     </head>
@@ -204,46 +206,46 @@
       <circle cx="660" cy="196" r=".8" opacity=".35"/><circle cx="890" cy="168" r="1.2" opacity=".6"/>
     </g>
   </svg>
-  <span class="tag">Version 2 · reversed loop</span>
-  <h1>Mt Hood → Bend → <span>Oregon Outback</span> → Coast → Olympic → home</h1>
-  <p class="sub">Ten days, nine nights, tent camping only, counter-clockwise. Dark skies on nights 3 and 4,
-  the whole Pacific coast on the way back, and Hurricane Ridge on the final morning before the ferry into Seattle.</p>
+  <span class="tag">Version 3 · Crater Lake restored</span>
+  <h1>Mt Hood → <span>Crater Lake</span> → <span>Oregon Outback</span> → Coast → Olympic</h1>
+  <p class="sub">Eleven days, ten nights, tent camping only, counter-clockwise. Crater Lake back in on night 3,
+  and the shift actually gives you <b>better</b> dark skies than the last version, not worse.</p>
   <div class="stats">
-    <div class="stat"><b>Sept 4–13, 2026</b><span>Fri → Sun</span></div>
-    <div class="stat"><b>~1,565 mi</b><span>full loop</span></div>
-    <div class="stat"><b>9 nights</b><span>all tent camping</span></div>
-    <div class="stat"><b>Sept 6 &amp; 7</b><span>dark-sky nights</span></div>
-    <div class="stat"><b>5–6 hrs</b><span>moonless dark per night</span></div>
+    <div class="stat"><b>Sept 4–14, 2026</b><span>Fri → Mon</span></div>
+    <div class="stat"><b>~1,785 mi</b><span>full loop</span></div>
+    <div class="stat"><b>10 nights</b><span>all tent camping</span></div>
+    <div class="stat"><b>3 dark nights</b><span>Sept 6, 7, 8</span></div>
+    <div class="stat"><b>7h 42m</b><span>best moonless window</span></div>
   </div>
 </header>
 
+<div class="alert a-red">
+  <h3>You were right — Crater Lake wasn't in V1 or V2 at all</h3>
+  <p>When we moved the dark-sky destination from Crater Lake to the Oregon Outback, I dropped Crater Lake from the route entirely instead of keeping it as a stop. That was a mistake and you caught it. It's back, as night 3.</p>
+  <p>It genuinely needs its own night: it sits <b>~100 miles south of Bend on US-97</b>, and there is <b>no direct road east from it to Summer Lake</b>. There's no cheap detour version. So this adds one day and the trip now ends Monday Sept 14 instead of Sunday the 13th.</p>
+</div>
+
 <div class="alert a-pur">
-  <h3>Yes — Sept 4–13 reversed works, and the moon is not a problem</h3>
-  <p>I was worried when you said reverse, because that puts the dark-sky nights at the <i>start</i> of the trip rather than on the Sept 11 new moon. Then I checked moonrise times, and it doesn't matter at all.</p>
-  <p>Sept 6 and 7 are <b>waning crescents</b> — they rise in the small hours rather than hanging in the evening sky:</p>
+  <h3>The upside: adding a day makes the stargazing better</h3>
+  <p>Shifting the Outback from Sept 6–7 to Sept 7–8 moves you closer to the new moon, and the waning crescent rises later each night. Plus Crater Lake's own rim sits at 7,000 ft with genuinely dark skies, so night 3 becomes a bonus.</p>
   <div class="tblwrap" style="margin:10px 0">
   <table>
-    <thead><tr><th>Night</th><th>Illum</th><th>Full dark from</th><th>Moon rises</th><th>Moonless window</th></tr></thead>
+    <thead><tr><th>Night</th><th>Where</th><th>Illum</th><th>Full dark</th><th>Moon rises</th><th>Moonless window</th></tr></thead>
     <tbody>
-      <tr><td><b>Sun Sept 6</b></td><td>26.0%</td><td>9:06 pm</td><td>2:07 am</td><td class="pur"><b>5h 01m</b></td></tr>
-      <tr><td><b>Mon Sept 7</b></td><td>16.5%</td><td>9:04 pm</td><td>3:26 am</td><td class="pur"><b>6h 22m</b></td></tr>
+      <tr><td><b>Sun Sept 6</b></td><td>Crater Lake · 6,000 ft</td><td>26.0%</td><td>9:12 pm</td><td>2:13 am</td><td class="pur"><b>5h 00m</b></td></tr>
+      <tr><td><b>Mon Sept 7</b></td><td>Summer Lake · Bortle 1</td><td>16.5%</td><td>9:04 pm</td><td>3:26 am</td><td class="pur"><b>6h 22m</b></td></tr>
+      <tr><td><b>Tue Sept 8</b></td><td>Summer Lake · Bortle 1</td><td>8.8%</td><td>9:02 pm</td><td>4:44 am</td><td class="pur"><b>7h 42m</b></td></tr>
     </tbody>
   </table>
   </div>
-  <p>Five to six hours of <b>completely moonless</b> sky each night, starting the moment it gets dark. And the Milky Way core sets around midnight in September anyway — so a moon that doesn't show up until 2 am costs you <b>nothing at all</b>. You get the good half of the night twice.</p>
-</div>
-
-<div class="alert a-green">
-  <h3>Three ways reversing actually improves the trip</h3>
-  <p><b>1. The charging risk inverts in your favour.</b> This is the big one. Going clockwise you arrived at Summer Lake after a 210-mile run with ~25% left and no fallback. Counter-clockwise you arrive from Bend after only <b>125 miles at around 60%</b> — so even if the campground's 240V pedestal is dead, you can simply drive back to Bend. Then you charge <b>two full nights</b> and leave near 100% for the 210 miles to Eugene. Same roads, far more margin.</p>
-  <p><b>2. You spend Labor Day weekend inland.</b> Sept 5–7 is the holiday. Lake County is empty; the Olympic Peninsula is not. The old plan had you fighting for first-come sites at Heart O' the Hills on the busiest Saturday of the season. Now the coast and Olympic fall midweek and after.</p>
-  <p><b>3. It ends properly.</b> Hurricane Ridge on the last morning, then the Kingston ferry into Seattle — rather than a 600-mile I-84 slog home. You also gain Mt Hood and Smith Rock, which the old route missed entirely.</p>
+  <p>Three consecutive dark nights instead of two, and the best one is now <b>7 hours 42 minutes</b> of completely moonless sky — up from 6h22m in V2. Three nights also pushes your odds of catching <b>at least one genuinely clear night</b> past 98%.</p>
 </div>
 
 <div class="alert a-amber">
-  <h3>What it costs you</h3>
-  <p><b>Sept 8 is a 270-mile day</b> — Summer Lake over Willamette Pass to the coast at Florence. It's the price of putting the desert and the ocean in the same trip; there's no way around it in either direction.</p>
-  <p><b>Kalaloch on Sept 11</b> is still inside its reservation season (which runs to Sept 20), so that hasn't changed. And you're still inside the 6-month booking window, so first-come-first-served sites remain the backbone of the plan.</p>
+  <h3>Know this before you commit: Cleetwood Cove is closed until 2029</h3>
+  <p>The <b>Cleetwood Cove Trail</b> — the only legal access to the lake's shoreline — is being fully rebuilt across the 2026, 2027 and 2028 summer seasons. That means <b>no boat tours, no Wizard Island shuttle, no swimming, no lakeshore access at all</b> while you're there.</p>
+  <p>Everything else is open and operating normally: all 33 miles of <b>Rim Drive</b> with its 30+ pullouts, every rim trail including Garfield Peak and Watchman Peak, both visitor centers, the lodge, ranger programs, and Mazama Campground. Roughly 90% of visitors experience the park entirely from the rim anyway — that's where the view is.</p>
+  <p>If the boat tour was the specific draw, it's worth knowing it returns in 2029. If you want the rim views, nothing has changed.</p>
 </div>
 
 <h2 class="sec">The route</h2>
@@ -253,11 +255,11 @@
   <span><i style="background:#4ecb8f"></i>Tesla Supercharger</span>
   <span><i style="background:#6ea8ff"></i>Stop / sight</span>
   <span><i style="background:#ff6b6b"></i>Charging gap warning</span>
-  <span><b style="background:#f0b429"></b>Outbound — Seattle → Outback</span>
+  <span><b style="background:#f0b429"></b>Outbound — Seattle → Crater Lake → Outback</span>
   <span><b style="background:#6ea8ff"></b>Return — coast &amp; Olympic</span>
   <span><i style="background:rgba(176,124,255,.35);box-shadow:0 0 0 1px #b07cff"></i>Dark Sky Sanctuary</span>
 </div>
-<p class="mapnote">Counter-clockwise: amber out through Mt Hood and Bend, blue back up the coast and around the peninsula. Screenshot it before you lose signal.</p>
+<p class="mapnote">The outbound leg now dips down to Crater Lake and approaches the Outback from the south through Klamath Falls and Lakeview — which is what makes the charging work.</p>
 
 <h2 class="sec">Day-by-day</h2>
 <div class="ctl">
@@ -272,19 +274,16 @@
   </div>
   <div class="dbody">
     <div class="row"><div class="k">Route</div><div class="v">
-      <p>I-5 south through Olympia and Centralia → Portland → <b>US-26 east over Mt Hood</b> → Government Camp → Trillium Lake, 2 mi off the highway.</p>
-      <p>Straightforward interstate for the first four hours, then it gets good the moment you turn onto US-26. Leave early — you want to be setting up before dark on a Friday of a holiday weekend.</p>
+      <p>I-5 south through Olympia and Centralia → Portland → <b>US-26 east over Mt Hood</b> → Government Camp → Trillium Lake, 2 mi off the highway. Straightforward interstate for four hours, then it gets good the moment you turn onto US-26.</p>
     </div></div>
     <div class="row"><div class="k">Charging</div><div class="v">
-      <p><span class="pill ok">Supercharger</span><b>Portland — Jantzen Beach</b>, 12154 N Pavilion Ave. 8 stalls, <b>up to 250 kW</b> — the fastest charge of the entire trip. Take a proper break here.</p>
-      <p><span class="pill ok">Supercharger</span><b>Sandy, OR</b> — Fred Meyer lot, right on US-26. Last easy charge before the mountain; top to 90% if you plan to explore around Hood.</p>
-      <p>Centralia, WA is a useful mid-morning splash on I-5 if you leave with less than a full battery.</p>
+      <p><span class="pill ok">Supercharger</span><b>Portland — Jantzen Beach</b>, 12154 N Pavilion Ave. 8 stalls, <b>up to 250 kW</b> — the fastest charge of the trip.</p>
+      <p><span class="pill ok">Supercharger</span><b>Sandy, OR</b> — Fred Meyer lot on US-26. Last easy fill before the mountain.</p>
     </div></div>
     <div class="row"><div class="k">Camp</div><div class="v">
-      <p><b>Trillium Lake Campground</b>, Mt Hood NF, 3,600 ft. The postcard reflection of Mt Hood across the lake is genuinely as good as the photos, and it's a 2-mile flat loop around the shore.</p>
-      <p><b>$26/site + $8 vehicle fee.</b> Most sites are reservable on recreation.gov, but <b>sites 58–64 near the dam are walk-in tent-only and first-come-first-served</b> — that's your realistic play this late. Drinking water and vault toilets on site.</p>
+      <p><b>Trillium Lake Campground</b>, Mt Hood NF, 3,600 ft. Mt Hood reflected across the lake, and a flat 2-mile shoreline loop. <b>$26/site + $8 vehicle fee.</b> Most sites reservable, but <b>58–64 near the dam are walk-in tent-only, first-come-first-served</b> — your realistic shot this late.</p>
       <p><span class="pill">Backup 1</span> Still Creek Campground, 1 mi away<br>
-         <span class="pill">Backup 2</span> Ainsworth or Viento State Park in the Columbia Gorge, if you'd rather run I-84</p>
+         <span class="pill">Backup 2</span> Ainsworth or Viento State Park in the Gorge</p>
     </div></div>
   </div>
 </div>
@@ -296,214 +295,246 @@
   </div>
   <div class="dbody">
     <div class="row"><div class="k">Route</div><div class="v">
-      <p>US-26 southeast down the east flank of the Cascades through the Warm Springs reservation to Madras, then US-97 to <b>Terrebonne</b> and Bend. Short driving day by design — the landscape flips from wet fir forest to juniper and sage within an hour, which is the whole point.</p>
-      <p><b>Smith Rock State Park</b> is the stop: 600 ft of welded tuff above the Crooked River, the Misery Ridge loop (3.7 mi, genuinely steep), and one of the birthplaces of American sport climbing.</p>
+      <p>US-26 southeast down the east flank of the Cascades through the Warm Springs reservation to Madras, then US-97 to Terrebonne. Short day by design — wet fir forest to juniper and sage within an hour.</p>
+      <p><b>Smith Rock State Park</b>: 600 ft of welded tuff above the Crooked River, the Misery Ridge loop (3.7 mi, steep), and a birthplace of American sport climbing.</p>
     </div></div>
     <div class="row"><div class="k">Charging</div><div class="v">
-      <p><span class="pill ok">Supercharger</span><b>Bend</b> — 61535 S Hwy 97, 8 stalls, 150 kW, 24/7.</p>
-      <p class="ok"><b>This is the last certain fast charge before Lake County.</b> Charge to <b>100%</b> either tonight or first thing tomorrow morning. Central Oregon has additional Superchargers around Madras and Redmond — worth confirming on the app, but Bend is the one to plan around.</p>
+      <p><span class="pill ok">Supercharger</span><b>Bend</b> — 61535 S Hwy 97, 8 stalls, 150 kW, 24/7. Charge to <b>100%</b> tonight or first thing tomorrow.</p>
+      <div class="note"><b>Full resupply in Bend</b>: three days of food, 5–7 gallons of water, firewood, stove fuel. Between here and the coast you have one small store in Paisley.</div>
     </div></div>
     <div class="row"><div class="k">Camp</div><div class="v">
-      <p><b>Tumalo State Park</b>, on the Deschutes just north of Bend — reservable, showers, and close enough to town to resupply properly before the desert.</p>
-      <p><span class="pill">Backup 1</span> <b>Smith Rock bivouac</b> — walk-in tent-only, first-come-first-served, very cheap. Basic (no fires) but you wake up under the rock<br>
-         <span class="pill">Backup 2</span> LaPine State Park, 30 mi south — puts you closer to tomorrow's turn</p>
-      <div class="note">Do your <b>full resupply in Bend</b>: food for three days, 5–7 gallons of water, firewood, fuel. Paisley has a saloon and a small store, and that is it.</div>
+      <p><b>Tumalo State Park</b>, on the Deschutes just north of Bend — reservable, showers, close to town.</p>
+      <p><span class="pill">Backup 1</span> <b>Smith Rock bivouac</b> — walk-in tent-only, FCFS, very cheap, no fires<br>
+         <span class="pill">Backup 2</span> LaPine State Park, 30 mi south</p>
     </div></div>
   </div>
 </div>
 
-<div class="day dark-night">
+<div class="day new dark-night">
   <div class="dhead"><div class="dnum"><b>3</b><span>Sun 9/6</span></div>
-    <div class="dtitle"><b>Into the Oregon Outback</b><span>Outback Scenic Byway · Fort Rock · Summer Lake</span></div>
-    <div class="badges"><span class="b b-mi">125 mi</span><span class="b b-chg">L2 overnight</span><span class="b b-moon">🌒 26% · dark 5h</span><span class="chev">›</span></div>
+    <div class="dtitle"><b>Crater Lake</b><span>Rim Drive · Garfield Peak · Mazama Village</span></div>
+    <div class="badges"><span class="b b-new">NEW</span><span class="b b-mi">135 mi</span><span class="b b-moon">🌒 26% · dark 5h</span><span class="chev">›</span></div>
   </div>
   <div class="dbody">
     <div class="row"><div class="k">Route</div><div class="v">
-      <p>US-97 south to La Pine, then <b>OR-31 — the Outback Scenic Byway</b> — southeast through Silver Lake and Summer Lake to the hot springs, 6 mi west of Paisley. Only 125 miles, and it feels like leaving the country.</p>
-      <p>Stop at <b>Fort Rock State Natural Area</b>, 7 mi off OR-31: a 300 ft volcanic tuff ring standing alone in flat desert, formed when magma met the floor of a Pleistocene lake. Sandals woven ~10,000 years ago were found in the cave nearby.</p>
+      <p>US-97 south from Bend past Chemult to <b>Diamond Lake Junction</b>, then OR-138 west and down the <b>North Entrance Road</b> to the caldera. ~120 mi to the rim, plus however much of Rim Drive you take.</p>
+      <p><b>Budget the whole day.</b> The lake is 1,943 ft deep — the deepest in the United States, ninth deepest in the world — and it holds nothing but snowmelt, which is why the blue looks fake.</p>
+      <ul class="tight" style="margin-top:8px">
+        <li><b>Rim Drive</b> — 33 miles, 30+ pullouts. Do the full circuit</li>
+        <li><b>Garfield Peak</b> — 8,054 ft, widely considered the best hike in the park, 3.4 mi round trip from Rim Village</li>
+        <li><b>Watchman Peak</b> — the iconic Wizard Island view, 1.6 mi round trip</li>
+        <li><b>Sinnott Memorial Overlook</b> — stone platform carved into the caldera wall below Rim Village</li>
+        <li><b>Pinnacles</b> and <b>Plaikni Falls</b> off the southeast rim if you have time</li>
+      </ul>
+      <div class="note"><b>Layers.</b> The rim is above 7,000 ft and runs 35–40°F colder than the valleys below. A warm day in Medford is a breezy 55°F up here. Also pack lunch — in-park dining is just the lodge and Mazama Village.</div>
     </div></div>
     <div class="row"><div class="k">Charging</div><div class="v">
-      <p class="ok"><b>Leave Bend at 100%.</b> 125 miles gets you to Summer Lake at roughly <b>55–60%</b> in your Extended Range truck — which is the safety margin the reversed route buys you. If the campground's 240V pedestal turns out to be dead, you can still drive back to Bend on what's in the battery.</p>
-      <p class="bad">After La Pine there is <b>no DC fast charging</b>. The only public charger in all of Lake County is a Level 2 at Santa's Hardware in Christmas Valley — $2/hr, 9–5, business days.</p>
+      <p class="warn"><b>There is no fast charging at Crater Lake.</b> The park has a 16 kW destination charger and Crater Lake Resort in Fort Klamath has a 13 kW unit — both are overnight-trickle speed, not useful for a fill.</p>
+      <p class="ok">This is fine because of the routing: leave Bend at 100%, drive 135 mi including Rim Drive, and arrive at Mazama around <b>50–55%</b>. Tomorrow's first stop is a Supercharger 55 miles away. Plug into the park's destination charger overnight if a stall is free — it's free margin.</p>
     </div></div>
     <div class="row"><div class="k">Camp</div><div class="v">
-      <p class="pur"><b>Summer Lake Hot Springs</b> — OR-31, 6 mi west of Paisley. <b>(541) 943-3931</b>. Two nights.</p>
-      <ul class="tight">
-        <li>~12 tent sites plus a 5-acre dry camping field. <b>$20 per person per night.</b> Open flat ground, fire pits, no tables, no trees</li>
-        <li><b>Book a 20–50 amp full-hookup site (+$20/night) and tent on it.</b> Plug in the Ford Mobile Power Cord: ~7.7 kW, ~17 miles of range per hour, so each 12-hour night puts roughly 200 miles back in the truck. Two nights and you leave full</li>
-        <li>Geothermal soaking pools on site — and after a day in the high desert, exactly what you want</li>
-      </ul>
-      <p><span class="pill">Free alternative</span> <b>Summer Lake Wildlife Area</b> — four primitive ODFW campgrounds. Free to camp with a <b>$10/day ODFW permit that is not sold on site</b> — buy it online first. Tables, fire pits, vault toilets, <b>no water, no power</b>. Darker than the hot springs; use it for the viewing session and sleep where the outlet is.</p>
+      <p><b>Mazama Village Campground</b> — 7 mi south of the rim, 214 sites (121 tent-only), ~6,000 ft. Picnic table and fire ring per site, flush toilets, coin showers, potable water, camp store and laundry. <b>$35/night for a tent site.</b></p>
+      <p class="warn"><b>Reservations are required July 1 – Oct 1, 2026</b> via recreation.gov, 6-month rolling window — so you're chasing cancellations here like everywhere else. Check daily.</p>
+      <p><span class="pill">Backup 1</span> Diamond Lake Campground, Umpqua NF, 20 mi north<br>
+         <span class="pill">Backup 2</span> Collier Memorial State Park, 30 mi south on US-97<br>
+         <span class="pill">Backup 3</span> Crater Lake Resort, Fort Klamath — private, has the 13 kW charger</p>
     </div></div>
     <div class="row"><div class="k">Tonight</div><div class="v">
-      <p>Sunset <b>7:32 pm</b> · full astronomical darkness <b>9:06 pm</b> · moon doesn't rise until <b>2:07 am</b>.</p>
-      <p>That's <b>five straight hours of moonless sky</b>, and the Milky Way core is up in the southwest for all of it. Use tonight to scout a spot on the wildlife area auto tour route and get the camera dialled in — tomorrow is the better night and you want the fumbling done.</p>
+      <p>Sunset <b>7:38 pm</b> · full dark <b>9:12 pm</b> · moon doesn't rise until <b>2:13 am</b>. Five moonless hours at 6,000 ft.</p>
+      <p>Crater Lake isn't Bortle 1 like the Outback, but it's a long way from anything and the park runs <b>ranger astronomy programs</b> in summer. Worth walking up to a rim pullout after dark — the caldera under the Milky Way is a different thing entirely.</p>
     </div></div>
   </div>
 </div>
 
 <div class="day dark-night">
   <div class="dhead"><div class="dnum"><b>4</b><span>Mon 9/7</span></div>
-    <div class="dtitle"><b>Oregon Outback Dark Sky Sanctuary</b><span>The night the trip is built around</span></div>
-    <div class="badges"><span class="b b-mi">~110 mi local</span><span class="b b-chg">L2 overnight</span><span class="b b-moon">🌒 16.5% · dark 6h22m</span><span class="chev">›</span></div>
+    <div class="dtitle"><b>Crater Lake → the Outback</b><span>Klamath Falls · OR-140 · Lakeview · Summer Lake</span></div>
+    <div class="badges"><span class="b b-mi">210 mi</span><span class="b b-chg">Klamath Falls SC</span><span class="b b-moon">🌒 16.5% · dark 6h22m</span><span class="chev">›</span></div>
   </div>
   <div class="dbody">
-    <div class="row"><div class="k">The place</div><div class="v">
-      <p>Certified by DarkSky International in March 2024, the <b>Oregon Outback International Dark Sky Sanctuary</b> covers <b>2.5 million acres</b> of Lake County — the largest dark sky sanctuary in the world. On a clear night you can see roughly <b>15,000 stars</b>, against about 500 from a typical city.</p>
+    <div class="row"><div class="k">Route</div><div class="v">
+      <p>South out of the park on <b>OR-62</b> through Fort Klamath, down to <b>Klamath Falls</b> (55 mi), then east on <b>OR-140</b> across the Gearhart Wilderness edge through Bly to <b>Lakeview</b> (95 mi), then northwest on <b>OR-31</b> through Paisley to Summer Lake Hot Springs (55 mi).</p>
+      <p>This southern approach is new in this version, and it's better than doubling back up US-97. You get the Klamath Basin, a genuinely remote stretch of OR-140, and you enter the Dark Sky Sanctuary through its southern gateway at Lakeview rather than the northern one.</p>
     </div></div>
-    <div class="row"><div class="k">Daytime</div><div class="v">
+    <div class="row"><div class="k">Charging</div><div class="v">
+      <p><span class="pill ok">Supercharger</span><b>Klamath Falls</b> — and there are now two: <b>2655 Shasta Way</b> (8 stalls, 150 kW) and <b>N Eldorado Ave / College Square</b> (12 stalls, newer, right by the US-97 merge with food nearby).</p>
+      <p class="ok"><b>Charge to 100% at Klamath Falls.</b> It's 150 mi from there to Summer Lake Hot Springs, so you arrive around 45–50% with plenty in hand — and this is the last fast charging until Eugene, three days out.</p>
+      <p class="bad">East of Klamath Falls there is effectively nothing. Lakeview has a Level 2 at the Ford dealership on OR-140 and that's it; the only other charger in Lake County is a Level 2 at a hardware store in Christmas Valley, $2/hr, 9–5.</p>
+    </div></div>
+    <div class="row"><div class="k">Camp</div><div class="v">
+      <p class="pur"><b>Summer Lake Hot Springs</b> — OR-31, 6 mi west of Paisley. <b>(541) 943-3931</b>. Two nights.</p>
       <ul class="tight">
-        <li><b>Summer Lake Wildlife Area auto tour route</b> — 8,800 acres of marsh under the 3,000 ft Winter Ridge escarpment. Big birding, and the best viewing ground for tonight</li>
-        <li><b>Paisley</b> — the Pioneer Saloon, one of the oldest bars in Oregon. Something that isn't camp food</li>
-        <li><b>Chewaucan River</b> south of Paisley — swimming holes and Marster Spring</li>
-        <li>Keep the driving light. A long soak in the pools and an afternoon nap is the correct strategy before an all-night session</li>
+        <li>~12 tent sites plus a 5-acre dry camping field. <b>$20 per person per night.</b> Open flat ground, fire pits, no tables, no trees</li>
+        <li><b>Book a 20–50 amp hookup site (+$20/night) and tent on it.</b> Ford Mobile Power Cord into the NEMA 14-50 gives ~7.7 kW, about 17 miles of range per hour — roughly 200 mi back per overnight. Two nights and you leave full</li>
+        <li>Geothermal soaking pools on site</li>
       </ul>
-      <div class="note"><b>Carry a paper map.</b> Cell coverage across Lake County is unreliable to nonexistent, and this is not terrain to improvise in after dark. Download offline maps too, and tell someone your plan.</div>
+      <p><span class="pill">Free alternative</span> <b>Summer Lake Wildlife Area</b> — four primitive ODFW campgrounds, free with a <b>$10/day permit that is not sold on site</b>. No water, no power. Darker; use it for viewing, sleep where the outlet is.</p>
     </div></div>
-    <div class="row"><div class="k">The night</div><div class="v">
-      <table>
-        <tr><th>Sunset</th><td>7:30 pm PDT</td></tr>
-        <tr><th>Astronomical dark</th><td>9:04 pm PDT</td></tr>
-        <tr><th>Moonrise</th><td>3:26 am — a thin 16.5% crescent, low in the east</td></tr>
-        <tr><th>Moonless window</th><td class="pur"><b>6 hours 22 minutes</b>, 9:04 pm → 3:26 am</td></tr>
-        <tr><th>Milky Way core</th><td>Southwest at full dark, setting toward midnight — shoot it first</td></tr>
-        <tr><th>After midnight</th><td>Andromeda, Perseus and the Double Cluster climbing in the northeast</td></tr>
-      </table>
-      <p style="margin-top:12px"><b>Practical:</b> red light only, and give your eyes a full 30 minutes. Elevation ~4,200 ft — expect <b>30s to low 40s °F overnight</b>. You're on shore power, so run a dew heater and an electric blanket all night for free.</p>
+    <div class="row"><div class="k">Tonight</div><div class="v">
+      <p>Full dark <b>9:04 pm</b> → moonrise <b>3:26 am</b>. <b>6 hours 22 minutes</b> moonless, under the darkest certified sky in the country.</p>
     </div></div>
   </div>
 </div>
 
-<div class="day">
+<div class="day dark-night">
   <div class="dhead"><div class="dnum"><b>5</b><span>Tue 9/8</span></div>
-    <div class="dtitle"><b>Desert → ocean</b><span>The long one. Willamette Pass to the dunes.</span></div>
-    <div class="badges"><span class="b b-mi">270 mi</span><span class="b b-chg">Eugene SC</span><span class="chev">›</span></div>
+    <div class="dtitle"><b>Oregon Outback Dark Sky Sanctuary</b><span>The best night of the trip</span></div>
+    <div class="badges"><span class="b b-mi">~110 mi local</span><span class="b b-chg">L2 overnight</span><span class="b b-moon">🌒 8.8% · dark 7h42m</span><span class="chev">›</span></div>
   </div>
   <div class="dbody">
-    <div class="row"><div class="k">Route</div><div class="v">
-      <p>OR-31 back north to La Pine → US-97 → <b>OR-58 over Willamette Pass</b> (5,128 ft), past Odell and Crescent Lakes → down the Middle Fork Willamette to Eugene → <b>OR-126</b> along the Siuslaw to Florence.</p>
-      <p>Stretch stop: <b>Salt Creek Falls</b> off OR-58 — 286 ft, second tallest in Oregon, and a two-minute walk from the parking area.</p>
-      <p>High desert at breakfast, Pacific surf at dinner. It's a long day but it's the single most dramatic transition on the trip.</p>
+    <div class="row"><div class="k">The place</div><div class="v">
+      <p>Certified by DarkSky International in March 2024, the <b>Oregon Outback International Dark Sky Sanctuary</b> covers <b>2.5 million acres</b> of Lake County — the largest dark sky sanctuary in the world. Roughly <b>15,000 stars</b> visible on a clear night, against about 500 from a city.</p>
     </div></div>
-    <div class="row"><div class="k">Charging</div><div class="v">
-      <p class="ok"><b>You leave Summer Lake essentially full</b> after two nights on the 240V — which is why this direction is the safer one. Summer Lake → Eugene is 210 mi with a 4,700 ft climb; expect to arrive around 25–30%.</p>
-      <p><span class="pill ok">Supercharger</span><b>Eugene</b> — first fast charge in three days. Then it's only 60 mi to Florence.</p>
-      <p><b>Bail-out:</b> if something has gone wrong and you're low leaving Summer Lake, turn north at La Pine for the <b>Bend Supercharger</b> (30 mi) rather than committing to Willamette Pass.</p>
-      <div class="note">ODOT has NEVI-funded fast chargers <b>planned for Chemult and Klamath Falls</b>. If the Chemult site is live by September it sits right on US-97 and removes this leg's only real pinch point. Check PlugShare the morning of.</div>
+    <div class="row"><div class="k">Daytime</div><div class="v">
+      <ul class="tight">
+        <li><b>Summer Lake Wildlife Area auto tour route</b> — 8,800 acres of marsh under the 3,000 ft Winter Ridge escarpment. Scout tonight's viewing spot here</li>
+        <li><b>Paisley</b> — the Pioneer Saloon, one of the oldest bars in Oregon</li>
+        <li><b>Chewaucan River</b> south of Paisley — swimming holes, Marster Spring</li>
+        <li><b>Fort Rock</b> — a 300 ft volcanic tuff ring standing alone in flat desert, 65 mi north on OR-31. Worth it if you want the drive, or catch it tomorrow on the way out</li>
+        <li>Keep it light. A long soak and an afternoon nap is the right call before an all-nighter</li>
+      </ul>
+      <div class="note"><b>Carry a paper map.</b> Cell coverage across Lake County is unreliable to nonexistent. Download offline maps too, and tell someone your plan.</div>
     </div></div>
-    <div class="row"><div class="k">Camp</div><div class="v">
-      <p><b>Jessie M. Honeyman Memorial State Park</b>, 3 mi south of Florence — dunes, two freshwater lakes, 350+ sites with a large tent loop.</p>
-      <p><span class="pill">Backup 1</span> Carl G. Washburne State Park, north of Florence<br>
-         <span class="pill">Backup 2</span> Tugman State Park, 20 mi south</p>
-      <div class="note"><b>Sand stakes</b> for this one and for Fort Stevens — standard tent stakes don't hold in dune sand.</div>
+    <div class="row"><div class="k">The night</div><div class="v">
+      <table>
+        <tr><th>Sunset</th><td>7:28 pm PDT</td></tr>
+        <tr><th>Astronomical dark</th><td>9:02 pm PDT</td></tr>
+        <tr><th>Moonrise</th><td>4:44 am — a thin 8.8% crescent just before dawn</td></tr>
+        <tr><th>Moonless window</th><td class="pur"><b>7 hours 42 minutes</b> — the best of the trip</td></tr>
+        <tr><th>Milky Way core</th><td>Southwest at full dark, setting toward midnight — shoot it first</td></tr>
+        <tr><th>After midnight</th><td>Andromeda, Perseus and the Double Cluster climbing in the northeast</td></tr>
+      </table>
+      <p style="margin-top:12px"><b>Practical:</b> red light only, 30 full minutes to dark-adapt. ~4,200 ft, so expect <b>30s to low 40s °F</b>. You're on shore power — run a dew heater and an electric blanket all night for free.</p>
     </div></div>
   </div>
 </div>
 
 <div class="day">
   <div class="dhead"><div class="dnum"><b>6</b><span>Wed 9/9</span></div>
-    <div class="dtitle"><b>Central coast, northbound</b><span>Heceta Head · Cape Perpetua · Newport · Depoe Bay</span></div>
-    <div class="badges"><span class="b b-mi">130 mi</span><span class="b b-chg">Lincoln City SC</span><span class="chev">›</span></div>
+    <div class="dtitle"><b>Desert → ocean</b><span>Outback Byway · Willamette Pass · Florence</span></div>
+    <div class="badges"><span class="b b-mi">270 mi</span><span class="b b-chg">Eugene SC</span><span class="chev">›</span></div>
   </div>
   <div class="dbody">
     <div class="row"><div class="k">Route</div><div class="v">
-      <p>US-101 north, and northbound is the better direction on this coast — you're on the ocean side of the road all day, so every pullout is a right turn.</p>
-      <ul class="tight">
-        <li><b>Heceta Head</b> lighthouse and the Sea Lion Caves, 12 mi up</li>
-        <li><b>Cape Perpetua</b> — Thor's Well and Devil's Churn. Go near high tide or don't bother</li>
-        <li><b>Yachats</b>, then Yaquina Bay into <b>Newport</b> — Yaquina Head lighthouse, historic bayfront</li>
-        <li><b>Depoe Bay</b> — smallest navigable harbour in the world, and September is peak gray whale season</li>
-      </ul>
+      <p><b>OR-31 north</b> — the Outback Scenic Byway — through Summer Lake, Silver Lake and past Fort Rock to La Pine, then US-97 briefly and <b>OR-58 over Willamette Pass</b> (5,128 ft) past Odell and Crescent Lakes, down to Eugene, then <b>OR-126</b> along the Siuslaw to Florence.</p>
+      <p>Stop at <b>Salt Creek Falls</b> off OR-58 — 286 ft, second tallest in Oregon, two minutes from the car. High desert at breakfast, Pacific surf at dinner.</p>
     </div></div>
     <div class="row"><div class="k">Charging</div><div class="v">
-      <p><span class="pill ok">Supercharger</span><b>Lincoln City</b> — 1500 SE East Devils Lake Rd, 8 stalls, 150 kW, 24/7. The one solid fast charge on the coast run; take it to 90%.</p>
-      <p>Florence has Level 2 destination chargers only, so don't count on topping up before you leave.</p>
+      <p class="ok"><b>You leave Summer Lake essentially full</b> after two nights on the 240V. Summer Lake → Eugene is 210 mi with a 4,700 ft climb; expect to arrive around 25–30%.</p>
+      <p><span class="pill ok">Supercharger</span><b>Eugene</b> — first fast charge in three days. Then 60 mi to Florence.</p>
+      <p><b>Bail-out:</b> if you're low leaving Summer Lake, turn north at La Pine for the <b>Bend Supercharger</b> (30 mi) rather than committing to the pass.</p>
+      <div class="note">ODOT has NEVI-funded fast chargers <b>planned for Chemult and Klamath Falls</b>. If Chemult is live by September it sits right on US-97 and takes the pressure off this leg entirely. Check PlugShare that morning.</div>
     </div></div>
     <div class="row"><div class="k">Camp</div><div class="v">
-      <p><b>Cape Lookout State Park</b>, south of Tillamook — a sand spit between the ocean and Netarts Bay, with a proper tent loop back in the trees.</p>
-      <p><span class="pill">Backup 1</span> Beverly Beach State Park, just north of Newport<br>
-         <span class="pill">Backup 2</span> Nehalem Bay State Park, further north — shortens tomorrow</p>
+      <p><b>Jessie M. Honeyman Memorial State Park</b>, 3 mi south of Florence — dunes, two freshwater lakes, 350+ sites with a large tent loop.</p>
+      <p><span class="pill">Backup 1</span> Carl G. Washburne State Park, north of Florence<br>
+         <span class="pill">Backup 2</span> Tugman State Park, 20 mi south</p>
+      <div class="note"><b>Sand stakes</b> here and at Fort Stevens — standard stakes don't hold in dune sand.</div>
     </div></div>
   </div>
 </div>
 
 <div class="day">
   <div class="dhead"><div class="dnum"><b>7</b><span>Thu 9/10</span></div>
-    <div class="dtitle"><b>North coast → Columbia mouth</b><span>Tillamook · Cannon Beach · Astoria</span></div>
-    <div class="badges"><span class="b b-mi">90 mi</span><span class="b b-chg">Seaside SC</span><span class="chev">›</span></div>
+    <div class="dtitle"><b>Central coast, northbound</b><span>Heceta Head · Cape Perpetua · Newport · Depoe Bay</span></div>
+    <div class="badges"><span class="b b-mi">130 mi</span><span class="b b-chg">Lincoln City SC</span><span class="chev">›</span></div>
   </div>
   <div class="dbody">
     <div class="row"><div class="k">Route</div><div class="v">
-      <p>Short day — use the time. <b>Tillamook</b> creamery, then <b>Cannon Beach</b> for Haystack Rock (check the tide table; low tide opens the pools), Ecola State Park for the classic headland view, and into <b>Astoria</b>.</p>
-      <p>The <b>Astoria Column</b> is worth the 164 steps for the view over the Columbia mouth and out to the bar.</p>
+      <p>US-101 north — the better direction on this coast, since you're on the ocean side of the road all day and every pullout is a right turn.</p>
+      <ul class="tight">
+        <li><b>Heceta Head</b> lighthouse and the Sea Lion Caves, 12 mi up</li>
+        <li><b>Cape Perpetua</b> — Thor's Well and Devil's Churn. Go near high tide or don't bother</li>
+        <li><b>Yachats</b>, then Yaquina Bay into <b>Newport</b> — lighthouse, historic bayfront</li>
+        <li><b>Depoe Bay</b> — smallest navigable harbour in the world, peak gray whale season</li>
+      </ul>
     </div></div>
     <div class="row"><div class="k">Charging</div><div class="v">
-      <p><span class="pill ok">Supercharger</span><b>Seaside</b> — Seaside Outlet Mall, 1111 N Roosevelt Dr, 8 stalls. <b>Astoria itself has no Supercharger</b>, so charge at Seaside on the way past. Tillamook has other-network DC fast charging as a fallback.</p>
+      <p><span class="pill ok">Supercharger</span><b>Lincoln City</b> — 1500 SE East Devils Lake Rd, 8 stalls, 150 kW. The one solid fast charge on the coast run; take it to 90%. Florence has Level 2 only.</p>
     </div></div>
     <div class="row"><div class="k">Camp</div><div class="v">
-      <p><b>Fort Stevens State Park</b>, Hammond — 470+ sites, the wreck of the Peter Iredale on the beach, and old coastal artillery batteries to poke around. Biggest campground on the trip and your best odds of finding something late.</p>
-      <p><span class="pill">Backup</span> Cape Disappointment State Park on the Washington side — two lighthouses and the Lewis &amp; Clark centre. Needs a WA Discover Pass.</p>
+      <p><b>Cape Lookout State Park</b>, south of Tillamook — a sand spit between the ocean and Netarts Bay, with a tent loop back in the trees.</p>
+      <p><span class="pill">Backup 1</span> Beverly Beach State Park, north of Newport<br>
+         <span class="pill">Backup 2</span> Nehalem Bay State Park</p>
     </div></div>
   </div>
 </div>
 
 <div class="day">
   <div class="dhead"><div class="dnum"><b>8</b><span>Fri 9/11</span></div>
-    <div class="dtitle"><b>Into Washington → Olympic coast</b><span>Megler Bridge · Aberdeen · Kalaloch</span></div>
-    <div class="badges"><span class="b b-mi">175 mi</span><span class="b b-chg">Aberdeen SC</span><span class="chev">›</span></div>
+    <div class="dtitle"><b>North coast → Columbia mouth</b><span>Tillamook · Cannon Beach · Astoria</span></div>
+    <div class="badges"><span class="b b-mi">90 mi</span><span class="b b-chg">Seaside SC</span><span class="chev">›</span></div>
   </div>
   <div class="dbody">
     <div class="row"><div class="k">Route</div><div class="v">
-      <p>The 4.1-mile <b>Astoria–Megler Bridge</b> across the Columbia, then US-101 north through Raymond and the Willapa lowlands to <b>Aberdeen</b>, up past <b>Lake Quinault</b> and into Olympic National Park.</p>
-      <p>Arrive at <b>Ruby Beach</b> for golden hour — sea stacks, bleached driftwood, and usually a bank of fog doing something interesting offshore.</p>
+      <p>Short day — use it. <b>Tillamook</b> creamery, <b>Cannon Beach</b> for Haystack Rock (check the tide table; low tide opens the pools), <b>Ecola State Park</b> for the headland view, then Astoria. The <b>Astoria Column</b> is worth the 164 steps.</p>
     </div></div>
     <div class="row"><div class="k">Charging</div><div class="v">
-      <p><span class="pill ok">Supercharger</span><b>Aberdeen</b> — 416 E Wishkah St. After the Chehalis River bridge go straight rather than turning left, then first right and right again.</p>
-      <p class="warn"><b>Charge to 90–100% here.</b> Aberdeen to Forks is ~150 mi with nothing in between, and tomorrow includes the Hoh detour.</p>
+      <p><span class="pill ok">Supercharger</span><b>Seaside</b> — 1111 N Roosevelt Dr, 8 stalls. <b>Astoria has none</b>, so charge at Seaside on the way past.</p>
     </div></div>
     <div class="row"><div class="k">Camp</div><div class="v">
-      <p><b>Kalaloch Campground</b> — on the bluff directly above the Pacific. Reservable through Sept 20, and sites release in <b>three staggered blocks by loop: 6 months, 2 weeks, and 4 days ahead</b>. The 4-day release on Sept 7 is your realistic shot — set an alarm for it.</p>
-      <p><span class="pill">Backup 1</span> South Beach Campground, just south — FCFS<br>
-         <span class="pill">Backup 2</span> Bogachiel State Park, 6 mi south of Forks (Discover Pass)</p>
-      <div class="note"><b>Everything scented goes in the truck bed tonight.</b> Olympic requires hard-sided storage for food, toothpaste, sunscreen and chapstick — and the raccoons on this stretch of coast are professionals. Your Retrax is exactly the right tool.</div>
+      <p><b>Fort Stevens State Park</b>, Hammond — 470+ sites, the wreck of the Peter Iredale, old coastal batteries. Biggest campground on the trip and your best late-availability odds.</p>
+      <p><span class="pill">Backup</span> Cape Disappointment State Park, WA side — needs a Discover Pass</p>
     </div></div>
   </div>
 </div>
 
 <div class="day">
   <div class="dhead"><div class="dnum"><b>9</b><span>Sat 9/12</span></div>
-    <div class="dtitle"><b>Hoh Rain Forest → Lake Crescent</b><span>The wettest and greenest day</span></div>
-    <div class="badges"><span class="b b-mi">150 mi</span><span class="b b-chg">Forks SC</span><span class="chev">›</span></div>
+    <div class="dtitle"><b>Into Washington → Olympic coast</b><span>Megler Bridge · Aberdeen · Kalaloch</span></div>
+    <div class="badges"><span class="b b-mi">175 mi</span><span class="b b-chg">Aberdeen SC</span><span class="chev">›</span></div>
   </div>
   <div class="dbody">
     <div class="row"><div class="k">Route</div><div class="v">
-      <p>North on 101, then <b>Upper Hoh Road 18 mi in</b> to the Hoh Rain Forest — Hall of Mosses (0.8 mi) and the Spruce Nature Trail (1.2 mi). Back out to <b>Forks</b>, then north and east to Lake Crescent.</p>
-      <p>If you have appetite: <b>Rialto Beach</b> and Hole-in-the-Wall, 14 mi off 101 at Forks. Or <b>Sol Duc Falls</b>, 1.6 mi round trip, on the way to camp.</p>
+      <p>The 4.1-mile <b>Astoria–Megler Bridge</b>, then US-101 north through Raymond and the Willapa lowlands to <b>Aberdeen</b>, up past <b>Lake Quinault</b> into Olympic National Park. Arrive at <b>Ruby Beach</b> for golden hour.</p>
     </div></div>
     <div class="row"><div class="k">Charging</div><div class="v">
-      <p><span class="pill ok">Supercharger</span><b>Forks</b> — 100 Fern Hill Rd. <b>Charge here before or after the Hoh</b>; the detour is 36 mi round trip with no charging and no cell service, and there's nothing again until Sequim.</p>
+      <p><span class="pill ok">Supercharger</span><b>Aberdeen</b> — 416 E Wishkah St. After the Chehalis bridge go straight rather than turning left, then first right and right again.</p>
+      <p class="warn"><b>Charge to 90–100%.</b> Aberdeen to Forks is ~150 mi with nothing between, and tomorrow includes the Hoh detour.</p>
     </div></div>
     <div class="row"><div class="k">Camp</div><div class="v">
-      <p><b>Fairholme</b> — west end of Lake Crescent, 88 sites, first-come-first-served, right on the water. Glacially carved, 600 ft deep, and an unreasonable shade of blue.</p>
-      <p><span class="pill">Backup</span> Sol Duc Campground — reservable, and it puts you next to the hot springs pools if you'd rather end soft</p>
+      <p><b>Kalaloch Campground</b> — bluff directly above the Pacific. Reservable through Sept 20; sites release in <b>three staggered blocks: 6 months, 2 weeks, and 4 days ahead</b>. The 4-day release on Sept 8 is your shot.</p>
+      <p><span class="pill">Backup 1</span> South Beach Campground, FCFS<br>
+         <span class="pill">Backup 2</span> Bogachiel State Park, 6 mi south of Forks</p>
+      <div class="note"><b>Everything scented goes in the truck bed.</b> Olympic requires hard-sided storage for food, toothpaste, sunscreen and chapstick — and the raccoons on this coast are professionals. Your Retrax is exactly right for it.</div>
     </div></div>
   </div>
 </div>
 
 <div class="day">
   <div class="dhead"><div class="dnum"><b>10</b><span>Sun 9/13</span></div>
+    <div class="dtitle"><b>Hoh Rain Forest → Lake Crescent</b><span>The wettest and greenest day</span></div>
+    <div class="badges"><span class="b b-mi">150 mi</span><span class="b b-chg">Forks SC</span><span class="chev">›</span></div>
+  </div>
+  <div class="dbody">
+    <div class="row"><div class="k">Route</div><div class="v">
+      <p>North on 101, then <b>Upper Hoh Road 18 mi in</b> — Hall of Mosses (0.8 mi) and Spruce Nature Trail (1.2 mi). Back out to <b>Forks</b>, then north and east to Lake Crescent.</p>
+      <p>If you have appetite: <b>Rialto Beach</b> and Hole-in-the-Wall, 14 mi off 101 at Forks, or <b>Sol Duc Falls</b>, 1.6 mi round trip, on the way to camp.</p>
+    </div></div>
+    <div class="row"><div class="k">Charging</div><div class="v">
+      <p><span class="pill ok">Supercharger</span><b>Forks</b> — 100 Fern Hill Rd. Bracket the Hoh detour with this — 36 mi round trip, no charging, no cell service, and nothing again until Sequim.</p>
+    </div></div>
+    <div class="row"><div class="k">Camp</div><div class="v">
+      <p><b>Fairholme</b> — west end of Lake Crescent, 88 sites, first-come-first-served, on the water. Glacially carved, 600 ft deep, unreasonably blue.</p>
+      <p><span class="pill">Backup</span> Sol Duc Campground — reservable, next to the hot springs pools if you'd rather end soft</p>
+    </div></div>
+  </div>
+</div>
+
+<div class="day">
+  <div class="dhead"><div class="dnum"><b>11</b><span>Mon 9/14</span></div>
     <div class="dtitle"><b>Hurricane Ridge → ferry home</b><span>Best possible last morning</span></div>
     <div class="badges"><span class="b b-mi">150 mi</span><span class="b b-chg">Sequim SC</span><span class="chev">›</span></div>
   </div>
   <div class="dbody">
     <div class="row"><div class="k">Route</div><div class="v">
-      <p><b>Marymere Falls</b> (1.8 mi round trip) from Lake Crescent first thing, then east to Port Angeles and <b>17 miles up Hurricane Ridge Road</b> to 5,242 ft. On a clear morning you're looking straight across at the Bailey Range and Mount Olympus, with the Strait of Juan de Fuca and Vancouver Island behind you.</p>
-      <p>Down, east through Sequim, then WA-104 to the <b>Kingston–Edmonds ferry</b> and home.</p>
-      <div class="note">Hurricane Ridge is open in summer 2026 but expect <b>road and meadow trail construction</b>, and there are <b>no indoor facilities</b> — the lodge burned in 2023, so it's temporary trailers and vault toilets. Check the NPS road status page before you drive up. The regen on the way down gives back a good share of the climb.</div>
+      <p><b>Marymere Falls</b> (1.8 mi round trip) from Lake Crescent first thing, then east to Port Angeles and <b>17 miles up Hurricane Ridge Road</b> to 5,242 ft — the Bailey Range and Mount Olympus in front of you, the Strait of Juan de Fuca and Vancouver Island behind.</p>
+      <p>Down, east through Sequim, WA-104 to the <b>Kingston–Edmonds ferry</b>, home.</p>
+      <div class="note">Hurricane Ridge is open summer 2026 but expect <b>road and meadow trail construction</b>, and there are <b>no indoor facilities</b> — the lodge burned in 2023. Check the NPS road status page before driving up. Regen on the descent gives back a good share of the climb.</div>
     </div></div>
     <div class="row"><div class="k">Charging</div><div class="v">
-      <p><span class="pill ok">Supercharger</span><b>Sequim</b> — Holiday Inn Express, 1441 W Washington St, 8 stalls, 150 kW, 24/7. Only Supercharger on the north peninsula and all you need to get home.</p>
-      <p><b>Book the ferry.</b> Sunday afternoon sailings out of Kingston fill up; without a vehicle reservation you can wait through two or three boats.</p>
+      <p><span class="pill ok">Supercharger</span><b>Sequim</b> — 1441 W Washington St, 8 stalls, 150 kW. Only Supercharger on the north peninsula and all you need.</p>
+      <p><b>Book the ferry.</b> Monday is easier than Sunday, but a vehicle reservation still saves you two or three boats.</p>
     </div></div>
   </div>
 </div>
@@ -513,44 +544,46 @@
 <table>
   <thead><tr><th>Day</th><th>Station</th><th>Detail</th><th>Notes</th></tr></thead>
   <tbody>
-    <tr><td>1</td><td>Centralia, WA</td><td class="ok">Supercharger</td><td>Optional mid-morning splash on I-5.</td></tr>
-    <tr><td>1</td><td>Portland — Jantzen Beach</td><td class="ok">8 stalls · 250 kW</td><td>Fastest charge of the trip. Take the real break here.</td></tr>
-    <tr><td>1</td><td>Sandy, OR — Fred Meyer</td><td class="ok">Supercharger</td><td>On US-26. Last easy fill before Mt Hood.</td></tr>
-    <tr><td>2</td><td>Bend — 61535 S Hwy 97</td><td class="ok">8 stalls · 150 kW</td><td class="bad"><b>Charge to 100%.</b> Last certain fast charge before Lake County.</td></tr>
-    <tr><td>3–4</td><td>Summer Lake Hot Springs</td><td class="pur">NEMA 14-50 · ~7.7 kW</td><td>~17 mi/hr. Two nights ≈ 400 mi recovered. Confirm pedestal amps when booking.</td></tr>
-    <tr><td>3–4</td><td>Christmas Valley — Santa's Hardware</td><td class="bad">Level 2 · $2/hr · 9–5</td><td>The <b>only</b> other charger in Lake County. Emergency only.</td></tr>
-    <tr><td>5</td><td>Bend (bail-out)</td><td class="warn">Supercharger</td><td>Divert north at La Pine only if you're low leaving Summer Lake.</td></tr>
-    <tr><td>5</td><td>Eugene</td><td class="ok">Supercharger</td><td>First fast charge in three days. 60 mi to Florence after.</td></tr>
-    <tr><td>6</td><td>Lincoln City — 1500 SE East Devils Lake Rd</td><td class="ok">8 stalls · 150 kW</td><td>Only solid fast charge on the coast run.</td></tr>
-    <tr><td>7</td><td>Seaside — 1111 N Roosevelt Dr</td><td class="ok">8 stalls</td><td>Astoria has none. Use Seaside.</td></tr>
-    <tr><td>8</td><td>Aberdeen — 416 E Wishkah St</td><td class="ok">Supercharger</td><td>Charge to 90–100%. Nothing for 150 mi to Forks.</td></tr>
-    <tr><td>9</td><td>Forks — 100 Fern Hill Rd</td><td class="ok">Supercharger</td><td>Bracket the Hoh detour with this one.</td></tr>
-    <tr><td>10</td><td>Sequim — 1441 W Washington St</td><td class="ok">8 stalls · 150 kW</td><td>Last charge. Home from here.</td></tr>
+    <tr><td>1</td><td>Centralia, WA</td><td class="ok">Supercharger</td><td>Optional splash on I-5.</td></tr>
+    <tr><td>1</td><td>Portland — Jantzen Beach</td><td class="ok">8 stalls · 250 kW</td><td>Fastest charge of the trip.</td></tr>
+    <tr><td>1</td><td>Sandy, OR — Fred Meyer</td><td class="ok">Supercharger</td><td>On US-26. Last fill before Mt Hood.</td></tr>
+    <tr><td>2</td><td>Bend — 61535 S Hwy 97</td><td class="ok">8 stalls · 150 kW</td><td class="warn"><b>100%.</b> Nothing fast until Klamath Falls.</td></tr>
+    <tr><td>3</td><td>Crater Lake NP / Fort Klamath</td><td class="warn">Destination only · 13–16 kW</td><td>Overnight trickle. Arrive ~50–55% from Bend; that's the plan.</td></tr>
+    <tr><td>4</td><td>Klamath Falls — Shasta Way <i>or</i> N Eldorado Ave</td><td class="ok">8 stalls / 12 stalls · 150 kW</td><td class="bad"><b>100% here.</b> Last fast charge for three days.</td></tr>
+    <tr><td>4</td><td>Lakeview — Hall Motor Ford</td><td class="warn">Level 2</td><td>On OR-140. Emergency only.</td></tr>
+    <tr><td>4–5</td><td>Summer Lake Hot Springs</td><td class="pur">NEMA 14-50 · ~7.7 kW</td><td>~17 mi/hr. Two nights ≈ 400 mi recovered. Confirm pedestal amps when booking.</td></tr>
+    <tr><td>5</td><td>Christmas Valley — Santa's Hardware</td><td class="bad">Level 2 · $2/hr · 9–5</td><td>Only other charger in Lake County.</td></tr>
+    <tr><td>6</td><td>Bend (bail-out)</td><td class="warn">Supercharger</td><td>Divert north at La Pine only if you're low.</td></tr>
+    <tr><td>6</td><td>Eugene</td><td class="ok">Supercharger</td><td>First fast charge in three days. 60 mi to Florence.</td></tr>
+    <tr><td>7</td><td>Lincoln City</td><td class="ok">8 stalls · 150 kW</td><td>Only solid fast charge on the coast run.</td></tr>
+    <tr><td>8</td><td>Seaside</td><td class="ok">8 stalls</td><td>Astoria has none.</td></tr>
+    <tr><td>9</td><td>Aberdeen — 416 E Wishkah St</td><td class="ok">Supercharger</td><td>90–100%. Nothing for 150 mi to Forks.</td></tr>
+    <tr><td>10</td><td>Forks — 100 Fern Hill Rd</td><td class="ok">Supercharger</td><td>Bracket the Hoh detour.</td></tr>
+    <tr><td>11</td><td>Sequim — 1441 W Washington St</td><td class="ok">8 stalls · 150 kW</td><td>Last charge. Home from here.</td></tr>
   </tbody>
 </table>
 </div>
 
-<h2 class="sec">What changed from V1</h2>
+<h2 class="sec">What changed from V2</h2>
 <div class="grid2">
   <div class="box">
     <h4 class="ok">Gained</h4>
     <ul>
-      <li><b>Mt Hood and Trillium Lake</b> — a real first night instead of an interstate slog</li>
-      <li><b>Smith Rock and Central Oregon</b></li>
-      <li><b>Hurricane Ridge as the finale</b>, with a ferry home rather than 600 miles of I-84</li>
-      <li><b>An extra night</b> — 9 instead of 7</li>
-      <li><b>Charging margin at Summer Lake</b> — arrive at 60%, not 25%</li>
-      <li><b>Labor Day spent inland</b>, where nobody is</li>
+      <li><b>Crater Lake</b> — a full day on Rim Drive, plus Mazama Campground</li>
+      <li><b>A third dark night</b>, and a better best-night: 7h42m vs 6h22m moonless</li>
+      <li><b>Klamath Basin, OR-140 and Lakeview</b> — the southern approach into the Sanctuary</li>
+      <li><b>Two more Superchargers on the critical stretch</b> — Klamath Falls now sits between Bend and the Outback, which materially de-risks the whole desert section</li>
+      <li>Odds of at least one clear dark night rise past <b>98%</b></li>
     </ul>
   </div>
   <div class="box">
-    <h4 class="warn">Lost or unchanged</h4>
+    <h4 class="warn">Cost</h4>
     <ul>
-      <li>The Sept 11 new moon exactly — but the waning crescent gives you 5–6 moonless hours anyway, so this is on paper only</li>
-      <li>Sept 8 is still a 270-mile day</li>
-      <li>Still inside the 6-month booking window, so FCFS sites remain the backbone</li>
-      <li>Wildfire smoke risk is identical, and still the biggest threat to the stargazing</li>
-      <li>Southern coast below Florence (Bandon, Coos Bay) — was never in the plan</li>
+      <li><b>One more day</b> — home Monday Sept 14, not Sunday the 13th</li>
+      <li><b>+220 miles</b> total</li>
+      <li><b>Mazama Campground needs a reservation</b> (required July 1 – Oct 1) and you're inside the window — another cancellation to chase</li>
+      <li><b>No boat tour or swimming</b> at Crater Lake — Cleetwood Cove closed until 2029</li>
+      <li>Sept 9 is still a 270-mile day</li>
     </ul>
   </div>
 </div>
@@ -558,19 +591,20 @@
 <h2 class="sec">Book this week</h2>
 <div class="box">
   <ul>
-    <li><b>Summer Lake Hot Springs</b>, (541) 943-3931 — <b>hookup site, Sept 6 and 7</b>, and confirm the pedestal amperage. Do this one first; everything else has alternatives</li>
-    <li><b>Kingston–Edmonds ferry</b>, Sunday Sept 13 afternoon</li>
+    <li><b>Summer Lake Hot Springs</b>, (541) 943-3931 — <b>hookup site, Sept 7 and 8</b>, and confirm pedestal amperage. Do this first</li>
+    <li><b>Mazama Campground</b>, Crater Lake — Sept 6, recreation.gov. Reservation required; set a cancellation alert</li>
+    <li><b>Kingston–Edmonds ferry</b>, Monday Sept 14</li>
     <li><b>ODFW parking permit</b> — $10/day or $30/yr, online. Not sold at the wildlife area</li>
+    <li><b>Crater Lake entrance</b> — $30/vehicle, or America the Beautiful $80 (now genuinely worth it, since you're hitting both Crater Lake and Olympic)</li>
     <li><b>Ford NACS adapter</b> and a <b>NEMA 14-50</b> for the Mobile Power Cord — the trip does not work without either</li>
-    <li>Crossbars, if you decide to bring the cargo basket at all — see the gear notes in V1</li>
-    <li><b>Cancellation alerts</b> on recreation.gov for Trillium Lake, Kalaloch (Sept 11) and Sol Duc; and Oregon State Parks for Tumalo, Honeyman, Cape Lookout and Fort Stevens</li>
+    <li><b>Cancellation alerts</b> for Trillium Lake, Mazama, Kalaloch (Sept 12), Sol Duc; Oregon State Parks for Tumalo, Honeyman, Cape Lookout, Fort Stevens</li>
   </ul>
 </div>
 
 <footer>
-  V2, built Aug 1 2026. Moon phases, moonrise and astronomical twilight computed for 42.74°N, 120.63°W (Summer Lake Hot Springs), elev. 1,265 m, in PDT.
-  Charger locations, campground reservation windows and road status should be re-verified close to departure.
-  Gear, weather and packing notes are in the V1 document and still apply — only the dates and direction have changed.
+  V3, built Aug 2026. Moon phase, moonrise and astronomical twilight computed with PyEphem for Mazama Village (42.86°N, 122.17°W, 1,830 m) and Summer Lake Hot Springs (42.74°N, 120.63°W, 1,265 m), in PDT.
+  Gear, weather and packing notes are in the V1 document and still apply — add warm layers for the Crater Lake rim, which runs 35–40°F colder than the valleys.
+  Re-verify chargers, campground windows and road status close to departure.
 </footer>
 
 </div>
@@ -590,30 +624,30 @@
         'Map tiles need an internet connection. Reconnect and reload to view the route.</div>';
       return;
     }
-    var map = L.map('map',{scrollWheelZoom:false}).setView([45.6,-122.6], 6);
+    var map = L.map('map',{scrollWheelZoom:false}).setView([45.4,-122.3], 6);
     L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{
       attribution:'&copy; OpenStreetMap &copy; CARTO', maxZoom:18, subdomains:'abcd'
     }).addTo(map);
 
-    // outbound: Seattle -> Mt Hood -> Bend -> Outback
     var out = [
       [47.606,-122.332],[47.037,-122.900],[46.717,-122.954],[45.900,-122.750],[45.586,-122.680],
       [45.397,-122.263],[45.334,-121.905],[45.303,-121.751],[45.263,-121.740],[45.303,-121.751],
       [45.100,-121.500],[44.941,-121.192],[44.633,-121.129],[44.365,-121.140],[44.058,-121.315],
-      [44.021,-121.319],[43.670,-121.504],[43.560,-121.360],[43.372,-121.061],[43.121,-121.055],
-      [42.972,-120.784],[42.738,-120.635]
+      [44.021,-121.319],[43.670,-121.504],[43.222,-121.780],[43.110,-121.850],[43.070,-122.050],
+      [42.960,-122.110],[42.912,-122.145],[42.865,-122.168],[42.700,-121.999],[42.480,-121.870],
+      [42.203,-121.750],[42.300,-121.400],[42.399,-121.045],[42.290,-120.700],[42.189,-120.346],
+      [42.450,-120.400],[42.694,-120.544],[42.738,-120.635]
     ];
-    // return: Outback -> Willamette Pass -> Eugene -> coast -> Olympic -> Seattle
     var back = [
-      [42.738,-120.635],[42.972,-120.784],[43.121,-121.055],[43.560,-121.360],[43.670,-121.504],
-      [43.469,-121.694],[43.596,-122.036],[43.745,-122.461],[44.052,-123.087],[43.990,-123.600],
-      [43.930,-124.107],[44.137,-124.128],[44.281,-124.109],[44.633,-124.053],[44.809,-124.062],
-      [44.980,-123.983],[45.340,-123.970],[45.456,-123.845],[45.892,-123.961],[46.003,-123.921],
-      [46.188,-123.831],[46.180,-123.968],[46.283,-124.055],[46.500,-123.900],[46.686,-123.735],
-      [46.977,-123.805],[47.100,-123.900],[47.470,-123.845],[47.610,-124.375],[47.710,-124.415],
-      [47.860,-123.935],[47.945,-124.393],[47.955,-123.855],[48.058,-123.913],[48.118,-123.431],
-      [47.969,-123.498],[48.118,-123.431],[48.079,-123.121],[47.850,-122.880],[47.796,-122.497],
-      [47.811,-122.382],[47.606,-122.332]
+      [42.738,-120.635],[42.972,-120.784],[43.121,-121.055],[43.372,-121.061],[43.560,-121.360],
+      [43.670,-121.504],[43.469,-121.694],[43.596,-122.036],[43.745,-122.461],[44.052,-123.087],
+      [43.990,-123.600],[43.930,-124.107],[44.137,-124.128],[44.281,-124.109],[44.633,-124.053],
+      [44.809,-124.062],[44.980,-123.983],[45.340,-123.970],[45.456,-123.845],[45.892,-123.961],
+      [46.003,-123.921],[46.188,-123.831],[46.180,-123.968],[46.283,-124.055],[46.500,-123.900],
+      [46.686,-123.735],[46.977,-123.805],[47.100,-123.900],[47.470,-123.845],[47.610,-124.375],
+      [47.710,-124.415],[47.860,-123.935],[47.945,-124.393],[47.955,-123.855],[48.058,-123.913],
+      [48.118,-123.431],[47.969,-123.498],[48.118,-123.431],[48.079,-123.121],[47.850,-122.880],
+      [47.796,-122.497],[47.811,-122.382],[47.606,-122.332]
     ];
     L.polyline(out ,{color:'#f0b429',weight:3.5,opacity:.9}).addTo(map);
     L.polyline(back,{color:'#6ea8ff',weight:3.5,opacity:.85}).addTo(map);
@@ -623,41 +657,40 @@
       .bindPopup('<b>Oregon Outback International Dark Sky Sanctuary</b><br>2.5 million acres of Lake County — the largest dark sky sanctuary in the world, certified March 2024. Roughly 15,000 stars visible on a clear night vs. ~500 from a city.');
 
     var pts = [
-      [47.606,-122.332,'s','Seattle — start & finish','Fri Sept 4 out via I-5. Home Sun Sept 13 via the Kingston ferry.'],
-      [45.586,-122.680,'c','Portland — Jantzen Beach SC','12154 N Pavilion Ave · 8 stalls · <b>250 kW</b>.<br>Fastest charge of the whole trip.'],
+      [47.606,-122.332,'s','Seattle — start & finish','Fri Sept 4 out via I-5. Home Mon Sept 14 via the Kingston ferry.'],
+      [45.586,-122.680,'c','Portland — Jantzen Beach SC','12154 N Pavilion Ave · 8 stalls · <b>250 kW</b>. Fastest charge of the trip.'],
       [45.397,-122.263,'c','Sandy, OR Supercharger','Fred Meyer lot on US-26. Last easy fill before Mt Hood.'],
-      [45.263,-121.740,'n','NIGHT 1 — Trillium Lake','Fri Sept 4 · Mt Hood NF · 3,600 ft · $26 + $8 vehicle fee.<br><b>Sites 58–64 are walk-in tent-only and FCFS</b> — your realistic shot. Mt Hood reflected across the lake.'],
-      [44.365,-121.140,'s','Smith Rock State Park','600 ft of welded tuff over the Crooked River. Misery Ridge loop, 3.7 mi. Walk-in FCFS bivouac camping as a backup.'],
-      [44.021,-121.319,'c','Bend Supercharger','61535 S Hwy 97 · 8 stalls · 150 kW.<br><b>Charge to 100%.</b> Last certain fast charge before Lake County. Full resupply in Bend.'],
+      [45.263,-121.740,'n','NIGHT 1 — Trillium Lake','Fri Sept 4 · Mt Hood NF · 3,600 ft · $26 + $8.<br><b>Sites 58–64 walk-in tent-only, FCFS.</b> Mt Hood reflected across the lake.'],
+      [44.365,-121.140,'s','Smith Rock State Park','600 ft of welded tuff over the Crooked River. Misery Ridge loop 3.7 mi.'],
+      [44.021,-121.319,'c','Bend Supercharger','61535 S Hwy 97 · 8 stalls · 150 kW.<br><b>Charge to 100%.</b> Full resupply in Bend.'],
       [44.058,-121.315,'n','NIGHT 2 — Tumalo State Park','Sat Sept 5 · on the Deschutes north of Bend · showers · reservable.'],
-      [43.372,-121.061,'s','Fort Rock','300 ft volcanic tuff ring alone in flat desert. 7 mi off OR-31.'],
-      [43.238,-120.740,'x','Christmas Valley — charging desert','Santa\'s Hardware Level 2, $2/hr, 9–5.<br><b>The only other public charger in Lake County.</b>'],
-      [42.972,-120.784,'s','Summer Lake Wildlife Area','8,800 acres of marsh under the 3,000 ft Winter Ridge. Four free primitive campgrounds — $10/day ODFW permit, not sold on site. Best viewing ground.'],
-      [42.738,-120.635,'n','NIGHTS 3 & 4 — Summer Lake Hot Springs','<b>Sun Sept 6 · dark 9:06 pm → 2:07 am</b><br><b>Mon Sept 7 · dark 9:04 pm → 3:26 am</b><br>(541) 943-3931 · $20/person + $20 hookup.<br>Take a 20–50A site and charge overnight at ~17 mi/hr. Geothermal pools.'],
+      [42.912,-122.145,'s','Crater Lake — Rim Village','<b>1,943 ft deep — deepest lake in the US.</b><br>33 mi Rim Drive, 30+ pullouts. Garfield Peak (8,054 ft, best hike in the park), Watchman Peak, Sinnott Memorial Overlook.<br><b>Cleetwood Cove closed 2026–2028</b> — no boat tours or swimming.'],
+      [42.865,-122.168,'n','NIGHT 3 — Mazama Campground','<b>Sun Sept 6 · dark 9:12 pm → 2:13 am</b><br>7 mi south of the rim · ~6,000 ft · 214 sites · $35.<br>Flush toilets, showers, store. <b>Reservation required Jul 1 – Oct 1.</b> Only 13–16 kW destination charging in the park — arrive ~50% from Bend, that\'s the plan.'],
+      [42.203,-121.750,'c','Klamath Falls Superchargers','<b>Two now:</b> 2655 Shasta Way (8 stalls, 150 kW) and N Eldorado Ave / College Square (12 stalls).<br><b>Charge to 100%</b> — last fast charging for three days.'],
+      [42.189,-120.346,'x','Lakeview — southern gateway','Hall Motor Ford has a Level 2 on OR-140 and that is <b>all of Lake County\'s charging</b>, aside from a hardware store in Christmas Valley.'],
       [42.694,-120.544,'s','Paisley','Pioneer Saloon — one of the oldest bars in Oregon. Chewaucan swimming holes south.'],
+      [42.738,-120.635,'n','NIGHTS 4 & 5 — Summer Lake Hot Springs','<b>Mon Sept 7 · dark 9:04 pm → 3:26 am (6h22m)</b><br><b>Tue Sept 8 · dark 9:02 pm → 4:44 am (7h42m) ← best night</b><br>(541) 943-3931 · $20/person + $20 hookup.<br>Take a 20–50A site and charge overnight at ~17 mi/hr. Geothermal pools.'],
+      [42.972,-120.784,'s','Summer Lake Wildlife Area','8,800 acres of marsh under the 3,000 ft Winter Ridge. Four free primitive campgrounds — $10/day ODFW permit, not sold on site. Best viewing ground.'],
+      [43.372,-121.061,'s','Fort Rock','300 ft volcanic tuff ring alone in flat desert, on OR-31 as you head out.'],
       [43.596,-122.036,'s','Willamette Pass','5,128 ft. Salt Creek Falls (286 ft) just west on OR-58.'],
       [44.052,-123.087,'c','Eugene Supercharger','First fast charge in three days. 60 mi to Florence after.'],
-      [43.930,-124.107,'n','NIGHT 5 — Honeyman SP','Tue Sept 8 · 3 mi south of Florence · dunes + two lakes.<br>270 mi day. Bring sand stakes.'],
-      [44.137,-124.128,'s','Heceta Head','Lighthouse + Sea Lion Caves.'],
+      [43.930,-124.107,'n','NIGHT 6 — Honeyman SP','Wed Sept 9 · 3 mi south of Florence · dunes + two lakes.<br>270 mi day. Bring sand stakes.'],
       [44.281,-124.109,'s','Cape Perpetua','Thor\'s Well and Devil\'s Churn. Go near high tide.'],
       [44.633,-124.053,'s','Newport','Yaquina Head lighthouse + historic bayfront.'],
-      [44.809,-124.062,'s','Depoe Bay','Smallest navigable harbour in the world. Peak gray whale season.'],
-      [44.980,-123.983,'c','Lincoln City Supercharger','1500 SE East Devils Lake Rd · 8 stalls · 150 kW.<br>Only solid fast charge on the coast run.'],
-      [45.340,-123.970,'n','NIGHT 6 — Cape Lookout SP','Wed Sept 9 · sand spit between ocean and Netarts Bay. Tent loop back in the trees.'],
-      [45.456,-123.845,'s','Tillamook','Creamery. Other-network DC fast charging as a fallback.'],
+      [44.980,-123.983,'c','Lincoln City Supercharger','1500 SE East Devils Lake Rd · 8 stalls · 150 kW.'],
+      [45.340,-123.970,'n','NIGHT 7 — Cape Lookout SP','Thu Sept 10 · sand spit between ocean and Netarts Bay.'],
       [45.892,-123.961,'s','Cannon Beach','Haystack Rock — check the tide table. Ecola State Park just north.'],
       [46.003,-123.921,'c','Seaside Supercharger','1111 N Roosevelt Dr · 8 stalls. Astoria has none.'],
-      [46.180,-123.968,'n','NIGHT 7 — Fort Stevens SP','Thu Sept 10 · Hammond, OR · 470+ sites.<br>Peter Iredale wreck + coastal batteries. Best late-availability odds.'],
-      [46.188,-123.831,'s','Astoria','Astoria Column — 164 steps for the view over the Columbia bar.'],
-      [46.977,-123.805,'c','Aberdeen Supercharger','416 E Wishkah St.<br><b>Charge to 90–100%</b> — nothing for 150 mi to Forks.'],
+      [46.180,-123.968,'n','NIGHT 8 — Fort Stevens SP','Fri Sept 11 · Hammond, OR · 470+ sites. Peter Iredale wreck.'],
+      [46.977,-123.805,'c','Aberdeen Supercharger','416 E Wishkah St. <b>90–100%</b> — nothing for 150 mi to Forks.'],
       [47.710,-124.415,'s','Ruby Beach','Sea stacks and driftwood. Aim for golden hour.'],
-      [47.610,-124.375,'n','NIGHT 8 — Kalaloch','Fri Sept 11 · bluff over the Pacific · reservable through Sept 20.<br>4-day block release on Sept 7 is your shot. Everything scented in the truck bed.'],
-      [47.945,-124.393,'c','Forks Supercharger','100 Fern Hill Rd. Bracket the 36 mi Hoh detour with this.'],
+      [47.610,-124.375,'n','NIGHT 9 — Kalaloch','Sat Sept 12 · bluff over the Pacific.<br>4-day block release on Sept 8 is your shot. Everything scented in the truck bed.'],
+      [47.945,-124.393,'c','Forks Supercharger','100 Fern Hill Rd. Bracket the 36 mi Hoh detour.'],
       [47.860,-123.935,'s','Hoh Rain Forest','Hall of Mosses 0.8 mi · Spruce Nature Trail 1.2 mi. Assume mist.'],
-      [48.058,-123.913,'n','NIGHT 9 — Fairholme','Sat Sept 12 · Lake Crescent west end · 88 sites · FCFS.<br>Sol Duc as the reservable backup.'],
+      [48.058,-123.913,'n','NIGHT 10 — Fairholme','Sun Sept 13 · Lake Crescent west end · 88 sites · FCFS.'],
       [47.969,-123.498,'s','Hurricane Ridge','5,242 ft. Final morning. Construction expected; no indoor facilities.'],
-      [48.079,-123.121,'c','Sequim Supercharger','1441 W Washington St · 8 stalls · 150 kW. Last charge before the ferry.'],
-      [47.796,-122.497,'s','Kingston ferry','Sun Sept 13. <b>Book the vehicle reservation</b> — afternoon sailings fill.']
+      [48.079,-123.121,'c','Sequim Supercharger','1441 W Washington St · 8 stalls · 150 kW. Last charge.'],
+      [47.796,-122.497,'s','Kingston ferry','Mon Sept 14. Book the vehicle reservation.']
     ];
     var col = {n:'#b07cff', c:'#4ecb8f', s:'#6ea8ff', x:'#ff6b6b'};
     var size= {n:15, c:11, s:8, x:12};
